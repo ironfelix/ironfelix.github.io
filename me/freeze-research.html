@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дорсальный вагус и freeze response — Консенсусный справочник</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1018;
+    --card: #141e2b;
+    --card2: #1a2840;
+    --accent: #e8a838;
+    --accent2: #f0c060;
+    --danger: #e85454;
+    --success: #4ecb71;
+    --info: #7db8e8;
+    --warn: #f0a030;
+    --text: #e8eaf0;
+    --muted: #8899aa;
+    --border: #1e3050;
+    --grade-a: #4ecb71;
+    --grade-b: #7db8e8;
+    --grade-c: #e8a838;
+    --grade-d: #e85454;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0e1a2e 0%, #142240 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 48px 32px 40px;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,168,56,0.12);
+    border: 1px solid rgba(232,168,56,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .header h1 span { color: var(--accent); }
+  .header-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .header-chip {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .header-chip strong { color: var(--text); display: block; font-size: 13px; }
+
+  /* NAV */
+  .nav-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .nav-bar a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 14px 12px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-bar a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* LAYOUT */
+  .container { max-width: 1000px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ALERT BOXES */
+  .alert {
+    display: flex;
+    gap: 14px;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 24px 0;
+    border-left: 4px solid;
+  }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-weight: 700; margin-bottom: 4px; font-size: 14px; }
+  .alert-text { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+  .alert-danger { background: rgba(232,84,84,0.08); border-color: var(--danger); }
+  .alert-danger .alert-title { color: var(--danger); }
+  .alert-warn { background: rgba(240,160,48,0.08); border-color: var(--warn); }
+  .alert-warn .alert-title { color: var(--warn); }
+  .alert-success { background: rgba(78,203,113,0.08); border-color: var(--success); }
+  .alert-success .alert-title { color: var(--success); }
+  .alert-info { background: rgba(125,184,232,0.08); border-color: var(--info); }
+  .alert-info .alert-title { color: var(--info); }
+
+  /* SECTION HEADERS */
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin: 48px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .subsection-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin: 28px 0 12px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card p, .card li { font-size: 14px; color: #c8d0dc; }
+
+  /* FREEZE TYPE CARDS */
+  .freeze-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .freeze-types { grid-template-columns: 1fr; } }
+  .freeze-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .freeze-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .freeze-a::before { background: var(--info); }
+  .freeze-b::before { background: var(--danger); }
+  .freeze-c::before { background: var(--accent); }
+  .freeze-type-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .freeze-a .freeze-type-label { color: var(--info); }
+  .freeze-b .freeze-type-label { color: var(--danger); }
+  .freeze-c .freeze-type-label { color: var(--accent); }
+  .freeze-card h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+  .freeze-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .freeze-stat:last-child { border-bottom: none; }
+  .freeze-stat-label { color: var(--muted); }
+  .freeze-stat-val { font-weight: 600; }
+  .sym { color: var(--danger); }
+  .para { color: var(--info); }
+  .dorsal { color: var(--accent); }
+
+  /* EVIDENCE TABLE */
+  .evidence-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  .evidence-table th {
+    background: var(--card2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .evidence-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .evidence-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .grade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .grade-A { background: rgba(78,203,113,0.15); color: var(--grade-a); border: 1px solid rgba(78,203,113,0.3); }
+  .grade-B { background: rgba(125,184,232,0.15); color: var(--grade-b); border: 1px solid rgba(125,184,232,0.3); }
+  .grade-C { background: rgba(232,168,56,0.15); color: var(--grade-c); border: 1px solid rgba(232,168,56,0.3); }
+  .grade-D { background: rgba(232,84,84,0.15); color: var(--grade-d); border: 1px solid rgba(232,84,84,0.3); }
+  .priority-1 { color: var(--success); font-weight: 600; }
+  .priority-2 { color: var(--info); font-weight: 600; }
+  .priority-3 { color: var(--accent); font-weight: 600; }
+  .priority-x { color: var(--danger); font-weight: 600; }
+
+  /* OUTCOME CARDS */
+  .outcome {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .outcome-header {
+    padding: 18px 24px;
+    background: var(--card2);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .outcome-num {
+    background: rgba(232,168,56,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(232,168,56,0.3);
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .outcome-title { font-size: 15px; font-weight: 700; color: #fff; flex: 1; }
+  .outcome-body { padding: 20px 24px; }
+  .outcome-verdict {
+    font-size: 13.5px;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(232,168,56,0.07);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+  .outcome-params {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .outcome-params { grid-template-columns: 1fr; } }
+  .param-row {
+    background: var(--card2);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .param-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .param-val { font-size: 13px; font-weight: 600; color: var(--text); }
+  .outcome-detail { font-size: 13.5px; color: #b0bac8; line-height: 1.7; margin-top: 14px; }
+  .caveat {
+    background: rgba(232,84,84,0.06);
+    border: 1px solid rgba(232,84,84,0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #c8a0a0;
+    margin-top: 12px;
+  }
+  .caveat strong { color: var(--danger); display: block; margin-bottom: 4px; }
+
+  /* PROTOCOL */
+  .protocol {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .protocol-step {
+    border-bottom: 1px solid var(--border);
+  }
+  .protocol-step:last-child { border-bottom: none; }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    background: var(--card2);
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .step-0 .step-num { background: rgba(125,184,232,0.15); color: var(--info); }
+  .step-1 .step-num { background: rgba(78,203,113,0.15); color: var(--success); }
+  .step-2 .step-num { background: rgba(232,168,56,0.15); color: var(--accent); }
+  .step-3 .step-num { background: rgba(125,184,232,0.15); color: var(--info); }
+  .step-4 .step-num { background: rgba(78,203,113,0.15); color: var(--success); }
+  .step-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .step-body { padding: 20px 24px; }
+  .step-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .step-types { grid-template-columns: 1fr; } }
+  .type-block { border-radius: 8px; padding: 14px; }
+  .type-a { background: rgba(125,184,232,0.07); border: 1px solid rgba(125,184,232,0.2); }
+  .type-b { background: rgba(232,84,84,0.07); border: 1px solid rgba(232,84,84,0.2); }
+  .type-c { background: rgba(232,168,56,0.07); border: 1px solid rgba(232,168,56,0.2); }
+  .type-block-title { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+  .type-a .type-block-title { color: var(--info); }
+  .type-b .type-block-title { color: var(--danger); }
+  .type-c .type-block-title { color: var(--accent); }
+  .type-block ul { list-style: none; padding: 0; }
+  .type-block li { font-size: 12.5px; color: #a8b4c0; padding: 3px 0; display: flex; gap: 6px; }
+  .type-block li::before { content: '→'; color: var(--muted); flex-shrink: 0; }
+  .do-not {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--danger);
+    font-weight: 600;
+  }
+
+  /* WARNINGS */
+  .warnings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 650px) { .warnings-grid { grid-template-columns: 1fr; } }
+  .warning-card {
+    background: var(--card);
+    border: 1px solid rgba(232,84,84,0.2);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .warning-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--danger);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .warning-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .warning-text { font-size: 13px; color: #a8b0bc; line-height: 1.6; }
+
+  /* DEBUNKED */
+  .debunked-box {
+    background: rgba(232,84,84,0.06);
+    border: 1px solid rgba(232,84,84,0.2);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .debunked-icon { color: var(--danger); font-size: 18px; flex-shrink: 0; }
+  .debunked-text { font-size: 13.5px; color: #c0a8a8; }
+  .debunked-text strong { color: var(--danger); }
+
+  /* UNKNOWNS */
+  .unknown-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    display: flex;
+    gap: 14px;
+  }
+  .unknown-id {
+    background: rgba(125,184,232,0.1);
+    color: var(--info);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    height: fit-content;
+    flex-shrink: 0;
+  }
+  .unknown-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .unknown-text { font-size: 13px; color: var(--muted); }
+
+  /* CONSENSUS MAP */
+  .consensus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 650px) { .consensus-grid { grid-template-columns: 1fr; } }
+  .cmap-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .cmap-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .cmap-established .cmap-title { color: var(--success); }
+  .cmap-debated .cmap-title { color: var(--warn); }
+  .cmap-strong .cmap-title { color: var(--info); }
+  .cmap-open .cmap-title { color: var(--accent); }
+  .cmap-card ul { list-style: none; padding: 0; }
+  .cmap-card li { font-size: 13px; color: #b0bac8; padding: 5px 0; border-bottom: 1px solid var(--border); line-height: 1.5; display: flex; gap: 8px; }
+  .cmap-card li:last-child { border-bottom: none; }
+  .cmap-card li::before { flex-shrink: 0; font-weight: 700; }
+  .cmap-established li::before { content: '✓'; color: var(--success); }
+  .cmap-debated li::before { content: '?'; color: var(--warn); }
+  .cmap-strong li::before { content: '★'; color: var(--info); }
+  .cmap-open li::before { content: '→'; color: var(--accent); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .footer p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .footer strong { color: var(--accent); }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tag-green { background: rgba(78,203,113,0.12); color: var(--success); }
+  .tag-red { background: rgba(232,84,84,0.12); color: var(--danger); }
+  .tag-orange { background: rgba(232,168,56,0.12); color: var(--accent); }
+  .tag-blue { background: rgba(125,184,232,0.12); color: var(--info); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* HR */
+  hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  p { margin-bottom: 12px; }
+  ul { padding-left: 20px; margin-bottom: 12px; }
+  ul li { margin-bottom: 6px; font-size: 14px; color: #b8c4d0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">🧠 Deep Research · Health Domain · Consensus Mode</div>
+  <h1>Дорсальный вагус и <span>freeze response</span></h1>
+  <p class="header-sub">Физиология · Психология · Практики выхода</p>
+  <div class="header-meta">
+    <div class="header-chip"><strong>31 мая 2026</strong>Дата синтеза</div>
+    <div class="header-chip"><strong>11 агентов</strong>5 SCOUT + CRITIC + METH + 3 DD</div>
+    <div class="header-chip"><strong>113 источников</strong>A− / B+ / B / C</div>
+    <div class="header-chip"><strong>83% конвергенция</strong>10/12 утверждений</div>
+    <div class="header-chip"><strong>LOW–MODERATE</strong>Общая уверенность</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <a href="#consensus">Консенсус</a>
+  <a href="#freeze-types">3 типа freeze</a>
+  <a href="#evidence">Доказательства</a>
+  <a href="#outcomes">Исходы</a>
+  <a href="#protocol">Протокол</a>
+  <a href="#warnings">Предупреждения</a>
+  <a href="#unknowns">Пробелы</a>
+</nav>
+
+<div class="container">
+
+  <!-- ГЛАВНОЕ ОТКРЫТИЕ -->
+  <div class="alert alert-warn" style="margin-top:32px;">
+    <div class="alert-icon">⚡</div>
+    <div>
+      <div class="alert-title">Главное открытие: терминологический хаос — основная проблема поля</div>
+      <div class="alert-text">«Freeze», «дорсальный вагусный shutdown», «тоническая иммобильность» и «коллапс» используются как синонимы — но это <strong style="color:#fff">три физиологически противоположных состояния</strong> с разными ANS-профилями и разными терапевтическими подходами. Именно это смешение объясняет большинство противоречий в литературе.</div>
+    </div>
+  </div>
+
+  <!-- КОНСЕНСУС КАРТА -->
+  <h2 class="section-title" id="consensus">Карта консенсуса поля</h2>
+
+  <div class="consensus-grid">
+    <div class="cmap-card cmap-established">
+      <div class="cmap-title">Установленный консенсус</div>
+      <ul>
+        <li>Тоническая иммобильность (TI) реальна — 48–70% жертв сексуального насилия (Möller 2017, N=298)</li>
+        <li>влPAG — центральный организатор freeze у млекопитающих (оптогенетика)</li>
+        <li>EMDR — единственная терапия с Grade A доказательностью при ПТСР</li>
+        <li>Телесные вмешательства дают клинический эффект при ПТСР даже при неясных механизмах</li>
+      </ul>
+    </div>
+    <div class="cmap-card cmap-debated">
+      <div class="cmap-title">Активные дебаты</div>
+      <ul>
+        <li>DMV или nucleus ambiguus — главный вагальный контроллер сердца при freeze?</li>
+        <li>Freeze у людей — парасимпатика (брадикардия) или симпатика (тахикардия)?</li>
+        <li>ПВТ — клиническая эвристика или ненаучная теория?</li>
+        <li>Нужен ли диссоциативному ПТСР специальный протокол?</li>
+      </ul>
+    </div>
+    <div class="cmap-card cmap-strong">
+      <div class="cmap-title">Наиболее надёжные данные</div>
+      <ul>
+        <li>3 типа freeze с разными ANS-профилями (Volchan 2011/2017, Norte 2019)</li>
+        <li>TI → ПТСР: OR=2.75 (Möller 2017), медиация через диссоциацию (de Mello 2023)</li>
+        <li>TCTSY ≡ CPT по эффективности при MST (JAMA NO 2023, n=131)</li>
+        <li>AIC гипоактивна при PTSD-DS (Lanius lab, 2019)</li>
+      </ul>
+    </div>
+    <div class="cmap-card cmap-open">
+      <div class="cmap-title">Ключевой открытый вопрос</div>
+      <ul>
+        <li>«Дорсальный вагальный shutdown» (Type C) — отдельный клинический подтип или просто тяжёлая диссоциация?</li>
+        <li>Ни одного RCT с freeze как критерием включения</li>
+        <li>Zoet 2018: DS-PTSD отвечает на стандартную терапию так же, как non-DS</li>
+        <li>Если репликация подтвердится — freeze-специфичные протоколы не нужны</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3 ТИПА FREEZE -->
+  <h2 class="section-title" id="freeze-types">3 физиологически различных типа freeze</h2>
+
+  <div class="alert alert-info">
+    <div class="alert-icon">ℹ️</div>
+    <div>
+      <div class="alert-title">Porges сам различает эти состояния</div>
+      <div class="alert-text">В интервью 2021–2023 Porges разграничивал «freeze» (ригидность, симпатика + ранний дорсальный вагус) и «shutdown» (мягкость/обмякание, чистый дорсальный вагус). Популяризаторы слили их в один конструкт. Это — главный источник путаницы.</div>
+    </div>
+  </div>
+
+  <div class="freeze-types">
+    <div class="freeze-card freeze-a">
+      <div class="freeze-type-label">Тип A · Post-encounter</div>
+      <h3>Аттентивное замирание</h3>
+      <div class="freeze-stat"><span class="freeze-stat-label">ЧСС</span><span class="freeze-stat-val para">↓ Брадикардия</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">ANS</span><span class="freeze-stat-val para">Парасимпатика</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Поведение</span><span class="freeze-stat-val">Тихая неподвижность, сканирование</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Путь</span><span class="freeze-stat-val" style="font-size:11px">влPAG → nucleus ambiguus → вагус</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Выход</span><span class="freeze-stat-val">Завершить прерванное движение</span></div>
+    </div>
+    <div class="freeze-card freeze-b">
+      <div class="freeze-type-label">Тип B · Circa-strike ⚠️</div>
+      <h3>Тоническая иммобильность</h3>
+      <div class="freeze-stat"><span class="freeze-stat-label">ЧСС</span><span class="freeze-stat-val sym">↑ Тахикардия</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">ANS</span><span class="freeze-stat-val sym">Симпатика (доминирует)</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Поведение</span><span class="freeze-stat-val">Паралич, анальгезия, «замёрз от страха»</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Данные</span><span class="freeze-stat-val" style="font-size:11px">Volchan 2011/Norte 2019 · тахикардия</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Выход</span><span class="freeze-stat-val">Движение, разрядка, встряхивание</span></div>
+    </div>
+    <div class="freeze-card freeze-c">
+      <div class="freeze-type-label">Тип C · Post-overwhelm</div>
+      <h3>Коллапс / Shutdown</h3>
+      <div class="freeze-stat"><span class="freeze-stat-label">ЧСС</span><span class="freeze-stat-val dorsal">↓ Брадикардия</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">ANS</span><span class="freeze-stat-val dorsal">Дорсальный вагус</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Поведение</span><span class="freeze-stat-val">Вялость, обмякание, пустота</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Путь</span><span class="freeze-stat-val" style="font-size:11px">CeA → влPAG → DMV → вагус (предполагается)</span></div>
+      <div class="freeze-stat"><span class="freeze-stat-label">Выход</span><span class="freeze-stat-val">Мягкая активация, вокализация</span></div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger">
+    <div class="alert-icon">❌</div>
+    <div>
+      <div class="alert-title">Лабораторные данные опровергают «дорсальную вагусную» версию TI</div>
+      <div class="alert-text">Три независимых исследования группы Volchan (Бразилия) фиксируют при TI у людей <strong style="color:#fff">тахикардию</strong>, а не брадикардию: Norte et al. 2019 (N=17): HIGH TI группа +7.88 bpm vs. LOW TI +0.03 bpm. Это означает, что тоническая иммобильность (Тип B) — <strong style="color:#fff">симпатическая</strong> реакция, а не «дорсальный вагусный shutdown».</div>
+    </div>
+  </div>
+
+  <!-- ДОКАЗАТЕЛЬНАЯ ИЕРАРХИЯ -->
+  <h2 class="section-title" id="evidence">Доказательная иерархия вмешательств</h2>
+
+  <div class="alert alert-success">
+    <div class="alert-icon">✓</div>
+    <div>
+      <div class="alert-title">Ключевой вывод: стандартная терапия работает при диссоциативном ПТСР</div>
+      <div class="alert-text">Zoet et al. 2018 (n=168): диссоциативный подтип ПТСР отвечает на EMDR/CPT <strong style="color:#fff">так же хорошо</strong>, как недиссоциативный. Это ставит под вопрос обоснованность любых «freeze-специфичных» протоколов.</div>
+    </div>
+  </div>
+
+  <table class="evidence-table">
+    <thead>
+      <tr>
+        <th>Практика</th>
+        <th>GRADE</th>
+        <th>Freeze-специфично</th>
+        <th>Приоритет</th>
+        <th>Комментарий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>EMDR при ПТСР</strong></td>
+        <td><span class="grade grade-A">A</span></td>
+        <td><span class="tag tag-blue">DS-PTSD: B</span></td>
+        <td class="priority-1">Первая линия</td>
+        <td style="font-size:12px;color:var(--muted)">d≈1.0–1.4; десятки RCT; ВОЗ и APA</td>
+      </tr>
+      <tr>
+        <td><strong>CPT при ПТСР</strong></td>
+        <td><span class="grade grade-A">A</span></td>
+        <td><span class="tag tag-blue">DS-PTSD: B</span></td>
+        <td class="priority-1">Первая линия</td>
+        <td style="font-size:12px;color:var(--muted)">Эквивалентна EMDR</td>
+      </tr>
+      <tr>
+        <td><strong>TCTSY (йога травма)</strong></td>
+        <td><span class="grade grade-B">B</span></td>
+        <td><span class="tag tag-orange">Нет</span></td>
+        <td class="priority-2">При предпочтении тела</td>
+        <td style="font-size:12px;color:var(--muted)">≡ CPT (JAMA NO 2023, n=131); +19.5 п.п. приверженность</td>
+      </tr>
+      <tr>
+        <td>Когерентное дыхание / HRV BFB</td>
+        <td><span class="grade grade-C">C</span></td>
+        <td><span class="tag tag-orange">Нет</span></td>
+        <td class="priority-3">Само-помощь, дополнение</td>
+        <td style="font-size:12px;color:var(--muted)">24.3% снижение PCL (RCT 2025); механизм ≠ «вагальный тонус»</td>
+      </tr>
+      <tr>
+        <td>Интероцептивный тренинг (MABT)</td>
+        <td><span class="grade grade-C">C</span></td>
+        <td><span class="tag tag-green">Частично</span></td>
+        <td class="priority-3">При алекситимии</td>
+        <td style="font-size:12px;color:var(--muted)">AIC→vmPFC механизм; 44% ниже скрининга ПТСР</td>
+      </tr>
+      <tr>
+        <td>Grounding 5-4-3-2-1</td>
+        <td><span class="grade grade-C">C</span></td>
+        <td><span class="tag tag-orange">Нет</span></td>
+        <td class="priority-3">Phase 1 стабилизации</td>
+        <td style="font-size:12px;color:var(--muted)">Клинический консенсус, 0 RCT (Hammond & Brown 2025)</td>
+      </tr>
+      <tr>
+        <td>SE (Somatic Experiencing)</td>
+        <td><span class="grade grade-D">D</span></td>
+        <td><span class="tag tag-red">Нет</span></td>
+        <td class="priority-x">Не монотерапия</td>
+        <td style="font-size:12px;color:var(--muted)">1 RCT (n=63, waitlist); d=0.94–1.26; нет активного контроля</td>
+      </tr>
+      <tr>
+        <td>TRE (нейрогенные тремора)</td>
+        <td><span class="grade grade-D">D</span></td>
+        <td><span class="tag tag-red">Нет</span></td>
+        <td class="priority-x">Не монотерапия</td>
+        <td style="font-size:12px;color:var(--muted)">0 RCT при ПТСР; механизм гипотетичен</td>
+      </tr>
+      <tr>
+        <td>Стандартный mindfulness</td>
+        <td><span class="grade grade-A">A</span></td>
+        <td>—</td>
+        <td class="priority-x" style="color:var(--danger)">⚠️ Противопоказан</td>
+        <td style="font-size:12px;color:var(--muted)">Grade A при тревоге; потенциально вреден при freeze/диссоциации</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ИСХОДЫ -->
+  <h2 class="section-title" id="outcomes">Систематический разбор исходов</h2>
+
+  <!-- TI → PTSD -->
+  <div class="outcome">
+    <div class="outcome-header">
+      <div class="outcome-num">2</div>
+      <div class="outcome-title">Тоническая иммобильность → ПТСР: предикция</div>
+      <span class="grade grade-C" style="margin-left:auto">C</span>
+    </div>
+    <div class="outcome-body">
+      <div class="outcome-verdict">TI во время травмы надёжно предсказывает тяжёлый ПТСР у женщин после сексуального насилия; механизм — через периравматическую диссоциацию.</div>
+      <div class="outcome-params">
+        <div class="param-row"><div class="param-label">OR для ПТСР</div><div class="param-val">2.75 (Möller 2017, N=298)</div></div>
+        <div class="param-row"><div class="param-label">OR для тяжёлой депрессии</div><div class="param-val">3.42 (Möller 2017)</div></div>
+        <div class="param-row"><div class="param-label">Медиация</div><div class="param-val">TI + PD → 3 из 4 кластеров ПТСР (de Mello 2023)</div></div>
+        <div class="param-row"><div class="param-label">Механизм</div><div class="param-val">TI → кортизол↑ → ↓LTP гиппокампа → фрагментация памяти</div></div>
+      </div>
+      <div class="caveat"><strong>Ограничения</strong>Recall bias критичен — TIS ретроспективный самоотчёт. Данные только женщины / сексуальное насилие. Направление каузальности неустановлено.</div>
+    </div>
+  </div>
+
+  <!-- PVT статус -->
+  <div class="outcome">
+    <div class="outcome-header">
+      <div class="outcome-num">5</div>
+      <div class="outcome-title">ПВТ как теоретическая рамка — статус доказательной базы</div>
+      <span class="grade grade-D" style="margin-left:auto">D</span>
+    </div>
+    <div class="outcome-body">
+      <div class="outcome-verdict">ПВТ клинически влиятельна и полезна как язык психообразования. Анатомические утверждения (роль DMV) оспорены международным консенсусом нейроанатомов.</div>
+      <div class="outcome-params">
+        <div class="param-row"><div class="param-label">Критика</div><div class="param-val">Grossman et al. 2026: 39 авторов, «untenable»</div></div>
+        <div class="param-row"><div class="param-label">Главная претензия</div><div class="param-val">DMV не доминирует cardiac vagal control; это nucleus ambiguus</div></div>
+        <div class="param-row"><div class="param-label">HRV как прокси</div><div class="param-val">≠ вагальный тонус (Scientific Reports 2021)</div></div>
+        <div class="param-row"><div class="param-label">Ответ Porges</div><div class="param-val">Критики атакуют «straw man»; различие freeze/shutdown им игнорируется</div></div>
+      </div>
+      <div class="debunked-box"><div class="debunked-icon">⚠️</div><div class="debunked-text"><strong>HRV ≠ вагальный тонус</strong> — все клинические утверждения о «повышении вагального тонуса» через дыхание, йогу или biofeedback должны читаться как «повышение RSA/HRV», а не как прямое измерение вагусной активности.</div></div>
+    </div>
+  </div>
+
+  <!-- EMDR -->
+  <div class="outcome">
+    <div class="outcome-header">
+      <div class="outcome-num">6</div>
+      <div class="outcome-title">EMDR — единственный Grade A инструмент (включая DS-PTSD)</div>
+      <span class="grade grade-A" style="margin-left:auto">A</span>
+    </div>
+    <div class="outcome-body">
+      <div class="outcome-verdict">Диссоциативный подтип ПТСР (freeze) отвечает на EMDR так же, как обычный ПТСР — при правильной фазировке. Фаза стабилизации перед обработкой, вероятно, не обязательна (Tandfonline 2026).</div>
+      <div class="outcome-params">
+        <div class="param-row"><div class="param-label">Эффект</div><div class="param-val">Cohen's d ≈ 1.0–1.4 vs. контроль</div></div>
+        <div class="param-row"><div class="param-label">DS-PTSD данные</div><div class="param-val">Zoet et al. 2018 (n=168): DS = non-DS по исходам</div></div>
+        <div class="param-row"><div class="param-label">Механизм при freeze</div><div class="param-val">Десенсибилизация триггеров freeze, не прямое воздействие на состояние</div></div>
+        <div class="param-row"><div class="param-label">При DES>30</div><div class="param-val">Расширенная Phase 2 + Flash Technique</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРОТОКОЛ -->
+  <h2 class="section-title" id="protocol">Интегрированный протокол при freeze</h2>
+
+  <div class="protocol">
+    <div class="protocol-step step-0">
+      <div class="step-header">
+        <div class="step-num">0</div>
+        <div class="step-title">Идентификация типа</div>
+      </div>
+      <div class="step-body">
+        <div class="step-types">
+          <div class="type-block type-a">
+            <div class="type-block-title">Тип A — Аттентивный</div>
+            <ul>
+              <li>Настороженный, напряжённый</li>
+              <li>Сканирует среду</li>
+              <li>Не действует, но «готов»</li>
+            </ul>
+          </div>
+          <div class="type-block type-b">
+            <div class="type-block-title">Тип B — TI (симпатика)</div>
+            <ul>
+              <li>Ригиден, «замёрз от страха»</li>
+              <li>Может дрожать</li>
+              <li>Субъективный ужас внутри</li>
+            </ul>
+          </div>
+          <div class="type-block type-c">
+            <div class="type-block-title">Тип C — Shutdown</div>
+            <ul>
+              <li>Вялый, обмякший</li>
+              <li>«Пустой», трудно говорить</li>
+              <li>Эмоциональное онемение</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protocol-step step-1">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Безопасность (для всех типов)</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li><strong>Открытые глаза</strong> — всегда при любом freeze</li>
+          <li>Назвать 3 безопасных предмета вокруг (экстероцептивный якорь)</li>
+          <li>Социальный контакт — лицо другого человека активирует нейроцепцию безопасности</li>
+          <li>При глубокой диссоциации: тактильное давление ног в пол (уровень 1 иерархии)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="protocol-step step-2">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Тип-специфичная активация</div>
+      </div>
+      <div class="step-body">
+        <div class="step-types">
+          <div class="type-block type-a">
+            <div class="type-block-title">Для Типа A</div>
+            <ul>
+              <li>Завершить прерванный импульс (оттолкнуться, уйти)</li>
+              <li>Медленный ориент-ответ — осмотр комнаты</li>
+            </ul>
+          </div>
+          <div class="type-block type-b">
+            <div class="type-block-title">Для Типа B — разрядка</div>
+            <ul>
+              <li>Встряхнуть руками / ногами</li>
+              <li>Нейрогенный тремор — феномен биологически обоснован; TRE-протокол — 0 RCT при ПТСР</li>
+              <li>Ритмичное качание, ходьба</li>
+            </ul>
+            <div class="do-not">✗ НЕ медитация · НЕ релаксация</div>
+          </div>
+          <div class="type-block type-c">
+            <div class="type-block-title">Для Типа C — мягкая активация</div>
+            <ul>
+              <li>Сжать-разжать кулаки, стопы в пол</li>
+              <li>Когерентное дыхание 0.1 Гц (открытые глаза)</li>
+              <li>Гудение / мычание: 5–10 мин</li>
+              <li>Иерархия: тактильное → проприоцепция → дыхание</li>
+            </ul>
+            <div class="do-not">✗ НЕ расслабление · НЕ закрытые глаза</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protocol-step step-3">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Стабилизация и интеграция</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li>Grounding 5-4-3-2-1 — <strong>начинать с тактильного</strong>, не зрительного</li>
+          <li>Ориент: назвать безопасные предметы + описать нейтрально вслух</li>
+          <li>Когерентное дыхание (4–5 сек вдох, 5–6 сек выдох) × 10–20 мин</li>
+          <li>Социальный контакт как регулятор</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="protocol-step step-4">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">Долгосрочная работа (со специалистом)</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li><strong>Первая линия при ПТСР:</strong> EMDR или CPT/PE <span class="tag tag-green">Grade A</span></li>
+          <li>При предпочтении телесного: TCTSY <span class="tag tag-blue">Grade B</span> — эквивалентна CPT</li>
+          <li>SE — дополнение к первой линии, не замена</li>
+          <li>Интероцептивный тренинг (MABT) при высокой алекситимии</li>
+        </ul>
+        <div class="do-not" style="font-size:13px; margin-top:12px;">✗ Не назначать TRE как монотерапию ПТСР</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРЕДУПРЕЖДЕНИЯ -->
+  <h2 class="section-title" id="warnings">Критические предупреждения</h2>
+
+  <div class="warnings-grid">
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 1</div>
+      <div class="warning-title">Терминологический хаос убивает</div>
+      <div class="warning-text">Три разных состояния — три разных вмешательства. Применять «активацию» к Типу C (уже в коллапсе) или «расслабление» к Типу B (симпатический ужас) — контрпродуктивно.</div>
+    </div>
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 2</div>
+      <div class="warning-title">Mindfulness при freeze — потенциально вреден</div>
+      <div class="warning-text">Стандартный mindfulness с закрытыми глазами при активном Типе C усиливает диссоциацию. Только trauma-sensitive версия (открытые глаза, внешний якорь, движение) безопасна.</div>
+    </div>
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 3</div>
+      <div class="warning-title">SE и TRE — не доказанное лечение ПТСР</div>
+      <div class="warning-text">SE: 1 RCT (n=63, waitlist). TRE: 0 RCT при ПТСР. Применение как первой линии лечения — не поддержано доказательной базой. EMDR имеет Grade A с десятками RCT.</div>
+    </div>
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 4</div>
+      <div class="warning-title">HRV ≠ вагальный тонус</div>
+      <div class="warning-text">Все заявления об «укреплении вагуса» через дыхание или biofeedback — это повышение RSA/HRV. Прямая связь с вагальной активностью не верифицирована (Scientific Reports 2021).</div>
+    </div>
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 5</div>
+      <div class="warning-title">Парадокс волевого усилия</div>
+      <div class="warning-text">Воля — продукт vmPFC. vmPFC подавлена при freeze. «Просто встань и сделай» использует именно тот ресурс, которого нет. Требования усилий к замороженному человеку — клиническая ошибка.</div>
+    </div>
+    <div class="warning-card">
+      <div class="warning-num">⚠️ Предупреждение 6</div>
+      <div class="warning-title">ПВТ — эвристика, не строгая наука</div>
+      <div class="warning-text">Полезна для психообразования. Анатомические утверждения (роль DMV) оспорены 39 международными экспертами (Grossman 2026). Практики могут работать через иные механизмы.</div>
+    </div>
+  </div>
+
+  <!-- ПРОБЕЛЫ -->
+  <h2 class="section-title" id="unknowns">Критические пробелы и следующие шаги</h2>
+
+  <div class="alert alert-warn">
+    <div class="alert-icon">🔍</div>
+    <div>
+      <div class="alert-title">Фундаментальный пробел всего поля</div>
+      <div class="alert-text">Ни одного RCT не использовало freeze или гипоарузал как <strong style="color:#fff">критерий включения</strong> или <strong style="color:#fff">первичный исход</strong>. Вся область «freeze-специфичных протоколов» не имеет прямой доказательной базы.</div>
+    </div>
+  </div>
+
+  <div class="unknown-item">
+    <div class="unknown-id">UNKNOWN-1</div>
+    <div>
+      <div class="unknown-title">Физиологический профиль хронического функционального freeze</div>
+      <div class="unknown-text">Все данные по физиологии freeze — острые (лабораторные, периравматические). Хронический «функциональный freeze» (месяцы–годы) физиологически практически не измерен. Нужно: лонгитюдное ANS-исследование + нейровизуализация.</div>
+    </div>
+  </div>
+
+  <div class="unknown-item">
+    <div class="unknown-id">UNKNOWN-2</div>
+    <div>
+      <div class="unknown-title">Интероцептивный тренинг vs. стандартная терапия при гипоарузальном подтипе</div>
+      <div class="unknown-text">Механистически обоснованный вопрос, не имеющий прямого RCT-ответа. Нужен дизайн: интероцептивный тренинг vs. EMDR × гипоарузал vs. гипераузал подтип (2×2).</div>
+    </div>
+  </div>
+
+  <div class="unknown-item">
+    <div class="unknown-id">UNKNOWN-3</div>
+    <div>
+      <div class="unknown-title">Репликация TCTSY vs. CPT вне ветеранской популяции</div>
+      <div class="unknown-text">JAMA Network Open 2023 ограничен женщинами-ветеранами с MST. Нужна репликация в нон-ветеранских, нон-MST выборках для обобщаемости вывода о TCTSY ≡ CPT.</div>
+    </div>
+  </div>
+
+  <div class="unknown-item">
+    <div class="unknown-id">UNKNOWN-4</div>
+    <div>
+      <div class="unknown-title">Нейронный путь vlPAG→DMV у людей</div>
+      <div class="unknown-text">Оптогенетические данные верифицированы у грызунов. Промежуточные нейроны между vlPAG и DMV у людей не картированы. Без этого нельзя утверждать «дорсально-вагусный» механизм shutdown у человека.</div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    <strong>AgentIQ Deep Research</strong> · Консенсусный справочник<br>
+    Синтез: 5 SCOUT-стримов + CRITIC + METHODOLOGIST + 3 Deep Divers · 11 агентов · 2 цикла<br>
+    Конвергенция: 10/12 утверждений (83%) · 113 верифицированных источников · Уровень уверенности: LOW–MODERATE<br>
+    <span style="color:var(--border)">Дата: 31 мая 2026 · Все числовые данные взяты из первичных источников · GRADE-шкала</span>
+  </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Иван — Личные материалы</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Montserrat',sans-serif;background:#0a1018;color:#e8edf2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px}
+  .logo{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8899aa;margin-bottom:32px}
+  h1{font-size:28px;font-weight:700;margin-bottom:8px;text-align:center}
+  .sub{font-size:14px;color:#8899aa;text-align:center;margin-bottom:40px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;width:100%;max-width:680px}
+  .card{background:#141e2b;border:1px solid #1e2d3d;border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:all 0.2s;display:block}
+  .card:hover{border-color:#e8a838;transform:translateY(-2px)}
+  .card-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+  .card-label.research{color:#7db8e8}
+  .card-label.protocol{color:#e8a838}
+  .card-title{font-size:16px;font-weight:700;margin-bottom:8px}
+  .card-desc{font-size:12px;color:#8899aa;line-height:1.5}
+  .card-meta{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .chip{font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;border:1px solid}
+  .chip-b{background:rgba(125,184,232,0.08);border-color:rgba(125,184,232,0.2);color:#7db8e8}
+  .chip-o{background:rgba(232,168,56,0.08);border-color:rgba(232,168,56,0.2);color:#e8a838}
+  .chip-g{background:rgba(78,203,113,0.08);border-color:rgba(78,203,113,0.2);color:#4ecb71}
+  .arrow{float:right;color:#1e2d3d;font-size:18px;margin-top:-2px}
+  .card:hover .arrow{color:#e8a838}
+  .footer{margin-top:40px;font-size:11px;color:#4a5568;text-align:center}
+</style>
+</head>
+<body>
+  <div class="logo">ironfelix.github.io / me</div>
+  <h1>Личные материалы</h1>
+  <p class="sub">Исследования и протоколы для личного использования</p>
+
+  <div class="cards">
+    <a href="freeze-research.html" class="card">
+      <div class="arrow">→</div>
+      <div class="card-label research">Консенсусный справочник</div>
+      <div class="card-title">Дорсальный вагус & Freeze</div>
+      <div class="card-desc">Научный синтез: 3 типа freeze, доказательная база интервенций, критика ПВТ, иерархия практик. 11 агентов, 113 источников.</div>
+      <div class="card-meta">
+        <span class="chip chip-b">Grade A–D по GRADE</span>
+        <span class="chip chip-b">83% конвергенция</span>
+        <span class="chip chip-b">LOW–MODERATE</span>
+      </div>
+    </a>
+
+    <a href="freeze-protocol.html" class="card">
+      <div class="arrow">→</div>
+      <div class="card-label protocol">Личный протокол</div>
+      <div class="card-title">Freeze в социальных ситуациях</div>
+      <div class="card-desc">Практическое руководство: отловить → выйти → убрать. 11 TODO-блоков с датами, трекинг, экспозиционная лестница.</div>
+      <div class="card-meta">
+        <span class="chip chip-o">Тип B (симпатика)</span>
+        <span class="chip chip-g">Старт: 31 мая 2026</span>
+        <span class="chip chip-o">Чекпоинт: 26 июля</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">Создано 31 мая 2026 · deep-research-skill v3.8</div>
+</body>
+</html>

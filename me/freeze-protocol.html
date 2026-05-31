@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freeze в социальных ситуациях — Протокол</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1018;
+    --card: #141e2b;
+    --card2: #1a2535;
+    --border: #1e2d3d;
+    --border2: #243347;
+    --accent: #e8a838;
+    --accent2: #f0b94a;
+    --text: #e8edf2;
+    --muted: #8899aa;
+    --muted2: #6678888;
+    --blue: #7db8e8;
+    --green: #4ecb71;
+    --red: #e85454;
+    --purple: #a78bfa;
+    --stage1: #7db8e8;
+    --stage2: #e8a838;
+    --stage3: #4ecb71;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,16,24,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    height: 48px;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  nav a:hover { background: var(--card); color: var(--text); }
+  nav a.active { background: var(--card); color: var(--accent); }
+  nav .sep { color: var(--border2); font-size: 16px; margin: 0 2px; user-select: none; }
+
+  /* LAYOUT */
+  .container { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* HEADER */
+  .header {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .header-label { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; font-weight: 700; line-height: 1.3; color: var(--text); }
+  .header-goal { margin-top: 12px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .header-goal strong { color: var(--text); }
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip {
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .chip-active { background: rgba(78,203,113,0.12); border-color: rgba(78,203,113,0.3); color: var(--green); }
+  .chip-date { background: rgba(125,184,232,0.1); border-color: rgba(125,184,232,0.25); color: var(--blue); }
+  .chip-type { background: rgba(232,168,56,0.1); border-color: rgba(232,168,56,0.25); color: var(--accent); }
+
+  /* SECTIONS */
+  section { margin-bottom: 32px; scroll-margin-top: 60px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-badge {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .badge-s1 { background: rgba(125,184,232,0.15); color: var(--stage1); }
+  .badge-s2 { background: rgba(232,168,56,0.15); color: var(--stage2); }
+  .badge-s3 { background: rgba(78,203,113,0.15); color: var(--stage3); }
+  .badge-map { background: rgba(167,139,250,0.15); color: var(--purple); }
+  .badge-now { background: rgba(232,84,84,0.15); color: var(--red); }
+  .badge-track { background: rgba(125,184,232,0.12); color: var(--blue); }
+
+  .section-title { font-size: 17px; font-weight: 700; }
+  .section-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+
+  /* TODO BLOCK */
+  .todo-block {
+    background: var(--card2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .todo-block.critical { border-left-color: var(--red); }
+  .todo-block.s1 { border-left-color: var(--stage1); }
+  .todo-block.s2 { border-left-color: var(--stage2); }
+  .todo-block.s3 { border-left-color: var(--stage3); }
+
+  .todo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .todo-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px;
+    background: rgba(232,168,56,0.12); color: var(--accent); border: 1px solid rgba(232,168,56,0.2);
+  }
+  .todo-badge.critical { background: rgba(232,84,84,0.12); color: var(--red); border-color: rgba(232,84,84,0.2); }
+  .todo-badge.s1 { background: rgba(125,184,232,0.1); color: var(--stage1); border-color: rgba(125,184,232,0.2); }
+  .todo-badge.s2 { background: rgba(232,168,56,0.1); color: var(--stage2); border-color: rgba(232,168,56,0.2); }
+  .todo-badge.s3 { background: rgba(78,203,113,0.1); color: var(--stage3); border-color: rgba(78,203,113,0.2); }
+
+  .todo-title { font-size: 13px; font-weight: 700; }
+  .todo-deadline { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* CONTENT ELEMENTS */
+  p { margin-bottom: 10px; color: var(--muted); font-size: 13px; }
+  p strong, p b { color: var(--text); }
+
+  .note {
+    background: rgba(125,184,232,0.07);
+    border-left: 3px solid rgba(125,184,232,0.4);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 10px 0;
+  }
+  .note strong { color: var(--blue); }
+
+  .warning-note {
+    background: rgba(232,84,84,0.07);
+    border-left: 3px solid rgba(232,84,84,0.4);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 10px 0;
+  }
+  .warning-note strong { color: var(--red); }
+
+  /* PROTOCOL STEPS */
+  .steps { margin: 12px 0; }
+  .step {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 24px; height: 24px; flex-shrink: 0;
+    border-radius: 6px;
+    background: rgba(232,168,56,0.15);
+    color: var(--accent);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-content { flex: 1; }
+  .step-label { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .step-desc { font-size: 12px; color: var(--muted); }
+
+  /* CHECKLIST */
+  .checklist { margin: 8px 0; }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.12s;
+    border: 1px solid transparent;
+  }
+  .check-item:hover { background: rgba(255,255,255,0.03); border-color: var(--border); }
+  .check-item.checked { opacity: 0.6; }
+  .check-item.checked .check-text { text-decoration: line-through; color: var(--muted); }
+
+  .checkbox {
+    width: 16px; height: 16px; flex-shrink: 0;
+    border: 2px solid var(--border2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .check-item:hover .checkbox { border-color: var(--accent); }
+  .check-item.checked .checkbox {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .checkbox svg { display: none; }
+  .check-item.checked .checkbox svg { display: block; }
+  .check-text { font-size: 12px; color: var(--text); flex: 1; }
+  .check-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* TYPE CARDS */
+  .type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 12px 0; }
+  .type-card {
+    background: var(--card2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .type-card.likely { border-color: rgba(232,168,56,0.4); background: rgba(232,168,56,0.05); }
+  .type-name { font-size: 12px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .type-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .type-body { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .type-body em { color: var(--text); font-style: normal; }
+  .likely-tag {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    background: rgba(232,168,56,0.2); color: var(--accent);
+    padding: 2px 6px; border-radius: 3px; margin-left: auto;
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td.muted { color: var(--muted); font-size: 11px; }
+  td.empty { color: var(--border2); font-style: italic; font-size: 11px; }
+  .grade { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  .grade-a { background: rgba(78,203,113,0.15); color: var(--green); }
+  .grade-b { background: rgba(125,184,232,0.12); color: var(--blue); }
+  .grade-c { background: rgba(232,168,56,0.12); color: var(--accent); }
+  .grade-d { background: rgba(232,84,84,0.1); color: var(--red); }
+
+  /* CODE / TEMPLATE BLOCK */
+  .template-block {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 10px 0;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .template-block .key { color: var(--blue); }
+  .template-block .val { color: var(--accent); }
+
+  /* HIERARCHY */
+  .hierarchy { margin: 12px 0; }
+  .hierarchy-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.015);
+  }
+  .h-num {
+    width: 22px; height: 22px; flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(125,184,232,0.1);
+    color: var(--blue);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .h-label { font-size: 12px; color: var(--text); font-weight: 600; }
+  .h-desc { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .h-first { border-color: rgba(125,184,232,0.3); background: rgba(125,184,232,0.06); }
+  .h-first .h-num { background: rgba(125,184,232,0.2); }
+
+  /* TIMELINE */
+  .timeline { margin: 12px 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date { font-size: 11px; font-weight: 700; color: var(--muted); line-height: 1.4; }
+  .tl-date .tl-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+  .tl-now .tl-date .tl-label { color: var(--red); }
+  .tl-s1 .tl-date .tl-label { color: var(--stage1); }
+  .tl-s2 .tl-date .tl-label { color: var(--stage2); }
+  .tl-s3 .tl-date .tl-label { color: var(--stage3); }
+  .tl-if .tl-date .tl-label { color: var(--purple); }
+  .tl-content { }
+  .tl-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .tl-items { list-style: none; }
+  .tl-items li {
+    font-size: 12px; color: var(--muted);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  .tl-items li::before { content: '→'; position: absolute; left: 0; color: var(--border2); }
+  .tl-items li strong { color: var(--text); }
+
+  /* WARNINGS */
+  .warnings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 12px 0; }
+  .warning-card {
+    background: rgba(232,84,84,0.06);
+    border: 1px solid rgba(232,84,84,0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .warning-card-title {
+    font-size: 12px; font-weight: 700; color: var(--red);
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .warning-card-body { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .warning-card-body strong { color: var(--text); }
+
+  /* QUESTIONS */
+  .questions { }
+  .question-item {
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    margin-bottom: 8px;
+  }
+  .q-num { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .q-text { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .q-desc { font-size: 12px; color: var(--muted); }
+
+  /* NOT INCLUDED */
+  .not-included {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+  .ni-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .ni-title .ni-badge {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 3px;
+    background: rgba(232,84,84,0.1); color: var(--red); border: 1px solid rgba(232,84,84,0.2);
+  }
+  .ni-body { font-size: 12px; color: var(--muted); }
+
+  /* TRACKER TABLE */
+  .tracker-table th, .tracker-table td {
+    font-size: 12px;
+  }
+  .tracker-input {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 12px;
+    padding: 4px 8px;
+    font-family: inherit;
+    width: 60px;
+  }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* PRINT */
+  @media print {
+    nav { display: none; }
+    .container { max-width: 100%; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#today" class="active">Сегодня</a>
+  <span class="sep">·</span>
+  <a href="#stage1">Стадия 1 — Отловить</a>
+  <span class="sep">·</span>
+  <a href="#stage2">Стадия 2 — Выйти</a>
+  <span class="sep">·</span>
+  <a href="#stage3">Стадия 3 — Убрать</a>
+  <span class="sep">·</span>
+  <a href="#tracking">Трекинг</a>
+  <span class="sep">·</span>
+  <a href="#actionmap">Action Map</a>
+  <span class="sep">·</span>
+  <a href="#warnings">Предупреждения</a>
+  <span class="sep">·</span>
+  <a href="#questions">Вопросы</a>
+</nav>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-label">Личный протокол · Здоровье</div>
+        <h1>Freeze в социальных ситуациях</h1>
+        <div class="header-goal">
+          <strong>Цель:</strong> Не тратить энергию на замирание — тратить на контакт.<br>
+          Три этапа: <strong>Отловить</strong> механизм → <strong>Выйти</strong> в моменте → <strong>Убрать</strong> паттерн.
+        </div>
+      </div>
+    </div>
+    <div class="meta-chips">
+      <span class="chip chip-active">● Активен</span>
+      <span class="chip chip-date">Старт: 31 мая 2026</span>
+      <span class="chip chip-date">Замер: 28 июн / 26 июл</span>
+      <span class="chip chip-type">Тип: скорее B (TI / симпатика)</span>
+      <span class="chip chip-date">11 агентов · 113 источников</span>
+    </div>
+  </div>
+
+  <!-- СЕГОДНЯ -->
+  <section id="today">
+    <div class="section-header">
+      <div class="section-badge badge-now">!</div>
+      <div>
+        <div class="section-title">Сделать сегодня</div>
+        <div class="section-sub">Критично: без точки отсчёта прогресс невозможно отследить</div>
+      </div>
+    </div>
+
+    <div class="todo-block critical">
+      <div class="todo-header">
+        <span class="todo-badge critical">Критично · Сейчас</span>
+        <span class="todo-title">Базовый замер по 5 маркерам</span>
+        <span class="todo-deadline">2026-05-31</span>
+      </div>
+      <p>Поставь цифру от 1 до 10. Это точка отсчёта — не оценка себя.<br>
+      1 = почти нет проблемы, 10 = максимально выражено.</p>
+      <div class="table-wrap">
+        <table class="tracker-table">
+          <thead><tr>
+            <th>Маркер</th>
+            <th>Сейчас</th>
+            <th>28 июн</th>
+            <th>26 июл</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>Замечаю freeze в моменте (1=не замечаю, 10=всегда)</td><td class="empty">_ / 10</td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Интенсивность freeze в типичной ситуации (1=лёгкий, 10=парализует)</td><td class="empty">_ / 10</td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Базальная социальная тревога в обычный день (1=нет, 10=постоянная)</td><td class="empty">_ / 10</td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Доступ к телесным ощущениям в покое (1=не чувствую, 10=хорошо)</td><td class="empty">_ / 10</td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Способность выйти из freeze в ситуации (1=не могу, 10=легко)</td><td class="empty">_ / 10</td><td class="empty"></td><td class="empty"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="todo-block critical">
+      <div class="todo-header">
+        <span class="todo-badge critical">Критично · Сейчас</span>
+        <span class="todo-title">Первая строка недельного лога</span>
+        <span class="todo-deadline">2026-05-31</span>
+      </div>
+      <p>Вспомни последнюю ситуацию за 7 дней, где был freeze. Одна строка — точка отсчёта:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Дата</th><th>Ситуация</th><th>Тип</th><th>Заметил?</th><th>Вышел?</th><th>Что помогло</th></tr></thead>
+          <tbody>
+            <tr><td class="empty">вписать</td><td class="empty">вписать</td><td class="empty">A/B/C/?</td><td class="empty">да/нет</td><td class="empty">да/нет</td><td class="empty">или "ничего"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="todo-block">
+      <div class="todo-header">
+        <span class="todo-badge">До 3 июня</span>
+        <span class="todo-title">Выбрать и установить сигнал-якорь</span>
+      </div>
+      <p>Один незаметный физический жест — стартовый сигнал протокола:</p>
+      <div class="checklist">
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Прижать большой палец к указательному (внутри кулака)</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Почувствовать кольцо / часы на запястье</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Незаметно надавить стопой в пол (первый шаг протокола уже встроен)</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Коснуться большим пальцем кончика мизинца</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАДИЯ 1 -->
+  <section id="stage1">
+    <div class="section-header">
+      <div class="section-badge badge-s1">1</div>
+      <div>
+        <div class="section-title" style="color: var(--stage1)">Отловить — Идентификация</div>
+        <div class="section-sub">Нельзя работать с тем, чего не замечаешь. Задача — построить личную карту маркеров.</div>
+      </div>
+    </div>
+
+    <!-- Типы freeze -->
+    <div class="card">
+      <div class="card-title">Три типа freeze — какой мой?</div>
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="type-name"><div class="type-dot" style="background:#7db8e8"></div>Тип A — Аттентивный<div></div></div>
+          <div class="type-body">Парасимпатика, брадикардия<br><em>«Замер и сканирую угрозу»</em><br>Тихая неподвижность, настороженность</div>
+        </div>
+        <div class="type-card likely">
+          <div class="type-name"><div class="type-dot" style="background:#e8a838"></div>Тип B — TI / симпатика<span class="likely-tag">вероятный</span></div>
+          <div class="type-body">Симпатика, тахикардия<br><em>«Знаю что сказать, но канал замёрз»</em><br>Внутреннее напряжение без моторного выхода</div>
+        </div>
+        <div class="type-card">
+          <div class="type-name"><div class="type-dot" style="background:#4ecb71"></div>Тип C — Shutdown</div>
+          <div class="type-body">Дорсальный вагус, брадикардия<br><em>«Пустота, меня нет здесь»</em><br>При социальных ситуациях без тяжёлой травмы — редкость</div>
+        </div>
+      </div>
+      <div class="note"><strong>Ключевой вывод:</strong> при Типе B нужна разрядка симпатики + завершение прерванного импульса, а НЕ дополнительная релаксация. Совет «успокойся» — буквально неправильный инструмент.</div>
+    </div>
+
+    <!-- TODO: Дневник -->
+    <div class="todo-block s1">
+      <div class="todo-header">
+        <span class="todo-badge s1">TODO · Стадия 1</span>
+        <span class="todo-title">Дневник наблюдений — 14 дней</span>
+        <span class="todo-deadline">31 мая — 14 июня</span>
+      </div>
+      <p><strong>Формат:</strong> одна запись сразу после каждой ситуации с freeze или его признаками. Писать пока свежо.</p>
+      <p><strong>Метрика успеха:</strong> 8+ записей за 14 дней. Меньше — недостаточно данных.</p>
+      <div class="template-block"><span class="key">Дата/время:</span>
+<span class="key">Ситуация (1 строка):</span>
+<span class="key">Было ли замирание?</span> <span class="val">да / нет / частичное</span>
+<span class="key">Первый сигнал:</span>
+<span class="key">ЧСС (субъективно):</span> <span class="val">выросло / упало / не заметил</span>
+<span class="key">Тело:</span> <span class="val">голос / руки / взгляд / движение</span>
+<span class="key">Мысли:</span> <span class="val">были / зависли / пустота</span>
+<span class="key">Длительность:</span> <span class="val">сек / мин</span>
+<span class="key">Что сделал:</span></div>
+    </div>
+
+    <!-- TODO: Таблица маркеров -->
+    <div class="todo-block s1">
+      <div class="todo-header">
+        <span class="todo-badge s1">TODO · 14 июня</span>
+        <span class="todo-title">Таблица маркеров — заполнить после дневника</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Маркер</th><th>Есть у меня?</th><th>Интенсивность 1–5</th><th>Конкретное проявление</th></tr></thead>
+          <tbody>
+            <tr><td>Голос становится тише</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Голос «застревает» в горле</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Мысли зависают / пропадают слова</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Трудно двигаться / жестикулировать</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>ЧСС субъективно растёт</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>ЧСС субъективно падает / «тишина»</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Онемение / отдалённость</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>«Стеклянная стена» с собеседником</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Знаю что сказать, но не говорю</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td>Физическое желание уйти / сжаться</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TODO: Чек-лист типа -->
+    <div class="todo-block s1">
+      <div class="todo-header">
+        <span class="todo-badge s1">TODO · 14 июня</span>
+        <span class="todo-title">Чек-лист: определить свой тип freeze</span>
+      </div>
+      <p>Каждый «да» — +1 к типу. Преобладает тот, где больше отметок.</p>
+      <div style="margin-top:10px">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">Тип A — аттентивный, парасимпатика</div>
+        <div class="checklist">
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">В момент freeze я становлюсь очень тихим и неподвижным</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">ЧСС субъективно замедляется или «не чувствую» сердца</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Главное ощущение: «сканирую ситуацию, жду»</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Легко отвлечься взглядом на что-то нейтральное</span></div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--accent);margin:12px 0 6px">Тип B — TI, симпатика (вероятный)</div>
+        <div class="checklist">
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Внутри напряжение / давление, но внешне почти не видно</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">ЧСС субъективно растёт или «стучит»</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Знаю, что хочу сказать, но канал заморожен</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">После ситуации остаётся усталость / «выжатость»</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Иногда есть желание что-то сделать / уйти, но я его сдерживаю</span></div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--green);margin:12px 0 6px">Тип C — shutdown, коллапс</div>
+        <div class="checklist">
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Полная пустота — ни мыслей, ни ощущений</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Ощущение «меня нет здесь»</span></div>
+          <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">После — длительная вялость (часы)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАДИЯ 2 -->
+  <section id="stage2">
+    <div class="section-header">
+      <div class="section-badge badge-s2">2</div>
+      <div>
+        <div class="section-title" style="color: var(--stage2)">Выйти — Протокол в моменте</div>
+        <div class="section-sub">30 сек — 2 мин прямо в ситуации</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Экстренный выход (5 шагов)</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-label">ЯКОРЬ</div><div class="step-desc">Почувствовать стопы в полу — физически надавить. Ощутить давление. Тактильный канал всегда доступен первым.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-label">ВЗГЛЯД</div><div class="step-desc">Открытые глаза. Найти один безопасный предмет в комнате. Ориент-ответ → прерывает freeze-цикл.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-label">ВЫДОХ</div><div class="step-desc">Удлинённый выдох 6–8 сек. Запускает барорефлексный ответ. Не «медленное дыхание» — именно выдох.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-label">ДВИЖЕНИЕ</div><div class="step-desc">Незаметное: сжать/разжать пальцы, переступить с ноги на ногу. Микро-разрядка симпатики при Типе B.</div></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-label">ЗВУК</div><div class="step-desc">Вслух что-то нейтральное — назвать предмет, сказать «да» или «понятно». Вокализация активирует глоточные ветви вагуса.</div></div></div>
+      </div>
+      <div class="warning-note">
+        <strong>Чего НЕ делать:</strong> глубокое дыхание с закрытыми глазами → углубляет диссоциацию. «Успокойся / расслабься» → vmPFC подавлена, волевые усилия бесполезны. Ждать, что пройдёт само → закрепляет паттерн.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">После ситуации (5–15 мин)</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-label">Движение</div><div class="step-desc">Походить, встряхнуть руки/плечи — разрядка симпатики.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-label">Когерентное дыхание</div><div class="step-desc">5 сек вдох — 5 сек выдох × 10 мин. Открытые глаза.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-label">Вербализация</div><div class="step-desc">Проговорить вслух или записать что произошло, что хотел сказать.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-label">Назвать тип</div><div class="step-desc">«Это был тип B — внутри был ответ, но канал замёрз». Называние → интеграция → снижение повторения.</div></div></div>
+      </div>
+    </div>
+
+    <!-- TODO: Rehearsal -->
+    <div class="todo-block s2">
+      <div class="todo-header">
+        <span class="todo-badge s2">TODO · с 1 июня</span>
+        <span class="todo-title">Rehearsal протокола — ежедневная тренировка</span>
+      </div>
+      <div class="note"><strong>Почему важно:</strong> в горячей ситуации vmPFC подавлена — новые навыки недоступны. Протокол нужно довести до автоматизма в холодном состоянии.</div>
+      <p><strong>Упражнение 1 — micro-rehearsal (1 мин, каждый день):</strong></p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-desc">Намеренно вызвать лёгкое напряжение — вспомнить нейтральную рабочую ситуацию</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-desc">Пройти по шагам: стопы → взгляд → выдох → движение → звук</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-desc">Почувствовать переход из напряжения в контакт</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-desc">Говорить вслух на шаге 5 — слышать свой голос</div></div></div>
+      </div>
+      <p style="margin-top:8px"><strong>Цель к неделе 3:</strong> шаги 1–5 за 20 сек без раздумий.</p>
+      <p><strong>Упражнение 2 (нед. 3–4):</strong> 2–3 ситуации с низкой ставкой — кассир, вопрос на митинге, звонок в незнакомое место. Применять протокол превентивно — до включения freeze.</p>
+    </div>
+  </section>
+
+  <!-- СТАДИЯ 3 -->
+  <section id="stage3">
+    <div class="section-header">
+      <div class="section-badge badge-s3">3</div>
+      <div>
+        <div class="section-title" style="color: var(--stage3)">Убрать — Долгосрочная работа</div>
+        <div class="section-sub">Единичные техники прерывают freeze. Устойчивое изменение требует работы с нейронной дорожкой.</div>
+      </div>
+    </div>
+
+    <!-- Интероцептивный тренинг -->
+    <div class="todo-block s3">
+      <div class="todo-header">
+        <span class="todo-badge s3">TODO · с 1 июня · ежедневно</span>
+        <span class="todo-title">Интероцептивный тренинг — 5 мин</span>
+      </div>
+      <p><strong>Почему:</strong> при freeze нарушена передняя инсула (AIC). Тренинг восстанавливает AIC→vmPFC связность — именно этот путь нужен для выхода из freeze. <span class="grade grade-b">Grade мех.: B</span> <span class="grade grade-c">Grade практики: C</span></p>
+
+      <div class="note"><strong>Правило:</strong> начинать всегда с тактильного. При freeze висцеральные каналы (сердцебиение) недоступны — начинать с них = клиническая ошибка.</div>
+
+      <div class="hierarchy">
+        <div class="hierarchy-item h-first">
+          <div class="h-num">1</div>
+          <div><div class="h-label">ТАКТИЛЬНОЕ <span style="font-size:10px;color:var(--blue)">(начинать здесь)</span></div><div class="h-desc">Стопы в пол — надавить. Ладони на колени. «Теплее или прохладнее?»</div></div>
+        </div>
+        <div class="hierarchy-item">
+          <div class="h-num">2</div>
+          <div><div class="h-label">ПРОПРИОЦЕПТИВНОЕ</div><div class="h-desc">Где плечи? Правое выше? Где напряжение? (не искать — просто заметить первое)</div></div>
+        </div>
+        <div class="hierarchy-item">
+          <div class="h-num">3</div>
+          <div><div class="h-label">ТЕМПЕРАТУРНОЕ</div><div class="h-desc">Кончики пальцев vs. ладони — что прохладнее? Где сейчас теплее всего?</div></div>
+        </div>
+        <div class="hierarchy-item">
+          <div class="h-num">4</div>
+          <div><div class="h-label">МЕХАНИКА ДЫХАНИЯ</div><div class="h-desc">Не управлять — наблюдать. Куда идёт вдох: грудь или живот? Не оценивать «правильно ли».</div></div>
+        </div>
+        <div class="hierarchy-item">
+          <div class="h-num">5</div>
+          <div><div class="h-label">СЕРДЦЕБИЕНИЕ <span style="font-size:10px;color:var(--muted)">(только если 1–4 прошли спокойно)</span></div><div class="h-desc">Попробовать почувствовать пульс изнутри. Если не получается — вернуться к шагу 1. Цель: «попробовать найти», не «найти».</div></div>
+        </div>
+      </div>
+      <div class="warning-note"><strong>Важно:</strong> закрывать глаза только если нет тревоги. При дискомфорте — открытые глаза, фиксированный взгляд на нейтральную точку.</div>
+    </div>
+
+    <!-- Экспозиционная лестница -->
+    <div class="todo-block s3">
+      <div class="todo-header">
+        <span class="todo-badge s3">TODO · заполнить 14 июня · начать 15 июня</span>
+        <span class="todo-title">Экспозиционная лестница — 5 ступеней</span>
+      </div>
+      <p>Правило: не переходить на ступень выше, пока текущая не ниже 4. Заполнить своими конкретными ситуациями:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ступень</th><th>Ситуация (заполнить своё)</th><th>Freeze сейчас 0–10</th><th>Целевой</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td class="muted">Лёгкий контакт с незнакомцем (вопрос на улице, кассир)</td><td class="empty"></td><td>2</td></tr>
+            <tr><td>2</td><td class="muted">Короткое выступление в малой знакомой группе (3–5 чел)</td><td class="empty"></td><td>3</td></tr>
+            <tr><td>3</td><td class="muted">Ситуация оценки в рабочем контексте (вопрос на встрече)</td><td class="empty"></td><td>3</td></tr>
+            <tr><td>4</td><td class="muted">Прямое несогласие / отстаивание позиции</td><td class="empty"></td><td>4</td></tr>
+            <tr><td>5</td><td class="muted">Высокоставочная ситуация (переговоры, публичное выступление)</td><td class="empty"></td><td>4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:8px">Если ступень вызывает freeze 9–10 — разбить на более мелкий шаг.</p>
+    </div>
+
+    <!-- Критерий терапевта -->
+    <div class="todo-block s3">
+      <div class="todo-header">
+        <span class="todo-badge s3">Чекпоинт · 26 июля</span>
+        <span class="todo-title">Критерий перехода к терапевту</span>
+      </div>
+      <p>Если к 26 июля выполняются <strong>2 или более</strong> из следующих условий — обратиться к EMDR-терапевту:</p>
+      <div class="checklist">
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Трекер показывает &lt;30% ситуаций с успешным применением протокола</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Базовый freeze снизился менее чем на 2 пункта по шкале</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Экспозиционная лестница не продвинулась дальше ступени 2</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">Появилось избегание ситуаций (отказываюсь от встреч, выступлений)</span></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><span class="check-text">После freeze-ситуаций вялость дольше 2 часов</span></div>
+      </div>
+      <div class="note" style="margin-top:10px"><strong>Кого искать:</strong> EMDR-терапевт с опытом sub-clinical паттернов (не обязательно ПТСР). Сказать прямо: «работаете ли с freeze-паттернами и социальной тревогой без диагноза ПТСР?»<br>Grade EMDR: <span class="grade grade-a">A</span> при ПТСР. При sub-clinical — <span class="grade grade-d">D</span> (нет специфических RCT), но механизм ориент-ответа валиден.</div>
+    </div>
+  </section>
+
+  <!-- ТРЕКИНГ -->
+  <section id="tracking">
+    <div class="section-header">
+      <div class="section-badge badge-track">◎</div>
+      <div>
+        <div class="section-title">Трекинг прогресса</div>
+        <div class="section-sub">Недельный лог + маркеры улучшения</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Недельный лог</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Дата</th><th>Ситуация</th><th>Тип</th><th>Заметил?</th><th>Вышел?</th><th>Что помогло</th></tr></thead>
+          <tbody>
+            <tr><td class="empty">вписать</td><td class="empty"></td><td class="empty">A/B/C</td><td class="empty">да/нет</td><td class="empty">да/нет</td><td class="empty"></td></tr>
+            <tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+            <tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Маркеры улучшения</div>
+      <div class="checklist">
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="check-text">Распознаю freeze в течение 30 сек (а не после ситуации)</div></div></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="check-text">Могу применить 30-секундный протокол в реальной ситуации</div></div></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="check-text">Интенсивность freeze снижается (шкала 1–10)</div></div></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="check-text">Количество ситуаций, где freeze не включается, растёт</div></div></div>
+        <div class="check-item" onclick="toggle(this)"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="check-text">Снизился базальный уровень социальной тревоги</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTION MAP -->
+  <section id="actionmap">
+    <div class="section-header">
+      <div class="section-badge badge-map">↗</div>
+      <div>
+        <div class="section-title" style="color: var(--purple)">Action Map — Дорожная карта</div>
+        <div class="section-sub">Что делать и когда. Результат ACTION MAPPER агента.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="timeline">
+
+        <div class="tl-item tl-now">
+          <div class="tl-date"><div class="tl-label">Сегодня</div>31 мая 2026</div>
+          <div class="tl-content">
+            <div class="tl-title">Критические действия</div>
+            <ul class="tl-items">
+              <li><strong>Базовый замер</strong> по 5 маркерам (шкала 1–10) — занимает 3 мин</li>
+              <li><strong>Первая строка лога</strong> — вспомнить последнюю freeze-ситуацию</li>
+              <li><strong>Выбрать якорь</strong> — один из 4 вариантов в протоколе</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item tl-s1">
+          <div class="tl-date"><div class="tl-label">Стадия 1</div>1–14 июня</div>
+          <div class="tl-content">
+            <div class="tl-title">Отловить</div>
+            <ul class="tl-items">
+              <li>Ежедневно: <strong>micro-rehearsal</strong> (1 мин) + <strong>интероцептивный тренинг</strong> (5 мин)</li>
+              <li>Записывать каждую freeze-ситуацию по шаблону</li>
+              <li>1–3 июня: <strong>установить якорь</strong> (5 повторений)</li>
+              <li>14 июня: заполнить <strong>таблицу маркеров</strong> + <strong>чек-лист типа</strong> + <strong>лестницу</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item tl-s2">
+          <div class="tl-date"><div class="tl-label">Стадия 2</div>15 июня — 12 июля</div>
+          <div class="tl-content">
+            <div class="tl-title">Выйти — тренировка протокола</div>
+            <ul class="tl-items">
+              <li>Продолжать micro-rehearsal + тренинг</li>
+              <li>Работать по лестнице: <strong>ступень 1, затем 2</strong></li>
+              <li>Применять протокол в ситуациях ступени 1–2</li>
+              <li>28 июня: <strong>замер через 4 недели</strong>, сравнить с базой</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item tl-s3">
+          <div class="tl-date"><div class="tl-label">Стадия 3</div>13 июля — 23 авг</div>
+          <div class="tl-content">
+            <div class="tl-title">Убрать — долгосрочное</div>
+            <ul class="tl-items">
+              <li>Интероцептивный тренинг — как привычка, не усилие</li>
+              <li>Когерентное дыхание 5+5 сек, 10 мин/день <span class="grade grade-c">Grade C</span></li>
+              <li>Работать по лестнице: <strong>ступени 3–4</strong></li>
+              <li>Со-регуляция: после тяжёлых ситуаций — разговор с кем-то безопасным</li>
+              <li>26 июля: <strong>финальный замер</strong>, решение про терапевта</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item tl-if">
+          <div class="tl-date"><div class="tl-label">Если нужно</div>после 26 июля</div>
+          <div class="tl-content">
+            <div class="tl-title">При отсутствии прогресса</div>
+            <ul class="tl-items">
+              <li>EMDR-терапевт с опытом sub-clinical паттернов <span class="grade grade-a">Grade A</span> при ПТСР</li>
+              <li>Сказать сразу: «нет ПТСР, работаем с паттерном freeze в конкретных ситуациях»</li>
+              <li>TCTSY — альтернатива при высоком телесном избегании <span class="grade grade-b">Grade B</span></li>
+              <li>SE только как дополнение, не замена <span class="grade grade-d">Grade D</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕДУПРЕЖДЕНИЯ -->
+  <section id="warnings">
+    <div class="section-header">
+      <div class="section-badge badge-now">⚠</div>
+      <div>
+        <div class="section-title">Ключевые предупреждения</div>
+        <div class="section-sub">Типичные ошибки, которые усиливают freeze вместо того чтобы снижать</div>
+      </div>
+    </div>
+
+    <div class="warnings-grid">
+      <div class="warning-card">
+        <div class="warning-card-title">⚠ «Расслабься» = ошибка при Типе B</div>
+        <div class="warning-card-body">При Типе B симпатика активна, vmPFC подавлена. Рекомендации «успокоиться» обращаются к vmPFC, которой нет. Результат: пытаешься сильнее — <strong>freeze усиливается</strong>. Сначала тело, потом движение/вокализация.</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-card-title">⚠ Начинать тренинг с сердцебиения</div>
+        <div class="warning-card-body">Висцеральные каналы (сердце, кишечник) — верхние уровни иерархии, при freeze <strong>недоступны первыми</strong>. Начинать с них = не работает или вызывает тревогу. Всегда с тактильного.</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-card-title">⚠ Mindfulness с закрытыми глазами</div>
+        <div class="warning-card-body">Стандартный body scan с закрытыми глазами при активном freeze <strong>потенциально углубляет диссоциацию</strong>. Только открытоглазный вариант с внешним якорём. Britton et al. 2018.</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-card-title">⚠ «Работаю» ≠ прогресс без замера</div>
+        <div class="warning-card-body">Без базового замера и трекинга невозможно отличить прогресс от привыкания к паттерну. <strong>Числа важны</strong> — ощущение «работаю над собой» маскирует отсутствие реального изменения.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="card-title">Что НЕ включено в протокол</div>
+      <div class="not-included">
+        <div class="ni-title">TRE как монотерапия <span class="ni-badge">Grade D</span></div>
+        <div class="ni-body">Механизм «нейрогенный тремор → разрядка» не верифицирован. Ноль RCT с freeze как критерием. Можно как дополнительная практика из любопытства — не как основной метод.</div>
+      </div>
+      <div class="not-included">
+        <div class="ni-title">SE как первая линия <span class="ni-badge">Grade D</span></div>
+        <div class="ni-body">1 RCT (n=63, waitlist). Не превосходит EMDR. Только как дополнение, не первая линия при отсутствии прогресса.</div>
+      </div>
+      <div class="not-included">
+        <div class="ni-title">Длинная стабилизационная фаза перед работой</div>
+        <div class="ni-body">Это протокол для sub-clinical паттерна, не ПТСР. Риск ретравматизации значительно ниже. Более агрессивная экспозиция допустима. Не нужна «проработка травмы» — нужно перепрограммирование паттерна.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТКРЫТЫЕ ВОПРОСЫ -->
+  <section id="questions">
+    <div class="section-header">
+      <div class="section-badge badge-map">?</div>
+      <div>
+        <div class="section-title" style="color: var(--purple)">Открытые вопросы</div>
+        <div class="section-sub">Ответы появятся в процессе наблюдений — помогут уточнить протокол</div>
+      </div>
+    </div>
+
+    <div class="questions">
+      <div class="question-item">
+        <div class="q-num">Вопрос 1 · после 2 недель дневника</div>
+        <div class="q-text">Какой тип freeze преобладает?</div>
+        <div class="q-desc">Тип A (тихая настороженность, ЧСС не чувствую) или Тип B (внутри напряжение, сдерживаю действие)? Ответ меняет акценты: при A — больше ориент-ответа; при B — больше микродвижений и вокализации.</div>
+      </div>
+      <div class="question-item">
+        <div class="q-num">Вопрос 2 · сейчас</div>
+        <div class="q-text">Есть ли избегание?</div>
+        <div class="q-desc">Начал ли отказываться от ситуаций (митинги, нетворкинг, переговоры) — не потому что не нужно, а потому что заранее дискомфортно? Если да — это важный сигнал для уточнения лестницы.</div>
+      </div>
+      <div class="question-item">
+        <div class="q-num">Вопрос 3 · сейчас</div>
+        <div class="q-text">Когда freeze включается первым делом?</div>
+        <div class="q-desc">Конкретный момент: когда входишь в комнату, берут слово, чувствуешь взгляды, кто-то задаёт прямой вопрос? Точка запуска определяет, где ставить превентивный якорь.</div>
+      </div>
+      <div class="question-item">
+        <div class="q-num">Вопрос 4 · сейчас</div>
+        <div class="q-text">Есть ли со-регуляция после тяжёлых ситуаций?</div>
+        <div class="q-desc">Есть ли 1–2 человека, с которыми можно поговорить после freeze-ситуации — не «пожаловаться», а просто побыть в контакте? Исследование показывает: социальный контакт ускоряет восстановление ANS.</div>
+      </div>
+      <div class="question-item">
+        <div class="q-num">Вопрос 5 · после ситуации</div>
+        <div class="q-text">Как быстро восстанавливаешься?</div>
+        <div class="q-desc">Минуты, часы, или «весь день под осадком»? Медленное восстановление (&gt;2 часов) — индикатор более глубокого паттерна и более раннего обращения к специалисту.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Протокол создан 31 мая 2026 · на основе исследования 2026_05_dorsal_vagus_freeze · 11 агентов · 113 источников<br>
+    Следующий замер: <strong>28 июня 2026</strong> · Финальный чекпоинт: <strong>26 июля 2026</strong>
+  </div>
+
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+    saveState();
+  }
+
+  function saveState() {
+    const items = document.querySelectorAll('.check-item');
+    const state = Array.from(items).map(el => el.classList.contains('checked'));
+    try { localStorage.setItem('freeze_protocol_checks', JSON.stringify(state)); } catch(e) {}
+  }
+
+  function loadState() {
+    try {
+      const state = JSON.parse(localStorage.getItem('freeze_protocol_checks') || '[]');
+      const items = document.querySelectorAll('.check-item');
+      items.forEach((el, i) => {
+        if (state[i]) el.classList.add('checked');
+      });
+    } catch(e) {}
+  }
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  loadState();
+</script>
+</body>
+</html>
