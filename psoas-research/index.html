@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psoas & Freeze — синтез исследования</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c1117;
+    --card: #151e2a;
+    --card2: #1c2738;
+    --border: #1e2d3d;
+    --accent: #d4a047;
+    --accent2: #e8b84a;
+    --text: #e3e8ee;
+    --muted: #8899aa;
+    --blue: #6db3e8;
+    --green: #4ecb71;
+    --red: #d44;
+    --purple: #a78bfa;
+    --orange: #f0a030;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--card) 0%, #1a2538 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+  }
+  .header-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; color: #fff; }
+  .header p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .meta span { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; border: 1px solid; }
+  .meta .h { background: rgba(78,203,113,0.12); border-color: rgba(78,203,113,0.3); color: var(--green); }
+  .meta .m { background: rgba(212,160,71,0.12); border-color: rgba(212,160,71,0.3); color: var(--accent); }
+  .meta .l { background: rgba(232,84,84,0.1); border-color: rgba(232,84,84,0.2); color: var(--red); }
+
+  /* SECTIONS */
+  section { margin-bottom: 36px; }
+  h2 {
+    font-size: 18px; font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 15px; font-weight: 600;
+    color: var(--accent);
+    margin: 20px 0 10px;
+  }
+  h4 {
+    font-size: 13px; font-weight: 600;
+    color: var(--blue);
+    margin: 16px 0 8px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .card-highlight {
+    border-color: rgba(212,160,71,0.3);
+    background: linear-gradient(135deg, rgba(212,160,71,0.05) 0%, var(--card) 100%);
+  }
+  .card-green {
+    border-color: rgba(78,203,113,0.25);
+    background: rgba(78,203,113,0.03);
+  }
+  .card-purple {
+    border-color: rgba(167,139,250,0.25);
+    background: rgba(167,139,250,0.03);
+  }
+  .card-red {
+    border-color: rgba(232,84,84,0.2);
+    background: rgba(232,84,84,0.03);
+  }
+  .card-blue {
+    border-color: rgba(109,179,232,0.2);
+    background: rgba(109,179,232,0.03);
+  }
+
+  /* TEXT */
+  p { font-size: 14px; color: var(--muted); margin-bottom: 10px; line-height: 1.7; }
+  p strong, p b { color: var(--text); }
+
+  /* GRADE BADGE */
+  .g { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-right: 4px; }
+  .g-h { background: rgba(78,203,113,0.15); color: var(--green); }
+  .g-m { background: rgba(109,179,232,0.12); color: var(--blue); }
+  .g-l { background: rgba(212,160,71,0.12); color: var(--accent); }
+  .g-vl { background: rgba(232,84,84,0.1); color: var(--red); }
+  .g-na { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+  /* TABLES */
+  .tw { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: rgba(255,255,255,0.04); color: var(--muted); font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 11px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--muted); vertical-align: top; font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td b, td strong { color: var(--text); }
+
+  /* LISTS */
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { font-size: 14px; color: var(--muted); margin-bottom: 6px; line-height: 1.6; }
+  li strong { color: var(--text); }
+
+  /* BLOCKQUOTE */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    background: rgba(212,160,71,0.05);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  blockquote strong { color: var(--accent); }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 40px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* PROTOCOL TIMELINE */
+  .tl { margin: 16px 0; }
+  .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: start; }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-week { font-size: 11px; font-weight: 700; color: var(--muted); line-height: 1.4; }
+  .tl-week .lb { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; color: var(--accent); }
+  .tl-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .tl-items { list-style: none; margin: 4px 0 0; }
+  .tl-items li { font-size: 13px; color: var(--muted); padding: 2px 0 2px 14px; position: relative; margin: 0; }
+  .tl-items li::before { content: '→'; position: absolute; left: 0; color: var(--border2); }
+
+  /* QUESTIONS */
+  .q-item { padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card2); margin-bottom: 8px; }
+  .q-num { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .q-text { font-size: 14px; font-weight: 600; color: var(--text); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .container { padding: 20px 16px 60px; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 20px; }
+    .tl-item { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">Глубокое исследование</div>
+    <h1>Хроническое напряжение psoas и паттерн втянутого живота как телесный коррелят социального freeze (тип B)</h1>
+    <p>Нейрофизиология, психология, духовные традиции и протоколы отпускания</p>
+    <div class="meta">
+      <span class="h">● 2 июня 2026</span>
+      <span class="m">consensus mode</span>
+      <span class="m">health · psychology · spirituality</span>
+      <span class="m">GRADE ⊕⊕⊕⊕ ~ ⊕◯◯◯</span>
+    </div>
+  </div>
+
+  <!-- TL;DR -->
+  <section>
+    <h2>TL;DR — Ключевые выводы</h2>
+
+    <div class="card card-green">
+      <p><span class="g g-h">HIGH</span> Анатомическая связь psoas → диафрагма → блуждающий нерв — не метафора, а фасциальное соединение через crura diaphragmatis. Доказано анатомическими препаратами и MRI. <span class="g g-h">Bordoni & Zanier 2013</span></p>
+    </div>
+
+    <div class="card card-green">
+      <p><span class="g g-h">HIGH</span> Диафрагмальное дыхание — метод с самой высокой доказательностью (RCT, 2022 — ↓ боль и тревогу). Первый протокол, который следует рекомендовать.</p>
+    </div>
+
+    <div class="card card-blue">
+      <p><span class="g g-m">MODERATE</span> Миофасциальный релиз диафрагмы + psoas — RCT (n=42, ↓ боль на −2.05 VAS). Требует специалиста. <span class="g g-m">Sığlan & Çolak 2023</span></p>
+    </div>
+
+    <div class="card">
+      <p><span class="g g-l">LOW</span> Пандикуляция (Hanna Somatics) — механистически обоснована (перезагрузка α-γ петли). Одно non-RCT.</p>
+    </div>
+
+    <div class="card card-red">
+      <p><span class="g g-vl">VERY LOW</span> TRE (Tension Releasing Exercises) — только pilot на MS (n=9, ↓50% fatigue). Может быть эффективен, но требуется контрольное RCT.</p>
+    </div>
+
+    <div class="card card-red">
+      <p><span class="g g-vl">VERY LOW</span> Связь «стыд / иерархическая тревога → freeze → psoas» — согласованная клиническая модель (Porges, Scaer, Levine), без прямых экспериментальных подтверждений.</p>
+    </div>
+
+    <div class="card card-purple">
+      <p><span class="g g-na">Н/П</span> Три духовные традиции (даосская, индийская, библейская) независимо указывают на область psoas как на центр жизненной силы — культурная конвергенция, не научное доказательство.</p>
+    </div>
+  </section>
+
+  <!-- Universal Landscape -->
+  <section>
+    <h2>Полевой консенсус</h2>
+
+    <h3>Установленный консенсус</h3>
+    <p><strong>Psoas major</strong> — единственная мышца, соединяющая позвоночник (T12–L4) с бедром. Окружена собственной фасцией, которая сращена с диафрагмой через ножки диафрагмы и медиальные дугообразные связки <span class="g g-h">Bordoni & Zanier 2013, PMID: 23940419</span>.</p>
+
+    <p>Хроническое напряжение psoas ограничивает подвижность диафрагмы. Диафрагма является механическим стимулятором блуждающего нерва — каждое дыхательное движение «массирует» вагус, активируя парасимпатику.</p>
+
+    <p><strong>Поливагальная теория</strong> (Porges, 2022, PMID: 35558730) описывает три уровня: вентральный вагус (безопасность) → симпатика (борьба/бегство) → дорзальный вагус (замирание). Freeze — наиболее примитивный ответ, с сохранным мышечным тонусом при заблокированной двигательной команде.</p>
+
+    <div class="card card-blue">
+      <p><strong>Ключевая находка:</strong> нейрогенный тремор — спонтанное дрожание — идентифицирован как физиологический механизм разрядки замороженного состояния (Scaer, 2014). Подавление тремора ведёт к хроническому напряжению.</p>
+    </div>
+
+    <h3>Активные дебаты</h3>
+    <p><strong>Линия 1.</strong> Линейная каузальная цепь (Bordoni, Porges) vs. сенсомоторная амнезия / потеря α-γ контроля (Hanna). Вторая модель утверждает: хроническое напряжение psoas может существовать безотносительно психологического стресса.</p>
+
+    <p><strong>Линия 2.</strong> Является ли psoas «хранилищем травматической памяти» — или это проприоцептивные паттерны ЦНС, проецируемые на ощущение мышцы? Метафора полезна клинически, но биологически некорректна — мышцы не имеют синапсов для хранения.</p>
+
+    <h3>Фронтирные пробелы</h3>
+    <div class="card card-red">
+      <p>Главный открытый вопрос: <strong>какова направленность причинности?</strong> Stress → psoas ИЛИ psoas → anxiety? Данные поддерживают двунаправленную модель, но ни одно исследование не измерило оба направления в проспективном дизайне.</p>
+    </div>
+  </section>
+
+  <!-- Evidence Landscape -->
+  <section>
+    <h2>Доказательная база</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Область</th><th>Надёжность</th><th>Ключевые работы</th></tr></thead>
+        <tbody>
+          <tr><td>Анатомия psoas-диафрагма</td><td><span class="g g-h">HIGH</span></td><td>Bordoni & Zanier 2013</td></tr>
+          <tr><td>Поливагальная теория</td><td><span class="g g-h">HIGH</span></td><td>Porges 2022, PMC9131189</td></tr>
+          <tr><td>Диафрагмальное дыхание → ↓ тревога</td><td><span class="g g-h">HIGH</span></td><td>RCT 2022, PMC9687386</td></tr>
+          <tr><td>MFR диафрагма + psoas → ↓ CLBP</td><td><span class="g g-m">MODERATE</span></td><td>Sığlan & Çolak 2023 (RCT, n=42)</td></tr>
+          <tr><td>TCTSY → ↓ PTSD</td><td><span class="g g-m">MODERATE</span></td><td>3+ RCT (JAMA Open 2023)</td></tr>
+          <tr><td>Связь диафрагма-psoas (pilot)</td><td><span class="g g-l">LOW</span></td><td>Jiroumaru 2025 (n=11)</td></tr>
+          <tr><td>Пандикуляция (Hanna)</td><td><span class="g g-l">LOW</span></td><td>PMC9555036 (2022)</td></tr>
+          <tr><td>TRE → ↓ MS симптомы</td><td><span class="g g-vl">VERY LOW</span></td><td>Lynning 2021 (n=9)</td></tr>
+          <tr><td>Freeze → psoas</td><td><span class="g g-vl">VERY LOW</span></td><td>Клинические модели</td></tr>
+          <tr><td>Духовные фреймворки</td><td><span class="g g-na">Н/П</span></td><td>Философские источники</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Key Findings -->
+  <section>
+    <h2>Ключевые находки</h2>
+
+    <h3>Нейрофизиология</h3>
+
+    <div class="card">
+      <p><strong>Находка 1.</strong> Psoas major имеет прямую фасциальную связь с диафрагмой. При хроническом сокращении psoas ограничивается подвижность диафрагмы, что снижает вентиляцию и механорецепторную стимуляцию блуждающего нерва <span class="g g-h">Bordoni & Zanier 2013</span>.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>Находка 2.</strong> Freeze-ответ (дорзальный вагус) создаёт парадокс: мышца напряжена (симпатическая команда есть), но движения нет (дорзальное торможение). Psoas как главная мышца бегства — в центре этого конфликта <span class="g g-h">Porges 2022</span>.</p>
+    </div>
+
+    <div class="card card-green">
+      <p><strong>Находка 3.</strong> Нейрогенный тремор — физиологический механизм разрядки. Крупноамплитудный, затухает за 5-30 минут, сопровождается чувством тепла. Возникает спонтанно при снятии дорзального торможения <span class="g g-l">Scaer 2014</span>.</p>
+    </div>
+
+    <div class="card card-highlight">
+      <p><strong>Находка 4.</strong> Двунаправленная петля: хроническое напряжение psoas → ↓ подвижность диафрагмы → ↓ вагальная стимуляция → ↑ симпатический тонус → ↑ напряжение psoas. Разрыв возможен с любого конца: механического, дыхательного или психологического.</p>
+    </div>
+
+    <h3>Психология</h3>
+
+    <div class="card">
+      <p><strong>Находка 5.</strong> Социальный стыд и иерархическая тревога активируют те же нейронные цепи, что и физическая угроза (ACC, insula). Восприятие «не на равных» активирует дорзальный вагус → freeze. Соматический паттерн: втянутый живот + поднятые плечи + опущенная голова <span class="g g-l">Sapolsky 2017</span>.</p>
+    </div>
+
+    <div class="card card-blue">
+      <p><strong>Находка 6 — критически важно.</strong> Дифференциальная диагностика «втянутого живота»:</p>
+      <ul>
+        <li><strong>Freeze-паттерн:</strong> непроизвольный, сочетается с поверхностным дыханием, грудной клеткой, поднятыми плечами</li>
+        <li><strong>Привычный паттерн:</strong> эстетическая привычка, нет сопутствующего напряжения</li>
+        <li><strong>Тренировочный:</strong> произвольная активация TVA (abdominal hollowing) — здоровая техника</li>
+      </ul>
+    </div>
+
+    <h3>Духовные традиции</h3>
+
+    <div class="card card-purple">
+      <p><strong>Даосизм:</strong> нижний даньтянь (ся даньтянь, 下丹田) — «поле эликсира», центр тяжести и жизненной энергии ци. Расположен в той же области, что занимает psoas. Psoas называют «троном души» — она буквально держит этот центр.</p>
+    </div>
+
+    <div class="card card-purple">
+      <p><strong>Чакра Манипура:</strong> солнечное сплетение — третий чакра, центр личной силы, воли, самооценки. Находится на уровне диафрагмы и верхней части psoas. Хронический спазм здесь = блокировка между желанием и действием.</p>
+    </div>
+
+    <div class="card card-purple">
+      <p><strong>Библейские «чресла» (loins):</strong> область поясницы-таза. «Препоясать чресла» — подготовиться к действию, к битве. То же самое физически: psoas готовит тело к бегству или борьбе.</p>
+    </div>
+
+    <blockquote>Конвергенция трёх независимых культур — не научное доказательство, но указание на фундаментальную роль этой области в человеческом опыте, независимо открытую разными традициями.</blockquote>
+  </section>
+
+  <!-- Протоколы -->
+  <section>
+    <h2>Доказательные протоколы</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Протокол</th><th>Evidence</th><th>Влияние на psoas</th><th>Самостоятельно?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Диафрагмальное дыхание</strong></td><td><span class="g g-h">HIGH</span></td><td>Косвенное: через улучшение подвижности диафрагмы</td><td style="color:var(--green)">✅ Да</td></tr>
+          <tr><td><strong>MFR диафрагмы + psoas</strong></td><td><span class="g g-m">MODERATE</span></td><td>Прямое: ↓ тонус psoas</td><td style="color:var(--red)">❌ Специалист</td></tr>
+          <tr><td><strong>TCTSY (trauma yoga)</strong></td><td><span class="g g-m">MODERATE</span></td><td>Прямое: psoas-специфичные элементы</td><td style="color:var(--accent)">⚠️ С инструктором</td></tr>
+          <tr><td><strong>Пандикуляция (Hanna)</strong></td><td><span class="g g-l">LOW</span></td><td>Прямое: перезагрузка α-γ петли</td><td style="color:var(--green)">✅ Да</td></tr>
+          <tr><td><strong>TRE®</strong></td><td><span class="g g-vl">VERY LOW</span></td><td>Прямое: тремор начинается в psoas</td><td style="color:var(--accent)">⚠️ С предосторожностями</td></tr>
+          <tr><td><strong>Чжан Чжуан (цигун)</strong></td><td><span class="g g-vl">VERY LOW</span></td><td>Косвенное: расслабление всей поясницы</td><td style="color:var(--green)">✅ Да</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6-Week Protocol -->
+  <section>
+    <h2>6-недельный протокол вмешательства</h2>
+    <p style="margin-bottom:16px">Для sub-clinical социального freeze на основе синтеза доказательств.</p>
+
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-week"><div class="lb">Недели 1–2</div>Осознание + дыхание</div>
+        <div>
+          <div class="tl-title">Диафрагмальное дыхание <span class="g g-h">HIGH</span></div>
+          <ul class="tl-items">
+            <li>Ежедневно: 5-10 мин лёжа, рука на животе, удлинённый выдох (5-6 сек)</li>
+            <li>Образование: различие между грудным и диафрагмальным дыханием</li>
+            <li>Цель: ↓ симпатический тонус через ↑ вагальную стимуляцию</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week"><div class="lb">Недели 3–4</div>Пандикуляция</div>
+        <div>
+          <div class="tl-title">Пандикуляция psoas + соматические движения <span class="g g-l">LOW</span></div>
+          <ul class="tl-items">
+            <li>Ежедневно: 10-15 мин — осознанное сокращение → медленное расслабление psoas</li>
+            <li>Arch & Flatten (5 reps, медленно)</li>
+            <li>Цель: перезагрузка α-γ петли, выход из сенсомоторной амнезии</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week"><div class="lb">Недели 5–6</div>Тремор + интеграция</div>
+        <div>
+          <div class="tl-title">TRE® + интеграция <span class="g g-vl">VERY LOW</span></div>
+          <ul class="tl-items">
+            <li>2-3 раза/нед: TRE® (7 упражнений), 15-20 мин</li>
+            <li>Ежедневно: диафрагмальное дыхание (поддерживать)</li>
+            <li>Социальная практика: осознанное отслеживание втянутого живота</li>
+            <li>Цель: разрядка остаточного напряжения через нейрогенный тремор</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-green">
+      <p><strong>Дополнительно (по желанию):</strong></p>
+      <ul>
+        <li><strong>Чжан Чжуан</strong> — ежедневно 10-15 мин: развивает способность стоять с расслабленным psoas</li>
+        <li><strong>TCTSY</strong> — групповые классы 1-2/нед: восстанавливает связь с телом</li>
+      </ul>
+    </div>
+
+    <h3>Критерии прогресса</h3>
+    <ul>
+      <li>↑ способности к диафрагмальному дыханию (рука на животе)</li>
+      <li>↓ грудного дыхания в покое</li>
+      <li>↓ частоты «автоматического втягивания» живота в социальных ситуациях</li>
+      <li>Субъективное улучшение ощущения расслабления в области таза и поясницы</li>
+      <li>↑ HRV (если доступно измерение)</li>
+    </ul>
+
+    <div class="card card-red">
+      <p><strong>Противопоказания:</strong> TRE — эпилепсия, психоз, нестабильные состояния, беременность (модификация). Пандикуляция — нет известных противопоказаний. При сильной травматической истории — работа с терапевтом, не самостоятельно.</p>
+    </div>
+  </section>
+
+  <!-- Known Unknowns -->
+  <section>
+    <h2>Известные неизвестные</h2>
+    <div class="q-item"><div class="q-num">Вопрос 1</div><div class="q-text">Каково направление причинности между psoas-напряжением и тревогой у sub-clinical популяции?</div></div>
+    <div class="q-item"><div class="q-num">Вопрос 2</div><div class="q-text">Какой протокол отпускания psoas наиболее эффективен — требует сравнительного RCT?</div></div>
+    <div class="q-item"><div class="q-num">Вопрос 3</div><div class="q-text">Является ли паттерн втянутого живота специфичным для социального freeze?</div></div>
+    <div class="q-item"><div class="q-num">Вопрос 4</div><div class="q-text">Существует ли половой диморфизм в реакции psoas на социальный стресс?</div></div>
+    <div class="q-item"><div class="q-num">Вопрос 5</div><div class="q-text">Как долго сохраняются эффекты от 6-недельного вмешательства?</div></div>
+    <div class="q-item"><div class="q-num">Вопрос 6</div><div class="q-text">Есть ли связь между типом привязанности и хроническим напряжением psoas?</div></div>
+  </section>
+
+  <!-- Interaction Map -->
+  <section>
+    <h2>Интеракции</h2>
+    <div class="card"><p><strong>Psoas × Диафрагма.</strong> Фасциальная связь через медиальные дугообразные связки. Любая работа с psoas должна включать дыхание; любая дыхательная работа будет влиять на psoas.</p></div>
+    <div class="card"><p><strong>Freeze × Стыд.</strong> Дорзальный вагус активируется в ситуациях «безвыходности». Работа с psoas может снижать базальный уровень стыда через ↑ вагального тонуса.</p></div>
+    <div class="card card-red"><p><strong>TRE × Диссоциация.</strong> При сильной диссоциации TRE может усиливать дезориентацию. Начинать с grounding + диафрагмальное дыхание, TRE — только с интеграцией.</p></div>
+  </section>
+
+  <!-- Glossary -->
+  <section>
+    <h2>Глоссарий</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Термин</th><th>Определение</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Psoas major</strong></td><td>Глубокая мышца, соединяющая T12-L4 с бедром</td></tr>
+          <tr><td><strong>Crura диафрагмы</strong></td><td>Фасциальные тяжи, соединяющие диафрагму с позвоночником</td></tr>
+          <tr><td><strong>Дорзальный вагус</strong></td><td>Немыслинизированная ветвь вагуса, отвечающая за freeze-ответ</td></tr>
+          <tr><td><strong>Нейроцепция</strong></td><td>Бессознательное обнаружение безопасности/опасности (Porges)</td></tr>
+          <tr><td><strong>Пандикуляция</strong></td><td>Сознательное сокращение → медленное расслабление мышцы</td></tr>
+          <tr><td><strong>Сенсомоторная амнезия</strong></td><td>Потеря сознательного контроля над мышечным тонусом (Hanna)</td></tr>
+          <tr><td><strong>Нейрогенный тремор</strong></td><td>Спонтанное дрожание как физиологическая разрядка после стресса</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- References -->
+  <section>
+    <h2>Ключевые источники</h2>
+    <ol style="font-size:13px; color:var(--muted);">
+      <li>Bordoni B, Zanier E. Anatomic connections of the diaphragm. J Multidiscip Healthc. 2013. <span class="g g-h">PMC3731110</span></li>
+      <li>Porges SW. Polyvagal Theory: A Science of Safety. Front Integr Neurosci. 2022. <span class="g g-h">PMC9131189</span></li>
+      <li>Payne P, Levine PA, Crane-Godreau M. Somatic experiencing. Front Psychol. 2015. <span class="g g-m">PMC4316402</span></li>
+      <li>Jiroumaru T et al. Pilot Study on Diaphragmatic Function and Iliopsoas. Muscles. 2025. <span class="g g-l">PMC12195938</span></li>
+      <li>Sığlan Ü, Çolak S. MFR in CLBP: RCT. J Bodyw Mov Ther. 2023.</li>
+      <li>Lynning M et al. TRE for MS: pilot. J Tradit Complement Med. 2021. <span class="g g-vl">PMC8427467</span></li>
+      <li>Scaer R. The Body Bears the Burden. 2nd ed. 2014.</li>
+      <li>Hanna Somatics — PMC9555036 (2022).</li>
+      <li>Diaphragmatic breathing vs tVNS: RCT. Front Neurol. 2022. <span class="g g-h">PMC9687386</span></li>
+      <li>Sapolsky RM. Behave. 2017.</li>
+      <li>van der Kolk B. The Body Keeps the Score. 2015.</li>
+    </ol>
+  </section>
+
+  <div class="footer">
+    Исследование проведено 2 июня 2026 · 3-цикловый adversarial пайплайн · 11 источников · GRADE ⊕⊕⊕⊕ ~ ⊕◯◯◯<br>
+    <span style="opacity:0.5">Данный синтез основан на научных источниках и не заменяет консультацию врача или психотерапевта.</span>
+  </div>
+
+</div>
+</body>
+</html>
