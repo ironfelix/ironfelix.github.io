@@ -3,568 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Polydota Research — Prediction Markets × Киберспорт (полная версия)</title>
+<title>Prediction Markets × Киберспорт (Dota 2) — Полный Deep Research</title>
 <style>
-  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; --purple: #bc8cff; --orange: #f0883e; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 0; }
-  .container { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
-  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
-  .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
-  h2 { font-size: 1.4rem; font-weight: 600; margin: 48px 0 16px; color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-  h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; }
-  h4 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; color: var(--yellow); }
-  p { margin-bottom: 12px; }
-  ul, ol { margin: 8px 0 16px 20px; }
-  li { margin-bottom: 6px; }
-  strong { color: var(--text); }
-  .highlight { color: var(--yellow); font-weight: 600; }
-  .num { color: var(--green); font-weight: 600; }
-  .warn { color: var(--red); }
-  .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
-  .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
-  .tag-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); }
-  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
-  .tag-blue { background: rgba(88,166,255,0.15); color: var(--blue); }
-  .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
-  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
-  .card h4 { margin-bottom: 10px; }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
-  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
-  th { background: var(--card); font-weight: 600; color: var(--muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.05em; }
-  .rec { border-left: 3px solid var(--green); padding-left: 16px; margin: 16px 0; }
-  .rec-title { color: var(--green); font-weight: 600; margin-bottom: 4px; }
-  code { background: var(--card); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border); }
-  pre { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; font-size: 0.85rem; margin: 12px 0; }
-  .metric { display: inline-block; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; margin: 2px; font-size: 0.85rem; }
-  .grid { display: grid; gap: 12px; }
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
-  @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 24px 0; }
-  .toc a { color: var(--blue); text-decoration: none; display: block; padding: 4px 0; }
-  .toc a:hover { text-decoration: underline; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+  h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+  h2 { color: #58a6ff; margin-top: 30px; }
+  h3 { color: #79c0ff; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 14px; }
+  th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+  th { background: #161b22; color: #58a6ff; }
+  tr:nth-child(even) { background: #161b22; }
+  code { background: #1e1e1e; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+  .meta { color: #8b949e; font-size: 14px; margin-bottom: 20px; }
+  .emoji-header { font-size: 24px; margin-right: 8px; }
+  .section { background: #161b22; border-radius: 8px; padding: 15px; margin: 15px 0; }
+  ul { padding-left: 20px; }
+  li { margin: 5px 0; }
 </style>
 </head>
 <body>
-<div class="container">
-
-<h1>🎯 Prediction Markets × Киберспорт</h1>
-<div class="subtitle">Полное исследование ниши: рынки, конкуренты, продуктовые варианты, бизнес-модели, архитектура • 10 июня 2026 • polydota.com</div>
-
-<div class="toc">
-<h3 style="margin-top:0;border:none">Содержание</h3>
-<a href="#market">1. Рынок — цифры и тренды</a>
-<a href="#competitors">2. Конкуренты и похожие сервисы</a>
-<a href="#products">3. Продуктовые варианты (6 моделей)</a>
-<a href="#bizmodel">4. Бизнес-модели и ценообразование</a>
-<a href="#finance">5. Финансовые модели</a>
-<a href="#tech">6. Техническая архитектура</a>
-<a href="#risks">7. Риски и регуляция</a>
-<a href="#roadmap">8. Роадмап</a>
-</div>
-
-<!-- ==================== 1. РЫНОК ==================== -->
-<h2 id="market">1. Рынок — цифры и тренды</h2>
-
-<h3>1.1 Prediction markets (весь рынок)</h3>
-<table>
-<tr><th>Показатель</th><th>Значение</th><th>Источник</th></tr>
-<tr><td>Глобальный объём 2024</td><td>$15.8 млрд</td><td>Forbes / Yahoo Finance</td></tr>
-<tr><td>Глобальный объём 2025</td><td><span class="num">$63.5 млрд</span></td><td>Forbes (рост 400% г/г)</td></tr>
-<tr><td>Ежемесячный объём (апр. 2026)</td><td><span class="num">~$24 млрд</span></td><td>Pew Research</td></tr>
-<tr><td>Прогноз 2026</td><td>$250-300 млрд</td><td>Оценка индустрии</td></tr>
-<tr><td>Polymarket All-Time Volume</td><td>$56 млрд</td><td>PANews</td></tr>
-<tr><td>Kalshi All-Time Volume</td><td>$44.7 млрд</td><td>PANews</td></tr>
-<tr><td>Доля Polymarket + Kalshi</td><td>97.5% рынка</td><td>Gambling Insider</td></tr>
-<tr><td>Polymarket MAU</td><td>~630,000</td><td>ExplodingTopics</td></tr>
-</table>
-
-<p><strong>Ключевой тренд:</strong> рынок prediction markets вырос в <strong>4 раза</strong> за 2024→2025. К апрелю 2026 месячный объём ~$24 млрд. Прогноз годового объёма — до $1 трлн.</p>
-
-<h3>1.2 Киберспортивный беттинг</h3>
-<table>
-<tr><th>Показатель</th><th>Значение</th></tr>
-<tr><td>Легальный рынок 2025</td><td><span class="num">$2.5-3.5 млрд</span></td></tr>
-<tr><td>С учётом теневого</td><td>$16+ млрд</td></tr>
-<tr><td>Рост 2023→2024</td><td><span class="highlight">+106%</span></td></tr>
-<tr><td>Прогноз 2034</td><td>$54-59 млрд</td></tr>
-<tr><td>CAGR</td><td>14-17%</td></tr>
-<tr><td>Доля Dota 2</td><td><span class="num">~21%</span></td></tr>
-</table>
-
-<h3>1.3 Киберспорт на prediction markets</h3>
-<p><strong>Ключевой вывод:</strong> <span class="highlight">Ниша практически пустая.</span> Polymarket — $33 млрд в 2025, но киберспорт там <span class="warn"><strong>менее 0.01%</strong></span>. Совокупный объём торгов по Dota 2 на Polymarket — <strong>~$2.1 млн</strong>.</p>
-
-<p>Ни одна prediction market платформа <strong>не имеет значительного объёма</strong> по киберспорту. При этом киберспортивный беттинг — $3+ млрд и растёт на 106% в год. <strong>Спрос есть, предложения нет.</strong></p>
-
-<h3>1.4 Аудитория</h3>
-<table>
-<tr><th></th><th>Prediction Markets</th><th>Киберспорт-беттеры</th></tr>
-<tr><td>Возраст</td><td>25-44</td><td>18-34</td></tr>
-<tr><td>Пол</td><td>80%+ мужчины</td><td>85%+ мужчины</td></tr>
-<tr><td>Профиль</td><td>Крипто-трейдеры, финансисты</td><td>Геймеры, фанаты киберспорта</td></tr>
-<tr><td>Средний чек</td><td>$100 - $100K+</td><td>$10 - $500</td></tr>
-<tr><td>География</td><td>США, ЕС</td><td>Европа (СНГ), Азия, US</td></tr>
-</table>
-
-<p><strong>Инсайт:</strong> Аудитории пересекаются слабо. Геймеры лучше понимают Dota 2, чем средний Polymarket-трейдер, торгующий политику. Это <strong>арбитражная возможность</strong> — сделать prediction market, где price discovery делают люди, понимающие игру, а не финансовые спекулянты.</p>
-
-
-<!-- ==================== 2. КОНКУРЕНТЫ ==================== -->
-<h2 id="competitors">2. Конкуренты и похожие сервисы</h2>
-
-<h3>2.1 Prediction-платформы с киберспортом</h3>
-
-<div class="card">
-<h4><span class="tag tag-yellow">PM</span> Polymarket — доминирующая платформа</h4>
-<p><strong>Объём:</strong> $33.4 млрд (2025), $56 млрд all-time. Киберспорт — <strong><0.01%</strong>.</p>
-<p><strong>Что есть:</strong> ~10-20 рынков по Dota 2. Матчи (moneyline, spread, total). Ликвидность низкая.</p>
-<p><strong>Технология:</strong> Polygon, USDC, AMM-ценообразование, on-chain settlement.</p>
-<p><strong>Недостаток для киберспорта:</strong> Оракулы не адаптированы под специфику (дисконнекты, баги, рестарты). Аудитория — крипто-трейдеры, не геймеры. CMF / dispute resolution — частые конфликты.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-blue">PM</span> Kalshi — регулируемая платформа (CFTC)</h4>
-<p><strong>Объём:</strong> $17.1 млрд (2025), $44.7 млрд all-time. 2M пользователей.</p>
-<p><strong>Что есть:</strong> Раздел Esports. Матчи по CS2, Overwatch, Dota 2. Объёмы мизерные.</p>
-<p><strong>Технология:</strong> Фиат (US-based), регулируется CFTC, KYC обязателен.</p>
-<p><strong>Недостаток:</strong> Только США. Нет крипто-онбординга. Ограниченный список дисциплин.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-purple">PM</span> Другие платформы</h4>
-<table>
-<tr><th>Платформа</th><th>Киберспорт</th><th>Статус</th></tr>
-<tr><td>Crypto.com</td><td>Спорт есть, киберспорт — нет</td><td>Запустили prediction markets в конце 2024</td></tr>
-<tr><td>Opinion Trade</td><td>Спорт, киберспорт неизвестно</td><td>Новый игрок (янв. 2026), может составить конкуренцию</td></tr>
-<tr><td>Metaculus</td><td>Нет</td><td>Научные/технологические прогнозы. Не про спорт</td></tr>
-<tr><td>Manifold Markets</td><td>Нет</td><td>Социальные рынки (play-money). Не про киберспорт</td></tr>
-</table>
-</div>
-
-<h3>2.2 B2B Data / API для киберспорта</h3>
-
-<div class="card">
-<h4><span class="tag tag-green">DATA</span> PandaScore</h4>
-<p><strong>Что:</strong> API данных и коэффициентов по LoL, CS2, Dota 2 — статистика, live odds, предикты.</p>
-<p><strong>Бизнес-модель:</strong> Tiered subscription.</p>
-<table>
-<tr><td>Free</td><td>1K req/h</td><td>$0</td></tr>
-<tr><td>Historical/Post-match</td><td>Базовые данные</td><td>€150/мес</td></tr>
-<tr><td>Real-time</td><td>Live odds + stats</td><td>€500/мес</td></tr>
-<tr><td>Enterprise</td><td>Full access</td><td>$2K-10K/мес</td></tr>
-</table>
-<p><strong>Клиенты:</strong> Bet365, Pinnacle, букмекеры.</p>
-<p><strong>Технология:</strong> REST + WebSocket, JSON API, ML-модели для предиктивных коэффициентов. Покрытие: LoL, CS2, Dota 2, Valorant, Overwatch, Rocket League.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-green">DATA</span> The Odds API</h4>
-<p><strong>Что:</strong> Коэффициенты от 80+ букмекеров. Сравнение линий для арбитража.</p>
-<p><strong>Бизнес-модель:</strong> Free tier + Pro subscription. Цены не раскрыты публично.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-green">DATA</span> PredictionData.io</h4>
-<p><strong>Что:</strong> Unified API для sportsbook lines + Polymarket + Kalshi в одном запросе.</p>
-<p><strong>Для кого:</strong> Алго-трейдеры, сравнивающие линии букмекеров с prediction markets.</p>
-<p><strong>Модель:</strong> Pay-per-use / subscription.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-green">DATA</span> LSports</h4>
-<p><strong>Что:</strong> Данные по 600K+ ивентов, 40+ видов спорта.</p>
-<p><strong>Модель:</strong> B2B Enterprise, от $1K/мес.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-green">DATA</span> OpticOdds</h4>
-<p><strong>Что:</strong> Esports API для букмекеров (live odds, risk management).</p>
-<p><strong>Модель:</strong> B2B white-label data feed. Enterprise.</p>
-</div>
-
-<h3>2.3 Аналитические / Subscription-сервисы</h3>
-
-<div class="card">
-<h4><span class="tag tag-purple">BIZ</span> Action Network</h4>
-<p><strong>Что:</strong> Социальная сеть для беттинга + аналитика. Прогнозы экспертов, лидерборды, live odds.</p>
-<p><strong>Монетизация:</strong> Freemium: $9.99/мес (Premium Picks) → $49.99/мес (Pro+).</p>
-<p><strong>Фишки:</strong> Социальная механика — подписка на «капперов», трекинг ставок, комьюнити-рейтинг. Партнёрский CPA с букмекерами.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-purple">BIZ</span> BETSPERTS</h4>
-<p><strong>Что:</strong> Социальная платформа: пользователи публикуют ставки, обсуждают, соревнуются.</p>
-<p><strong>Модель:</strong> Subscription + комиссия с picks.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-purple">BIZ</span> Pikkit</h4>
-<p><strong>Что:</strong> Social betting app. Пользователи делятся ставками, статистика, друзья.</p>
-<p><strong>Модель:</strong> Freemium. Виральный рост через реферальные механики.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-purple">BIZ</span> Oddsjam / KillerSports</h4>
-<p><strong>Что:</strong> Арбитражные сканеры + positive EV-алерты.</p>
-<p><strong>Модель:</strong> $99-399/мес подписка для профессиональных беттеров.</p>
-</div>
-
-<h3>2.4 White-label / Инфраструктурные</h3>
-
-<div class="card">
-<h4><span class="tag tag-blue">TECH</span> TruePredict Software</h4>
-<p><strong>Что:</strong> White-label prediction platform (кастомизация бренда, UI).</p>
-<p><strong>Модель:</strong> One-time license + % revenue / SaaS.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-blue">TECH</span> Polymarket Clone Script (4irelabs, Whitelabelapps)</h4>
-<p><strong>Что:</strong> Готовые скрипты для запуска prediction market (market creation engine, wallet, AMM pricing).</p>
-<p><strong>Модель:</strong> $10K-$50K лицензия + кастомизация.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-blue">TECH</span> DATA.BET</h4>
-<p><strong>Что:</strong> Sportsbook solution + prediction markets модуль для операторов.</p>
-<p><strong>Модель:</strong> B2B: платформа + revenue share.</p>
-</div>
-
-<h3>2.5 Провалившиеся проекты (уроки)</h3>
-<table>
-<tr><th>Проект</th><th>Почему провалился</th><th>Урок</th></tr>
-<tr><td><strong>Augur (REP)</strong></td><td>Адский UX, медленные оракулы, нулевая ликвидность</td><td>UX важнее децентрализации</td></tr>
-<tr><td><strong>Veil</strong></td><td>UI-слой поверх Augur. Закрылся через 9 месяцев</td><td>Недостаточно просто UI, нужна ликвидность</td></tr>
-<tr><td><strong>Guesser</strong></td><td>Децентрализованные ставки на киберспорт. Не взлетел</td><td>Проблемы с ликвидностью и оракулами</td></tr>
-<tr><td><strong>SportX / BetDex</strong></td><td>Пользователи не пришли, финансирование испарилось в bear market</td><td>Product-market fit crucial</td></tr>
-<tr><td><strong>Crystal Ball</strong></td><td>Prediction markets на Polygon. Нулевой объём</td><td>Холодный старт — главная проблема</td></tr>
-</table>
-
-<p><strong>Главные уроки:</strong> (1) UX важнее децентрализации. (2) Ликвидность cold-start — ключевая проблема. (3) Продукт должен решать конкретную задачу для конкретной аудитории.</p>
-
-
-<!-- ==================== 3. ПРОДУКТОВЫЕ ВАРИАНТЫ ==================== -->
-<h2 id="products">3. Продуктовые варианты (6 моделей)</h2>
-<p style="color:var(--muted)">У тебя <strong>уже есть</strong>: Telegram-бот + парсер драфтов + ML-модель прогнозов. Каждый вариант использует это преимущество.</p>
-
-<div class="card">
-<h4><span class="tag tag-green">P1 (α)</span> B2B API + ML Predictions Layer</h4>
-<p><strong>Что:</strong> API, который отдаёт прогнозы (на базе парсинга драфтов + ML) алго-трейдерам, букмекерам, аналитическим платформам.</p>
-<p><strong>Кому нужно:</strong></p>
-<ul>
-  <li>Алго-трейдеры, торгующие на Polymarket/Kalshi по Dota 2 — нужны сигналы лучше рынка</li>
-  <li>Букмекеры (GG.Bet, Bet365, Pinnacle) — сравнение своих линий с ML-моделью для risk management</li>
-  <li>Аналитические платформы (Action Network, BETSPERTS) — данные для подписчиков</li>
-</ul>
-<p><strong>Монетизация:</strong></p>
-<ul>
-  <li>Developer API: pay-per-call ($0.001-0.01/запрос) или $199-999/мес</li>
-  <li>Premium: $999/мес — доступ к проприетарным ML-прогнозам</li>
-  <li>Enterprise: $5K-20K/мес — white-label, кастомизация под конкретного клиента</li>
-</ul>
-<p><strong>Твоё преимущество:</strong> Аналогов на рынке нет. PandaScore даёт сырые данные и общие коэффициенты. Ты даёшь ML-прогнозы на базе драфтов — это то, за что готовы платить.</p>
-<p><span class="tag tag-green">НЕТ РЕГУЛЯЦИИ</span> — это просто данные, не гемблинг.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-green">P2 (β)</span> Telegram Premium Bot</h4>
-<p><strong>Что:</strong> Твой существующий бот → Premium подписка.</p>
-<ul>
-  <li>Free: парсинг драфтов, базовые прогнозы (чтобы люди видели ценность)</li>
-  <li>Premium ($9.99/мес): ML-прогнозы, live push-уведомления, алерты на alpha-сигналы, аналитика</li>
-  <li>Pro ($49.99/мес): API-доступ для алго-трейдеров</li>
-</ul>
-<p><strong>Метрики:</strong> 1000 подписчиков × $9.99 = ~$10k/мес MRR при валовой марже >90%.</p>
-<p><strong>Конкуренты в Telegram:</strong> Много каналов с прогнозами на Доту (частные капперы), но <strong>ни одного автоматического ML-бота</strong>, который парсит драфты real-time.</p>
-<p><span class="tag tag-green">Срок: 1-2 недели</span> — бот уже есть, докрутить платёжную систему.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-yellow">P3</span> Social Betting Community Platform</h4>
-<p><strong>Что:</strong> Социальная сеть вокруг прогнозов на Dota 2. Пользователи публикуют прогнозы (пики матчей, драфты, исходы). Подписываются на «капперов». Лидерборды. Твоя ML-модель — как «искусственный каппер» для сравнения: может ли AI обыграть человека?</p>
-<p><strong>Механика:</strong></p>
-<ul>
-  <li>Пользователь: «Ставлю на Team Spirit 2:0, вот мой прогноз по драфту»</li>
-  <li>ML выдает свой прогноз рядом</li>
-  <li>Комьюнити голосует, кто точнее: AI или человек</li>
-  <li>Leaderboard: топ-прогнозистов месяца (стримеры, аналитики, AI)</li>
-</ul>
-<p><strong>Монетизация:</strong></p>
-<ul>
-  <li>Freemium: $19.99/мес — ML-прогнозы + детальная аналитика</li>
-  <li>Revenue share с партнёрских букмекеров (CPA $50-200 за депозит + 25-40% revshare)</li>
-  <li>Турнирные пулы — $5 entry fee → призовой фонд</li>
-</ul>
-<p><strong>Референсы:</strong> Action Network ($9.99-49.99/мес, ~$15M+ ARR), BETSPERTS.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-yellow">P4</span> SaaS Market Creation for Esports</h4>
-<p><strong>Что:</strong> Manifold Markets для киберспорта — low-code платформа, где любой стример/комьюнити-менеджер создаёт свой prediction market на матч Dota 2 за 5 минут.</p>
-<p><strong>Для кого:</strong> Стримеры на Twitch, комьюнити Dota 2/CS2, организаторы небольших турниров, фан-клубы.</p>
-<p><strong>Сценарий:</strong> Стример запускает рынок «Кто сделает first blood? Hero picks? Победитель?» — зрители ставят через бота. Стример получает виральность + комиссию.</p>
-<p><strong>Монетизация:</strong> $29-99/мес SaaS + 0.5-1% комиссия с пулов.</p>
-<p><span class="tag tag-red">Высокий regulatory риск</span> — если квалифицируют как гемблинг. Нужна ликвидность cold-start.</p>
-<p><strong>Технически:</strong> React + настраиваемый AMM + Polygon/USDC settlement. Сложнее остальных.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-blue">P5</span> B2B Risk Management для букмекеров</h4>
-<p><strong>Что:</strong> Продавать ML-модель напрямую букмекерам как SaaS для risk management.</p>
-<p><strong>Зачем букмекеру:</strong> ML предсказывает исход матча до его начала на основе драфтов. Букмекер может:</p>
-<ul>
-  <li>Корректировать линии до открытия (не давать себя обыграть)</li>
-  <li>Выявлять аномальные ставки (подозрение на договорной матч)</li>
-  <li>Автоматизировать установку коэффициентов (экономия на трейдерах)</li>
-</ul>
-<p><strong>Модель:</strong> Enterprise SaaS ($5K-20K/мес) + % от сэкономленных потерь.</p>
-<p><span class="tag tag-yellow">Сложность:</span> B2B sales cycle (3-6 мес), нужны контакты в индустрии. Но если зайти — очень липкий продукт.</p>
-</div>
-
-<div class="card">
-<h4><span class="tag tag-blue">P6</span> Esports Prediction Market (свой PM)</h4>
-<p><strong>Что:</strong> Полноценная prediction market платформа, заточенная под киберспорт — Polydota.com. Как Polymarket, но только киберспорт.</p>
-<p><strong>Отличия от Polymarket:</strong></p>
-<ul>
-  <li>Микро-рынки: не только «кто победит», но и драфты (первые пики, бан героев, линии, first blood)</li>
-  <li>Твоя ML-модель встроена — пользователи видят «AI прогноз»</li>
-  <li>Интеграция с Twitch/Telegram — ставки прямо во время стрима</li>
-  <li>Комьюнити-модерируемые оракулы (адаптированы под специфику киберспорта)</li>
-</ul>
-<p><span class="tag tag-red">Высокий риск</span> — регуляция (США/ЕС/РФ), нужна ликвидность $100K+ на запуск, юридические расходы $500K+. Но при успехе — занятие ниши до прихода крупных игроков.</p>
-</div>
-
-
-<!-- ==================== 4. БИЗНЕС-МОДЕЛИ ==================== -->
-<h2 id="bizmodel">4. Бизнес-модели и ценообразование</h2>
-
-<table>
-<tr><th>Модель</th><th>Продукт</th><th>Revenue</th><th>Margin</th><th>Regulatory</th></tr>
-<tr><td><strong>B2B API SaaS</strong></td><td>P1, P5</td><td>$5K-20K/мес enterprise</td><td>70-90%</td><td>🟢 нет</td></tr>
-<tr><td><strong>B2C Subscription</strong></td><td>P2, P3</td><td>$9.99-49.99/мес</td><td>>90%</td><td>🟢 нет</td></tr>
-<tr><td><strong>B2B Platform</strong></td><td>P4</td><td>$29-99/мес + 0.5-1% комиссия</td><td>60-80%</td><td>🔴 да</td></tr>
-<tr><td><strong>Rev Share (CPA)</strong></td><td>P3</td><td>$50-200 CPA + 25-40% revshare</td><td>-</td><td>🟡 зависит</td></tr>
-<tr><td><strong>Trading Commission</strong></td><td>P6</td><td>2-3% c объёма торгов</td><td>50-70%</td><td>🔴🔴 да</td></tr>
-</table>
-
-<h3>Бенчмарки ценообразования</h3>
-<table>
-<tr><th>Сервис</th><th>Free</th><th>Pro</th><th>Enterprise</th></tr>
-<tr><td>PandaScore</td><td>1K req/h</td><td>€150-500/мес</td><td>$2K-10K/мес</td></tr>
-<tr><td>Action Network</td><td>Базовые данные</td><td>$9.99-49.99/мес</td><td>-</td></tr>
-<tr><td>Oddsjam</td><td>Нет</td><td>$99-399/мес</td><td>-</td></tr>
-<tr><td>The Odds API</td><td>Лимит 500/день</td><td>$99-199/мес</td><td>Custom</td></tr>
-<tr><td>Polymarket Clone</td><td>-</td><td>-</td><td>$10K-50K license</td></tr>
-</table>
-
-
-<!-- ==================== 5. ФИНАНСОВЫЕ МОДЕЛИ ==================== -->
-<h2 id="finance">5. Финансовые модели</h2>
-
-<h3>5.1 Telegram Premium Bot (P2)</h3>
-<table>
-<tr><th>Показатель</th><th>Консервативно</th><th>Реалистично</th><th>Оптимистично</th></tr>
-<tr><td>Подписчики</td><td>200</td><td>1,000</td><td>5,000</td></tr>
-<tr><td>ARPU</td><td>$9.99</td><td>$14.99</td><td>$19.99</td></tr>
-<tr><td><strong>MRR</strong></td><td><strong>$2K</strong></td><td><strong>$15K</strong></td><td><strong>$100K</strong></td></tr>
-<tr><td>ARR</td><td>$24K</td><td>$180K</td><td>$1.2M</td></tr>
-<tr><td>Годовая маржа</td><td>>90%</td><td>>90%</td><td>>90%</td></tr>
-</table>
-<p><strong>Затраты:</strong> Сервер ~$50/мес + Telegram Bot API (бесплатно) + ML inference ~$100-500/мес (GPU).</p>
-<p><strong>Окупаемость:</strong> 1-2 недели разработки. При 200 подписчиках — самоокупаем с первого дня.</p>
-
-<h3>5.2 B2B API + ML Predictions (P1)</h3>
-<table>
-<tr><th>Показатель</th><th>Консервативно</th><th>Реалистично</th><th>Оптимистично</th></tr>
-<tr><td>Клиенты (API)</td><td>3</td><td>10</td><td>50</td></tr>
-<tr><td>Средний чек</td><td>$500/мес</td><td>$1,000/мес</td><td>$2,000/мес</td></tr>
-<tr><td><strong>MRR</strong></td><td><strong>$1.5K</strong></td><td><strong>$10K</strong></td><td><strong>$100K</strong></td></tr>
-<tr><td>Enterprise (разовые)</td><td>$5K</td><td>$15K</td><td>$50K</td></tr>
-<tr><td><strong>ARR</strong></td><td><strong>$23K</strong></td><td><strong>$135K</strong></td><td><strong>$1.25M</strong></td></tr>
-</table>
-<p><strong>Затраты:</strong> Сервер + API Gateway ~$200-500/мес + ML inference ~$200-1K/мес. Маржа >70%.</p>
-
-<h3>5.3 Social Betting Platform (P3)</h3>
-<table>
-<tr><th>Показатель</th><th>Консервативно</th><th>Реалистично</th><th>Оптимистично</th></tr>
-<tr><td>MAU</td><td>5K</td><td>50K</td><td>500K</td></tr>
-<tr><td>Конверсия в платных</td><td>3%</td><td>5%</td><td>8%</td></tr>
-<tr><td>Платящих</td><td>150</td><td>2,500</td><td>40,000</td></tr>
-<tr><td>ARPU</td><td>$9.99</td><td>$14.99</td><td>$19.99</td></tr>
-<tr><td><strong>MRR (subscription)</strong></td><td><strong>$1.5K</strong></td><td><strong>$37.5K</strong></td><td><strong>$800K</strong></td></tr>
-<tr><td>CPA/Revshare</td><td>500 депозитов = $25K</td><td>5K депозитов = $250K</td><td>50K депозитов = $2.5M</td></tr>
-<tr><td><strong>ARR total</strong></td><td><strong>$43K</strong></td><td><strong>$700K</strong></td><td><strong>$12M+</strong></td></tr>
-</table>
-
-<h3>5.4 Сравнение вариантов</h3>
-<table>
-<tr><th>Критерий</th><th>P1 (API)</th><th>P2 (Telegram)</th><th>P3 (Social)</th><th>P4 (SaaS PM)</th><th>P6 (свой PM)</th></tr>
-<tr><td>Время запуска</td><td>1-2 мес</td><td><span class="highlight">1-2 нед</span></td><td>3-6 мес</td><td>3-4 мес</td><td>6-12 мес</td></tr>
-<tr><td>Регуляторный риск</td><td>🟢 нет</td><td>🟢 нет</td><td>🟡 мин</td><td>🔴 высокий</td><td>🔴🔴 крайний</td></tr>
-<tr><td>Использует твою модель</td><td>✅ да</td><td>✅ да</td><td>✅ да</td><td>🟡 частично</td><td>✅ да</td></tr>
-<tr><td>Потенциал ARR</td><td>$100K-1M</td><td>$20K-1M</td><td>$40K-12M</td><td>$100K-5M</td><td>$500K-50M</td></tr>
-<tr><td>Необходимые инвестиции</td><td>$5-10K</td><td>$1-3K</td><td>$10-30K</td><td>$50-100K</td><td>$200-500K</td></tr>
-<tr><td>Сложность</td><td>Средняя</td><td><span class="tag tag-green">Низкая</span></td><td>Средняя</td><td>Высокая</td><td>Очень высокая</td></tr>
-</table>
-
-
-<!-- ==================== 6. ТЕХНИЧЕСКАЯ АРХИТЕКТУРА ==================== -->
-<h2 id="tech">6. Техническая архитектура</h2>
-
-<h3>6.1 Что уже есть</h3>
-<ul>
-  <li>✅ Telegram-бот (платформа доставки)</li>
-  <li>✅ Парсер драфтов Dota 2 (data advantage)</li>
-  <li>✅ ML-модель прогнозов (core IP)</li>
-</ul>
-
-<h3>6.2 Архитектура для API + Telegram Bot</h3>
-<pre>
-[Dota 2 API / Liquipedia / OpenDota]
-        ↓
-[Parser: парсинг драфтов в реальном времени]
-        ↓
-[Feature Engineering: герои, состав, пики/баны, мета]
-        ↓
-[ML Model: предсказание победы/статистики]
-        ↓
-[API Gateway (FastAPI/Express)] ←→ [Telegram Bot]
-        ↓
-[Балансер / Rate Limiter / Auth (API Keys)]
-        ↓
-[Data Pipeline → ClickHouse / PostgreSQL]
-        ↓
-[Аналитика / Дашборды]
-
-Внешние клиенты:
-  ┌─────────────┬──────────────┬──────────────┐
-  ↓             ↓              ↓              ↓
-[Трейдеры    [Букмекеры     [Analytics     [Telegram
- Polymarket]  Pinnacle/etc]   Platform]      Bot Users]
-</pre>
-
-<p><strong>Tech stack:</strong></p>
-<ul>
-  <li><strong>Backend:</strong> Python (FastAPI) или Node.js — для API gateway</li>
-  <li><strong>ML:</strong> Python (scikit-learn / XGBoost / LightGBM — что уже используешь)</li>
-  <li><strong>DB:</strong> PostgreSQL (основная), ClickHouse или TimescaleDB (аналитика, real-time)</li>
-  <li><strong>API:</strong> REST + WebSocket (для real-time уведомлений)</li>
-  <li><strong>Платежи:</strong> Stripe (международная)/ЮKassa (РФ) или Crypto (USDC на Polygon)</li>
-  <li><strong>Auth:</strong> API Keys для B2B, Telegram Login для B2C</li>
-</ul>
-
-<h3>6.3 Для полноценной prediction market (P6)</h3>
-<pre>
-[Frontend] → React / Next.js
-       ↓
-[Backend API] → Node.js / FastAPI
-       ↓
-[Matching Engine / AMM] → Smart contracts on Polygon
-       ↓
-[Wallet System] → USDC (Circle API) / Crypto on Polygon
-       ↓
-[Oracle / Resolution] → UMA / Chainlink + community voting
-       ↓
-[Data Feeds] → Custom + PandaScore / OpenDota / Liquipedia
-</pre>
-
-<p><strong>Дополнительные компоненты для P6:</strong></p>
-<ul>
-  <li>AMM (Automated Market Maker) — ценообразование: потребуются математики/консультанты</li>
-  <li>Resolution oracle — кто решает исход при спорных матчах</li>
-  <li>KYC/AML — необходимо для юрисдикций с регуляцией</li>
-  <li>Smart contracts — аудит безопасности ($50-200K)</li>
-  <li>Юридическая структура: DAO? Офшор? US-регистрация?</li>
-</ul>
-
-
-<!-- ==================== 7. РИСКИ ==================== -->
-<h2 id="risks">7. Риски и регуляция</h2>
-
-<table>
-<tr><th>Риск</th><th>Для P1/P2</th><th>Для P3/P4</th><th>Для P6</th></tr>
-<tr><td>Регуляция (США: CFTC)</td><td>🟢 нет</td><td>🟡 мин</td><td>🔴🔴🔴</td></tr>
-<tr><td>Регуляция (EU: Gambling Act)</td><td>🟢 нет</td><td>🟡 мин</td><td>🔴🔴</td></tr>
-<tr><td>Регуляция (РФ: ст.171.2 УК)</td><td>🟢 нет</td><td>🟡 мин</td><td>🔴🔴🔴</td></tr>
-<tr><td>Ликвидность cold-start</td><td>🟢 не нужна</td><td>🟢 не критично</td><td>🔴🔴 $100K+</td></tr>
-<tr><td>Match-fixing / insider trading</td><td>🟢 не твоя проблема</td><td>🟡 соц. риск</td><td>🔴🔴 репутационный</td></tr>
-<tr><td>Конкуренция с букмекерами</td><td>🟢 другие лиги</td><td>🟡 частично</td><td>🟡 другие лиги</td></tr>
-<tr><td>ML model degradation</td><td>🟡 требует мониторинга</td><td>🟡</td><td>🟡</td></tr>
-</table>
-
-<h3>Детали по юрисдикциям</h3>
-
-<p><strong>РФ и СНГ:</strong></p>
-<ul>
-  <li>Азартные игры — только в 4 специальных зонах. Онлайн-казино запрещены</li>
-  <li>Спортивные ставки — только через лицензированные БК (ЦУПИС)</li>
-  <li>Prediction markets де-факто серая зона. Если суд квалифицирует как азартную игру — ст. 171.2 УК (до 6 лет)</li>
-  <li>Polymarket/Kalshi заблокированы РКН</li>
-  <li><strong>Для data/API — риски минимальны</strong>, т.к. это «информационный сервис»</li>
-</ul>
-
-<p><strong>США:</strong></p>
-<ul>
-  <li>CFTC регулирует event contracts (Kalshi имеет DCM-лицензию)</li>
-  <li>Nevada Gaming Control Board добивается TRO против Polymarket</li>
-  <li>20+ федеральных исков против Kalshi и Polymarket (Guardian, 2026)</li>
-  <li>Для API/data — безопасно, суды не трогают</li>
-</ul>
-
-<p><strong>Европа:</strong></p>
-<ul>
-  <li>Каждая страна трактует prediction markets по-своему</li>
-  <li>UK: UKGC считает формой азартных игр</li>
-  <li>Мальта: лояльнее, но требуется MGA лицензия (~€60K/год)</li>
-  <li>Германия: GGL блокирует нелицензированные платформы</li>
-</ul>
-
-<p><strong>Оптимальная юрисдикция:</strong> Если идти в PM-платформу — регистрация на Мальте или Гибралтаре (лицензия MGA) + блокировка доступа из США/РФ. Если data/API — любая юрисдикция, риск минимален.</p>
-
-
-<!-- ==================== 8. РОАДМАП ==================== -->
-<h2 id="roadmap">8. Роадмап — что делать</h2>
-
-<div class="rec">
-  <div class="rec-title">🚀 Старт (1-2 недели) — Telegram Premium Bot</div>
-  <p>Докрутить платёжки, запустить $9.99/мес подписку. Использовать существующую аудиторию. MRR: $2-15K.</p>
-  <p><strong>Что нужно сделать:</strong></p>
-  <ul>
-    <li>Подключить Stripe или Telegram Stars для оплаты</li>
-    <li>Разделить на free/premium (ограничение по прогнозам/алертам)</li>
-    <li>Запустить бесплатный период для начального привлечения</li>
-  </ul>
-</div>
-
-<div class="rec">
-  <div class="rec-title">📈 Рост (3-6 мес) — B2B API Layer</div>
-  <p>API для алго-трейдеров и букмекеров. ARR: $25-135K.</p>
-  <p><strong>Что нужно сделать:</strong></p>
-  <ul>
-    <li>REST API + документация</li>
-    <li>First client: предложить бесплатный месяц 3-5 букмекерам (контакты есть?)</li>
-    <li>Обратиться напрямую в PandaScore — они могут стать дистрибьютором</li>
-  </ul>
-</div>
-
-<div class="rec">
-  <div class="rec-title">🌍 Масштаб (6-12 мес) — Community Platform</div>
-  <p>Social betting вокруг модели. Если первые два работают — идти сюда.</p>
-</div>
-
-<div class="rec">
-  <div class="rec-title">🏆 Возможность (12-24 мес) — Polydota Prediction Market</div>
-  <p>Если ниша подтвердится, появится аудитория и ресурсы — запускать полноценную prediction market платформу для киберспорта. К тому моменту будешь знать все подводные камни.</p>
+<h1>🎮 Prediction Markets × Киберспорт (Dota 2)</h1>
+<p class="meta">📅 11 июня 2026 | 🧬 3-цикловый deep research (SCOUTs → CRITIC → Deep Divers → SYNTHESIZER)</p>
+<p class="meta">🎯 Фокус: Polydota | 🌐 Домен: company</p>
+
+<div class="section">
+1|# Synthesis: Prediction Markets × Киберспорт (Dota 2)
+2|
+3|<b>Дата:<b> 11 июня 2026
+4|<b>Тип:<b> Полный deep research (3-цикловый)
+5|<b>Методология:<b> SCOUTs (3) → CRITIC → Deep Divers (3) → SYNTHESIZER
+6|
+7|<hr>
+8|
+9|<h2>1. Рынок — цифры
+10|
+11|#<h2>1.1 Prediction markets — вся индустрия
+12|
+13|| Метрика | 2024 | 2025 | 2026 (run-rate) |
+14||<hr>|<hr>|<hr>|<hr>|
+15|| Весь рынок (годовой объём) | $15.8B | $44–64B | ~$325B+ |
+16|| Polymarket | ~$5B | $21.5–33.4B | ~$120B |
+17|| Kalshi | ~$2B | $17.1–22.9B | ~$125B |
+18|| Polymarket + Kalshi доля | ~95% | 97.5% | 97%+ |
+19|| Ежемесячный объём (обоих) | <$1B | $13B (дек) | $24B (апр) |
+20|
+21|<b>Источник:<b> Forbes, Sacra, TRM Labs, FalconX/Covers
+22|
+23|#<h2>1.2 Ключевые игроки — valuation и revenue
+24|
+25|| Компания | Revenue 2025 | ARR (май 2026) | Valuation | Revenue Model |
+26||<hr>|<hr>|<hr>|<hr>|<hr>|
+27|| <b>Polymarket<b> | $0 | $338M gross / $209M net | $15B | Taker fee 0.75–1.8% (с мар 2026) |
+28|| <b>Kalshi<b> | $263.5M | >$1.5B | $22B | Taker fee ~1.2% |
+29|| <b>Manifold<b> | <$1M | <$5M | <$20M | Play-money |
+30|| <b>Metaculus<b> | <$1M | <$1M | N/A | Grants |
+31|
+32|<b>Ключевой pivot:<b> Polymarket ввёл fees 30 марта 2026 — daily revenue >$1M сразу.
+33|
+34|#<h2>1.3 Esports betting market
+35|
+36|| Метрика | Значение |
+37||<hr>|<hr>|
+38|| Легальная выручка 2024 | $2.5 млрд |
+39|| Легальная выручка 2025 | $2.8 млрд |
+40|| Прогноз 2033 | $13.7 млрд (CAGR 11–14%) |
+41|| Бетторов (2024) | 74.3 млн → 80+ млн (2025) |
+42|| Gen Z доля | 44% |
+43|
+44|#<h2>1.4 Dota 2 на рынке ставок
+45|
+46|| Параметр | Значение |
+47||<hr>|<hr>|
+48|| Доля handle среди дисциплин | 8.7% (H1 2025) |
+49|| Тренд доли | 14% (2023) → 10% (2024) → 8.7% (H1 2025) |
+50|| Абсолютный рост объёма | +31% YoY (2025) |
+51|| DATA.BET Dota 2 Q3 2025 | turnover +290%, profit +416% |
+52|| Доля Восточной Европы | 22.8% |
+53|| Активные Polymarket Dota 2 рынки | 5–8 (июнь 2026) |
+54|| Polymarket Dota 2 volume | ~$106K (live markets total) |
+55|
+56|#<h2>1.5 Dota 2 экосистема — здоровье
+57|
+58|| Метрика | Значение |
+59||<hr>|<hr>|
+60|| Avg concurrent (H1 2026) | ~400K |
+61|| Peak 2025 (TI) | 961K — лучший за 3 года |
+62|| Core возраст | 25–34 (40–50%) |
+63|| Новые игроки (18–24) | ~15% |
+64|| ARPU core | $30–60/год |
+65|| Регионы: СНГ | 25–30% (сильнейший) |
+66|| Китай | ~15% (падение) |
+67|
+68|<b>Вердикт:<b> Dota 2 — стабильная ниша, не dying game. Core-аудитория лояльна и платёжеспособна.
+69|
+70|<hr>
+71|
+72|<h2>2. Конкурентный ландшафт
+73|
+74|#<h2>2.1 Прямые конкуренты Polydota
+75|
+76|| Конкурент | Угроза | Почему |
+77||<hr>|<hr>|<hr>|
+78|| <b>Polymarket<b> | ★★★★★ | «Amazon PM» — BLAST partnership, Dota 2 рынки, $15B valuation |
+79|| <b>Kalshi<b> | ★★★☆☆ | CFTC-regulated, 176 esports markets, $36M/week объём |
+80|| <b>DraftKings Predicts<b> | ★★★★☆ | 6M+ DAU, бренд, 30+ штатов, запущен нояб 2025 |
+81|| <b>FanDuel Predicts<b> | ★★★★☆ | Flutter EBITDA >$2.8B, 16 штатов |
+82|| <b>Robinhood Event Contracts<b> | ★★★☆☆ | $300M+ revenue RR, esports не приоритет |
+83|| <b>DATA.BET<b> | ★★☆☆☆ | B2B, standalone PM vertical (апр 2026) |
+84|
+85|#<h2>2.2 Esports B2B инфраструктура
+86|
+87|| Компания | Продукт | Pricing |
+88||<hr>|<hr>|<hr>|
+89|| <b>Oddin.gg<b> | Full esports stack (odds + risk) | B2B непубличный |
+90|| <b>PandaScore<b> | Data & Odds API | €500/мес per game |
+91|| <b>GRID Esports<b> | Official data rights (Riot) | Enterprise |
+92|| <b>DATA.BET<b> | Sportsbook + PM vertical | B2B |
+93|
+94|#<h2>2.3 Esports-specific PM платформы
+95|
+96|<b>Специализированных нет.<b> Polydota — первый вертикальный prediction market для Dota 2.
+97|
+98|<hr>
+99|
+100|<h2>3. Техническая реализация
+101|
+102|#<h2>3.1 Polymarket API для overlay
+103|
+104|| Функция | Доступно |
+105||<hr>|<hr>|
+106|| Чтение рынков (REST) | ✅ Публично |
+107|| Торговля (CLOB REST + WS) | ✅ API-ключ + EIP-712 |
+108|| Создание рынков | ❌ Только on-chain (смарт-контракты) |
+109|| Реферальная программа | ✅ 25% от комиссии → рефереру |
+110|| UMA Oracle для esports | ✅ Bond ~500 USDC, 1–2 часа resolution |
+111|
+112|<b>Rate limits:<b> Публичные ~10 req/s, приватные ~1 req/s
+113|
+114|#<h2>3.2 UMA Oracle — критическое ограничение
+115|- Liveness period: 1–2 часа для esports
+116|- <b>Не подходит для live resolution<b> (нужен централизованный oracle)
+117|- Bond: ~500 USDC (возвратный)
+118|- Источники: ESL, HLTV, Liquipedia
+119|
+120|#<h2>3.3 Referral экономика
+121|- 25% от протокольной комиссии → рефереру
+122|- Протокольная комиссия: 2% от выигрыша
+123|- <b>Фактически: 0.5% от оборота рефералов<b>
+124|
+125|<hr>
+126|
+127|<h2>4. Регуляторный ландшафт
+128|
+129|#<h2>4.1 Стратегия регистрации
+130|
+131|| Фаза | Юрисдикция | Стоимость | Срок | Особенности |
+132||<hr>|<hr>|<hr>|<hr>|<hr>|
+133|| <b>MVP<b> | <b>Curacao<b> | $25–40K/год | 2–6 нед | Crypto-native, esports разрешены |
+134|| <b>Growth<b> | Isle of Man | £50–100K/год | 3–6 мес | Crypto разрешён, 0% corp tax |
+135|| <b>Scale<b> | Malta (MGA) | €50K+/год | 4–8 мес | EU признание, esports регулируются |
+136|
+137|#<h2>4.2 Asia — Dota 2 core market
+138|- <b>Индия<b> — 🟢 skill gaming exemption, огромная Dota 2 аудитория
+139|- <b>Филиппины<b> — 🟢 PAGCOR, crypto разрешён
+140|- <b>Китай<b> — 🚫 полный запрет
+141|- <b>ЮВА<b> — 🟡 серый рынок, огромный объём
+142|
+143|#<h2>4.3 Риски
+144|- CFTC enforcement (Polymarket штраф $1.2M в 2024)
+145|- Illinois C&D (янв 2026)
+146|- US geo-fence обязателен
+147|
+148|<hr>
+149|
+150|<h2>5. Бизнес-модели и оценки
+151|
+152|#<h2>5.1 TAM/SAM/SOM для Polydota
+153|
+154|| Метрика | Оценка | Источник |
+155||<hr>|<hr>|<hr>|
+156|| <b>TAM<b> — prediction markets всего | $325B+ (2026) | Рыночная экстраполяция |
+157|| <b>TAM<b> — esports betting | $2.8B (2025) | SiGMA, SkyQuest |
+158|| <b>SAM<b> — Dota 2 betting | $244M (8.7% × $2.8B) | Oddin.gg доля |
+159|| <b>SOM<b> — Polydota Year 1 | $2–5M | Оценка (0.8–2% SAM) |
+160|| <b>SOM<b> — Polydota Year 3 | $10–25M | При 2–5% рынка Dota 2 PM |
+161|
+162|#<h2>5.2 Revenue Model для Polydota
+163|
+164|| Модель | Потенциал | Приоритет |
+165||<hr>|<hr>|<hr>|
+166|| <b>Taker fee<b> (0.5–1%) | При $10M объёма = $50–100K | 🥇 Основная |
+167|| <b>Polymarket referral<b> (0.5% от оборота) | При $10M = $50K | 🥇 Немедленная |
+168|| <b>B2B Data API<b> | $5–20K/мес enterprise | 🥈 Фаза 2 |
+169|| <b>Telegram Premium<b> | $9.99/мес × 1000 = $10K/мес | 🥈 Быстрый старт |
+170|| <b>Rev share с букмекерами<b> | CPA 50–100€ per FTD | 🥉 Фаза 3 |
+171|
+172|#<h2>5.3 Примерный P&L Year 1
+173|
+174|| Статья | Месяц | Год |
+175||<hr>|<hr>|<hr>|
+176|| <b>Доход<b> | | |
+177|| Polymarket referral (0.5% × $5M) | $2,083 | $25K |
+178|| Taker fee (0.5% × $5M) | $2,083 | $25K |
+179|| Telegram Premium (500 × $9.99) | $4,995 | $60K |
+180|| <b>Total Revenue<b> | <b>$9,161<b> | <b>$110K<b> |
+181|| <b>Расходы<b> | | |
+182|| Разработка (freelance) | $5K | $60K |
+183|| Лицензия Curacao | $2,083 | $25K |
+184|| Хостинг/инфра | $500 | $6K |
+185|| Marketing | $2K | $24K |
+186|| Юр. сопровождение | $1K | $12K |
+187|| <b>Total Cost<b> | <b>$10,583<b> | <b>$127K<b> |
+188|| <b>Net<b> | <b>-$1,422<b> | <b>-$17K<b> |
+189|
+190|<b>Окупаемость:<b> ~18–24 месяцев при росте объёмов.
+191|
+192|<hr>
+193|
+194|<h2>6. Ключевой риск: DK/FanDuel
+195|
+196|<b>Уже запущены<b> (ноябрь-декабрь 2025).
+197|
+198|Последствия:
+199|1. Отток casual users с Polymarket/Kalshi на знакомые бренды
+200|2. Давление на fee rates
+201|3. Регуляторное ускорение
+202|4. <b>Окно Polydota: 12–18 месяцев<b> до полноценных Dota 2 markets
+203|
+204|<hr>
+205|
+206|<h2>7. SWOT Polydota
+207|
+208|| Сильные стороны | Слабые стороны |
+209||<hr>|<hr>|
+210|| First-mover Dota 2 PM | Нет бренда/доверия |
+211|| Экспертиза в экосистеме | Cold-start liquidity |
+212|| Уже есть Telegram-бот + ML | Нет регуляторного щита |
+213|| Dota 2 core лояльна | Маленький TAM ($244M) |
+214|
+215|| Возможности | Угрозы |
+216||<hr>|<hr>|
+217|| DK/FD игнорируют esports пока | Polymarket добавляет Dota 2 |
+218|| Индия — skill gaming exemption | Kalshi: 176 esports markets |
+219|| Polymarket API overlay | CFTC enforcement |
+220|| BLAST партнёрство | DK/FD неизбежно зайдут |
+221|| DATA.BET B2B | Dota 2 доля падает (8.7%) |
+222|
+223|<hr>
+224|
+225|<h2>8. Рекомендации
+226|
+227|#<h2>Product
+228|1. <b>Telegram Premium Bot<b> (2 недели) — ML прогнозы $9.99/мес
+229|2. <b>Polymarket referral layer<b> — направлять трафик → 0.5% оборота
+230|3. <b>Не конкурировать head-on<b> — Polymarket проигрыш по ликвидности
+231|4. <b>Ultra-specialised Dota 2:<b> TI bracket, live match, player transfers
+232|
+233|#<h2>Revenue
+234|1. <b>Немедленно:<b> Polymarket referral (0%)
+235|2. <b>2 недели:<b> Telegram Premium ($10K/мес при 1000)
+236|3. <b>3 месяца:<b> Taker fee overlay на Polymarket
+237|4. <b>6 месяцев:<b> B2B Data API
+238|
+239|#<h2>Legal
+240|1. <b>Curacao<b> — старт ($25K)
+241|2. <b>Geo-fence USA<b> — обязательно
+242|3. <b>Индия<b> — отдельная стратегия (skill gaming)
+243|
+244|#<h2>Risk
+245|1. DK/FanDuel — <b>12–18 month window<b>
+246|2. Dota 2 — shrinking share — мониторинг
+247|3. Polymarket может закрыть/ограничить API
+248|
+249|<hr>
+250|
+251|<h2>9. Fact-Check
+252|
+253|| Утверждение | Проверка | Вердикт |
+254||<hr>|<hr>|<hr>|
+255|| Polymarket $33.4B в 2025 | Forbes vs Sacra разные цифры | ✅ ~$21.5–33.4B |
+256|| Polymarket daily fees >$1M | Yahoo Finance, апр 2026 | ✅ Подтверждено |
+257|| Esports betting $2.8B (2025) | SiGMA, SkyQuest | ✅ |
+258|| Dota 2 handle 8.7% | Oddin.gg H1 2025 | ✅ |
+259|| Polymarket API CLOB | docs.polymarket.com | ✅ |
+260|| Dota 2 MAU ~400K | Steam Charts | ✅ |
+261|| Kalshi $22B valuation | Май 2026, Series F | ✅ |
+262|
+263|<hr>
+264|
+265|<i>Исследование проведено 11 июня 2026. Данные актуальны на дату публикации.<i>
+266|
 </div>
 
 <hr>
-
-<p style="color:var(--muted);font-size:0.85rem;text-align:center;margin-top:40px">
-  Исследование проведено 10.06.2026 • <a href="https://polydota.com" style="color:var(--blue)">polydota.com</a> • ironfelix.github.io/polydota-research/ • Для Ильина Ивана
+<p style="color: #8b949e; font-size: 12px; text-align: center;">
+Исследование проведено 11 июня 2026. Данные актуальны на дату публикации.<br>
+Hermes Agent (Deep Research skill) — Майкрофт Холмс IV
 </p>
-
-</div>
 </body>
 </html>
