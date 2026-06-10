@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polydota Research — Prediction Markets × Киберспорт</title>
+<style>
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; --purple: #bc8cff; --pink: #ff7b72; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 0; }
+  .container { max-width: 820px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.4rem; font-weight: 600; margin: 40px 0 16px; color: var(--blue); }
+  h3 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 12px; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 16px 20px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--text); }
+  .highlight { color: var(--yellow); font-weight: 600; }
+  .num { color: var(--green); font-weight: 600; }
+  .warn { color: var(--red); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; margin-right: 4px; }
+  .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+  .tag-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .card h4 { margin-bottom: 12px; font-size: 1rem; }
+  .grid { display: grid; gap: 12px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--card); font-weight: 600; color: var(--muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; }
+  .emoji { font-size: 1.2rem; }
+  .rec { border-left: 3px solid var(--green); padding-left: 16px; margin: 16px 0; }
+  .rec-title { color: var(--green); font-weight: 600; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎯 Prediction Markets × Dota 2</h1>
+<div class="subtitle">Исследование ниши: киберспорт, prediction markets, продуктовые варианты • 10 июня 2026 • polydota.com</div>
+
+<h2>1. Рынок — цифры</h2>
+
+<h3>Prediction markets (весь)</h3>
+<ul>
+  <li><strong>2024:</strong> <span class="num">$15.8 млрд</span> объёма</li>
+  <li><strong>2025:</strong> <span class="num">$63.5 млрд</span> <span class="tag tag-green">+400% г/г</span></li>
+  <li><strong>2026:</strong> <span class="highlight">~$250-300 млрд</span> (прогноз)</li>
+  <li><strong>Polymarket:</strong> $33.4 млрд (2025), ~630k MAU</li>
+  <li><strong>Kalshi:</strong> $17.1 млрд (2025), 2M пользователей</li>
+  <li><strong>Киберспорт на Polymarket:</strong> <span class="warn"><strong><0.01%</strong></span> всего объёма (~$2.1M по Dota 2)</li>
+</ul>
+
+<h3>Киберспортивный беттинг</h3>
+<ul>
+  <li><strong>2025:</strong> $2.5-3.5 млрд (легальный), $16+ млрд с теневым</li>
+  <li><strong>Рост 2023→2024:</strong> <span class="num">+106%</span> (CS2 + Dota 2 + LoL + VALORANT)</li>
+  <li><strong>Прогноз 2034:</strong> <span class="highlight">$54 млрд</span> (CAGR ~14%)</li>
+  <li><strong>Dota 2 доля:</strong> ~21% рынка киберспорт-беттинга</li>
+</ul>
+
+<div class="card">
+  <p style="margin:0;font-size:1.05rem"><strong>Вывод:</strong> Ниша <span class="highlight">практически пустая</span>. Prediction markets — $63.5 млрд, киберспорт там — <strong>$2-5 млн</strong> (<0.01%). При этом киберспортивный беттинг — $3+ млрд и растёт на 106% в год. Спрос есть, предложения нет.</p>
+</div>
+
+<hr>
+
+<h2>2. Продуктовые варианты</h2>
+<p style="color:var(--muted)">У тебя <strong>уже есть</strong>: Telegram-бот + парсер драфтов + ML-модель. От этого и пляшем.</p>
+
+<div class="card">
+  <h4><span class="tag tag-green">РЕКОМЕНДУЮ</span> 🅰 B2B API + ML Predictions Layer</h4>
+  <p><strong>Что:</strong> API, который отдаёт прогнозы (на базе парсинга драфтов) алго-трейдерам, букмекерам, аналитическим платформам.</p>
+  <table>
+    <tr><td>Монетизация</td><td>$199-999/мес подписка, $5-20K enterprise</td></tr>
+    <tr><td>Преимущество</td><td>Data advantage (парсинг драфтов) + модель. Аналогов нет</td></tr>
+    <tr><td>Регуляция</td><td><span class="tag tag-green">Нет рисков</span> — это просто данные</td></tr>
+    <tr><td>Аналоги</td><td>PandaScore (€150-500/мес), The Odds API</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h4>🅱 Telegram Premium Bot</h4>
+  <p><strong>Что:</strong> Твой существующий бот → Premium подписка ($9.99/мес) за ML-прогнозы, live-алерты, alpha-сигналы.</p>
+  <table>
+    <tr><td>Монетизация</td><td>$10/мес с пользователя. 1000 подписчиков = $10k/мес MRR</td></tr>
+    <tr><td>Срок</td><td><span class="highlight">1-2 недели</span> (уже есть бот)</td></tr>
+    <tr><td>Регуляция</td><td><span class="tag tag-green">Нет рисков</span></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h4>🅲 Social Betting + Community Platform</h4>
+  <p><strong>Что:</strong> Социальная сеть вокруг прогнозов на Dota 2. Подписка на «капперов», лидерборды, сравнение с ML-моделью.</p>
+  <table>
+    <tr><td>Монетизация</td><td>Freemium ($19.99/мес) + rev share с партнёрских БК</td></tr>
+    <tr><td>Референс</td><td>Action Network ($9.99-49.99/мес), BETSPERTS</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h4>🅳 SaaS Market Creation for Esports</h4>
+  <p><strong>Что:</strong> Manifold Markets для киберспорта — любой стример/комьюнити создаёт prediction market за 5 минут.</p>
+  <table>
+    <tr><td>Монетизация</td><td>$29-99/мес SaaS + 0.5-1% комиссия</td></tr>
+    <tr><td>Сложность</td><td><span class="tag tag-red">Высокий regulatory риск</span>, нужна ликвидность</td></tr>
+  </table>
+</div>
+
+<hr>
+
+<h2>3. Риски</h2>
+
+<table>
+<tr><th>Риск</th><th>Серьёзность</th><th>Что делать</th></tr>
+<tr><td>Регуляция (CFTC, EU, РФ ст.171.2 УК)</td><td><span class="tag tag-red">🔴🔴🔴</span></td><td>Начать с data/analytics, не открывать PM-платформу</td></tr>
+<tr><td>Ликвидность cold-start ($100K+ на рынок)</td><td><span class="tag tag-yellow">🟡🟡</span></td><td>Для B2B API не нужна</td></tr>
+<tr><td>Match-fixing / insider trading</td><td><span class="tag tag-yellow">🟡</span></td><td>Для данных не проблема. Для PM — критично</td></tr>
+<tr><td>Конкуренция с букмекерами</td><td><span class="tag tag-yellow">🟡</span></td><td>Prediction markets ≠ букмекер, разные лиги</td></tr>
+</table>
+
+<hr>
+
+<h2>4. Рекомендация</h2>
+
+<div class="rec">
+  <div class="rec-title">🚀 Старт (1-2 мес)</div>
+  Telegram Premium Bot — монетизировать существующее. Докрутить платёжки и запустить подписку за $9.99/мес.
+</div>
+
+<div class="rec">
+  <div class="rec-title">📈 Рост (3-6 мес)</div>
+  B2B API + ML Predictions Layer — твой data advantage. Продавать прогнозы трейдерам и букмекерам.
+</div>
+
+<div class="rec">
+  <div class="rec-title">🌍 Масштаб (6-12 мес)</div>
+  Social Betting Community вокруг модели. Замкнутая экосистема: прогнозы → комьюнити → рынки.
+</div>
+
+<br>
+<p>Первые два варианта <strong>не требуют лицензий, не подпадают под гемблинг-регуляцию</strong> и используют то, что у тебя уже есть.</p>
+
+<hr>
+
+<p style="color:var(--muted);font-size:0.85rem;text-align:center;margin-top:40px">
+  Исследование проведено 10.06.2026 • <a href="https://polydota.com" style="color:var(--blue)">polydota.com</a> • Для Ильина Ивана
+</p>
+
+</div>
+</body>
+</html>
