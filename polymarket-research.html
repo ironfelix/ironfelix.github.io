@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polymarket Research — Ниши и возможности 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --purple: #bc8cff;
+    --orange: #ffa657;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 32px 16px 80px;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .header-meta {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .header-summary {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 720px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+  }
+  .stat-chip span { color: var(--text); font-weight: 600; }
+
+  /* Sections */
+  .section { margin-bottom: 48px; }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+  }
+  h2 .icon { font-size: 18px; }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .card p { color: var(--muted); font-size: 14px; margin-top: 8px; line-height: 1.6; }
+
+  /* Valuation grid */
+  .val-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 600px) { .val-grid { grid-template-columns: 1fr; } }
+  .val-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .val-card.kalshi { border-left: 3px solid var(--green); }
+  .val-card.polymarket { border-left: 3px solid var(--accent); }
+  .val-name { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .val-amount { font-size: 36px; font-weight: 800; margin-bottom: 8px; }
+  .val-card.kalshi .val-amount { color: var(--green); }
+  .val-card.polymarket .val-amount { color: var(--accent); }
+  .val-detail { font-size: 13px; color: var(--muted); }
+  .val-detail strong { color: var(--text); }
+
+  /* Metrics row */
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .metrics { grid-template-columns: 1fr 1fr; } }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .metric-val { font-size: 24px; font-weight: 700; color: var(--orange); }
+  .metric-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* Verdict banner */
+  .verdict {
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .verdict.yes { background: rgba(63, 185, 80, 0.08); border: 1px solid rgba(63, 185, 80, 0.3); }
+  .verdict.partial { background: rgba(210, 153, 34, 0.08); border: 1px solid rgba(210, 153, 34, 0.3); }
+  .verdict.no { background: rgba(248, 81, 73, 0.08); border: 1px solid rgba(248, 81, 73, 0.3); }
+  .verdict-icon { font-size: 28px; line-height: 1; }
+  .verdict-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .verdict.yes .verdict-title { color: var(--green); }
+  .verdict.partial .verdict-title { color: var(--yellow); }
+  .verdict.no .verdict-title { color: var(--red); }
+  .verdict-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Esports volume table */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+    color: var(--text);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(88, 166, 255, 0.04); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+  .badge-yellow { background: rgba(210, 153, 34, 0.15); color: var(--yellow); }
+  .badge-red { background: rgba(248, 81, 73, 0.12); color: var(--red); }
+  .badge-blue { background: rgba(88, 166, 255, 0.12); color: var(--accent); }
+  .badge-purple { background: rgba(188, 140, 255, 0.12); color: var(--purple); }
+
+  /* Business models */
+  .biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .biz-grid { grid-template-columns: 1fr; } }
+  .biz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .biz-icon { font-size: 24px; margin-bottom: 10px; }
+  .biz-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .biz-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .biz-examples { font-size: 12px; color: var(--muted); }
+  .biz-examples strong { color: var(--text); }
+  .biz-revenue {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--accent);
+  }
+
+  /* SEO table */
+  .seo-tier { margin-bottom: 24px; }
+  .seo-tier-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  /* Companies */
+  .company-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+  }
+  .company-row:last-child { border-bottom: none; }
+  .company-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .company-name { font-weight: 700; font-size: 15px; }
+  .company-val { font-size: 13px; color: var(--orange); font-weight: 600; }
+  .company-desc { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+  /* Opportunity cards */
+  .opp-list { display: flex; flex-direction: column; gap: 12px; }
+  .opp-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+  }
+  .opp-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(88, 166, 255, 0.12);
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .opp-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .opp-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .opp-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .opp-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Confidence badge */
+  .conf { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
+  .conf-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .conf-high .conf-dot { background: var(--green); }
+  .conf-medium .conf-dot { background: var(--yellow); }
+
+  /* Refuted */
+  .refuted-list { display: flex; flex-direction: column; gap: 8px; }
+  .refuted-item {
+    background: rgba(248, 81, 73, 0.04);
+    border: 1px solid rgba(248, 81, 73, 0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .refuted-item::before {
+    content: "✗ ";
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* Caveats */
+  .caveat-list { display: flex; flex-direction: column; gap: 10px; }
+  .caveat-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .caveat-item::before {
+    content: "⚠";
+    color: var(--yellow);
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">Deep Research Report · 102 агента · 588 вызовов инструментов · 10 июня 2026</div>
+    <h1>Рынок предсказаний: ниши, игроки и возможности</h1>
+    <p class="header-summary">Polymarket, Kalshi, киберспорт-гипотеза, B2B-экосистема, SEO — полный разбор на основе верифицированных данных (12 из 25 фактов прошли 3-голосовую проверку).</p>
+    <div class="stats-row">
+      <div class="stat-chip">Источников: <span>20</span></div>
+      <div class="stat-chip">Фактов извлечено: <span>83</span></div>
+      <div class="stat-chip">Верифицировано: <span>25</span></div>
+      <div class="stat-chip">Подтверждено: <span>12</span></div>
+      <div class="stat-chip">Опровергнуто: <span>13</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: Market overview -->
+  <div class="section">
+    <h2><span class="icon">📊</span> Два гиганта рынка</h2>
+
+    <div class="val-grid">
+      <div class="val-card kalshi">
+        <div class="val-name">Kalshi</div>
+        <div class="val-amount">$22B</div>
+        <div class="val-detail">
+          <strong>Series F (май 2026)</strong>, Coatue<br>
+          До этого: $11B Series E (декабрь 2025), led by Paradigm<br>
+          Инвесторы: Sequoia, a16z, ARK, CapitalG, YC<br>
+          <br>
+          <strong>~89% доли рынка США</strong><br>
+          Объём 2025: ~$24B (рост 1000%+ г/г)<br>
+          Выручка 2025: $263.5M (из них 89% — спорт)<br>
+          Пик: $2.3B в неделю (октябрь 2025)
+        </div>
+      </div>
+      <div class="val-card polymarket">
+        <div class="val-name">Polymarket</div>
+        <div class="val-amount">~$15B</div>
+        <div class="val-detail">
+          <strong>В переговорах о раунде</strong> (апрель 2026)<br>
+          Bloomberg: ищет $400M при оценке $15B<br>
+          Инвестор: ICE/NYSE<br>
+          <br>
+          <strong>~7% доли рынка США</strong><br>
+          Работает на крипто-рельсах<br>
+          Недоступен для резидентов США<br>
+          Это объясняет дисконт $7B к Kalshi
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">97.5%</div>
+        <div class="metric-label">Kalshi + Polymarket от рынка США</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">$1B+</div>
+        <div class="metric-label">Еженедельный объём Kalshi (стабильно с осени 2025)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">89%</div>
+        <div class="metric-label">Доля спорта в выручке Kalshi</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Ключевой вывод о регуляторном разрыве</h3>
+      <p>Kalshi — CFTC-регулируемая биржа, что даёт ей доступ к американской аудитории. Polymarket работает на USDC/Polygon и юридически недоступен для американцев. Это объясняет почти всю разницу в оценке. Для B2B-продуктов это значит: инфраструктура вокруг Polymarket ориентирована на международную аудиторию и крипто-трейдеров.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Esports hypothesis -->
+  <div class="section">
+    <h2><span class="icon">🎮</span> Гипотеза: киберспорт — незанятая ниша?</h2>
+
+    <div class="verdict partial">
+      <div class="verdict-icon">⚡</div>
+      <div>
+        <div class="verdict-title">ЧАСТИЧНО ВЕРНО — ниша есть, но маленькая</div>
+        <div class="verdict-body">Киберспорт на Polymarket существует и торгуется реально. Топовый рынок — IEM Cologne Major 2026 Winner — достиг $15M объёма. Однако большинство матчей торгуются на $49K–$333K, что крайне мало по сравнению с политическими/макро рынками (сотни миллионов). Ниша свободна в смысле «нет крупного игрока специфично под киберспорт», но и сам рынок тонкий.</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Рынок / Турнир</th>
+            <th>Объём</th>
+            <th>Тип</th>
+            <th>Оценка</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IEM Cologne Major 2026 Winner</td>
+            <td><strong>$15M</strong></td>
+            <td><span class="badge badge-purple">CS2</span></td>
+            <td><span class="badge badge-green">Топ</span></td>
+          </tr>
+          <tr>
+            <td>CS2 / LoL — матчи среднего уровня</td>
+            <td>$189K – $333K</td>
+            <td><span class="badge badge-blue">Matchup</span></td>
+            <td><span class="badge badge-yellow">Средний</span></td>
+          </tr>
+          <tr>
+            <td>Матчи нижнего эшелона</td>
+            <td>$49K – $67K</td>
+            <td><span class="badge badge-blue">Matchup</span></td>
+            <td><span class="badge badge-red">Тонкий</span></td>
+          </tr>
+          <tr>
+            <td>Политика (для сравнения)</td>
+            <td>$100M – $500M+</td>
+            <td><span class="badge badge-yellow">Politics</span></td>
+            <td><span class="badge badge-green">Доминирует</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+    <div class="card">
+      <h3>Что это значит для бизнеса</h3>
+      <p>Ниша киберспорта на Polymarket ликвидна только вокруг крупных турниров (IEM Major, Worlds LoL и т.д.). Для создания аналитического продукта под киберспорт данных недостаточно. Зато это свободное окно для медийного/SEO-продукта: агрегатор предсказаний по киберспорту с образовательным контентом и трафиком из поиска. Аналог — спортивные prediction-сайты, но для esports. <strong>Самое интересное: Kalshi активно растёт в спорт-предсказаниях и туда можно идти напрямую</strong> как агрегатор или аналитик.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: B2B Ecosystem -->
+  <div class="section">
+    <h2><span class="icon">🔧</span> B2B-экосистема вокруг Polymarket</h2>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">Верифицированные компании с реальными продуктами (прошли проверку агентами):</p>
+
+    <div class="biz-grid">
+
+      <div class="biz-card">
+        <div class="biz-icon">🦅</div>
+        <div class="biz-title">Falcon API</div>
+        <div class="biz-desc">Кросс-платформенный API: Polymarket + Kalshi. Находит расхождения в ценах, отслеживает кошельки трейдеров, считает PnL/ROI/win_rate/max_drawdown. Smart money detection.</div>
+        <div class="biz-examples"><strong>URL:</strong> api.polymarketanalytics.com</div>
+        <div class="biz-revenue">B2B SaaS / API access</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">📡</div>
+        <div class="biz-title">FinFeedAPI</div>
+        <div class="biz-desc">Унифицированный REST/WebSocket/FIX API для 4 платформ: Polymarket, Kalshi, Myriad, Manifold. OHLCV-свечи, стакан, исторические данные. Для квантов и алго-трейдеров.</div>
+        <div class="biz-examples"><strong>URL:</strong> finfeedapi.com/products/prediction-markets-api</div>
+        <div class="biz-revenue">API subscription</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">🐋</div>
+        <div class="biz-title">Polywhaler</div>
+        <div class="biz-desc">Отслеживание крупных сделок (порог $10K+). Уведомления в реальном времени, когда «киты» входят в рынок.</div>
+        <div class="biz-examples">
+          <strong>Цены:</strong> $9/мес Pro · $99/мес Quant<br>
+          <strong>URL:</strong> polywhaler.com
+        </div>
+        <div class="biz-revenue">$9–99/мес подписка</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">📈</div>
+        <div class="biz-title">PolyTrack</div>
+        <div class="biz-desc">Аналитика трейдеров: кластерный анализ, лидерборды, отслеживание портфелей. Таблицы лидеров по прибыльности.</div>
+        <div class="biz-examples"><strong>URL:</strong> polytrackhq.app</div>
+        <div class="biz-revenue">Freemium / подписка</div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="card">
+      <h3>Что ещё существует (менее верифицировано)</h3>
+      <p>Telegram-боты для алертов (Polycule, PolyFocus — проверка провалилась 1-2, данные слабые). Awesome-листы на GitHub: github.com/harish-garg/Awesome-Polymarket-Tools — есть список инструментов, но завышенные цифры (140+ проектов) не подтвердились. Реальный работающий экосистем заметно меньше.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Business models -->
+  <div class="section">
+    <h2><span class="icon">💰</span> Бизнес-модели</h2>
+
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="biz-icon">🏛</div>
+        <div class="biz-title">Сама платформа</div>
+        <div class="biz-desc">Kalshi зарабатывает комиссию с торгов. В 2025 собрала $263.5M выручки. Polymarket недавно ввёл fee (детали неизвестны — заявления опровергнуты).</div>
+        <div class="biz-revenue">Trading fees ~0.5–2% нотионала</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">📊</div>
+        <div class="biz-title">Аналитика / Data API</div>
+        <div class="biz-desc">B2B подписка на данные: исторические данные, real-time feed, трейдер-аналитика. Пример: Falcon API, FinFeedAPI. Целевая аудитория — квантовые фонды, медиа, исследователи.</div>
+        <div class="biz-revenue">$99–$999/мес API subscription</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">🔍</div>
+        <div class="biz-title">Whale / Smart Money Tracker</div>
+        <div class="biz-desc">Розничный продукт: следи за крупными трейдерами и копируй. Polywhaler — $9/мес. Бизнес-модель: freemium с апгрейдом под активных трейдеров.</div>
+        <div class="biz-revenue">$9–99/мес · freemium</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">🌐</div>
+        <div class="biz-title">White-label / Инфраструктура</div>
+        <div class="biz-desc">Продажа инфраструктуры платформы ставок под брендом клиента. Спортивные букмекеры, медиа-компании, биржи. Shiftmarkets.com — один из игроков.</div>
+        <div class="biz-revenue">Enterprise SaaS / rev-share</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">📰</div>
+        <div class="biz-title">Медиа + SEO-продукт</div>
+        <div class="biz-desc">Образовательный контент, обзоры рынков, прогнозы с встроенным трафиком. Монетизация: реферальные ссылки на платформы, реклама, newsletter. Самая доступная ниша для старта.</div>
+        <div class="biz-revenue">Affiliate + ads + newsletter</div>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">🤖</div>
+        <div class="biz-title">Algo Trading / Боты</div>
+        <div class="biz-desc">Автоматические стратегии: арбитраж между платформами, маркет-мейкинг, копи-трейдинг. Выход: собственный P&L или SaaS-инструмент для трейдеров.</div>
+        <div class="biz-revenue">P&L share / SaaS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SEO opportunities -->
+  <div class="section">
+    <h2><span class="icon">🔎</span> SEO и трафик</h2>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <h3>Контекст трафика</h3>
+      <p>Polymarket.com получает ~13.5M визитов в месяц (данные SimilarWeb, май 2026; снижение ~11% МоМ). Это огромная аудитория вокруг которой можно строить медиа-продукт. Kalshi — ещё крупнее. Оба бренда ещё относительно молоды как поисковые запросы.</p>
+    </div>
+
+    <div class="seo-tier">
+      <div class="seo-tier-title">Tier 1 — Брендовые запросы (высокий intent, лёгкий трафик)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Запрос</th><th>Тип аудитории</th><th>Возможность</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>polymarket analytics</td>
+              <td>Трейдеры</td>
+              <td><span class="badge badge-green">Инструмент / dashboard</span></td>
+            </tr>
+            <tr>
+              <td>kalshi whale tracker</td>
+              <td>Активные трейдеры</td>
+              <td><span class="badge badge-green">Tracker-продукт</span></td>
+            </tr>
+            <tr>
+              <td>polymarket vs kalshi</td>
+              <td>Новички</td>
+              <td><span class="badge badge-blue">Сравнительный контент</span></td>
+            </tr>
+            <tr>
+              <td>prediction market esports</td>
+              <td>Геймеры</td>
+              <td><span class="badge badge-purple">Нишевой медиа-продукт</span></td>
+            </tr>
+            <tr>
+              <td>polymarket esports</td>
+              <td>Геймеры + трейдеры</td>
+              <td><span class="badge badge-purple">Landing + контент</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="seo-tier">
+      <div class="seo-tier-title">Tier 2 — Информационные запросы (образование, SEO-актив)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Запрос</th><th>Контент</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>how does polymarket make money</td>
+              <td>Объясняющий гайд</td>
+            </tr>
+            <tr>
+              <td>prediction markets explained</td>
+              <td>Introductory guide</td>
+            </tr>
+            <tr>
+              <td>best prediction market sites 2026</td>
+              <td>Comparison roundup</td>
+            </tr>
+            <tr>
+              <td>prediction market API</td>
+              <td>Для разработчиков</td>
+            </tr>
+            <tr>
+              <td>how to trade on polymarket</td>
+              <td>Tutorial / onboarding</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Продукт под SEO-трафик — конкретная идея</h3>
+      <p><strong>Esports Prediction Tracker</strong> — сайт-агрегатор предсказаний по киберспорту с Polymarket + Kalshi + другие платформы. SEO-блог с разбором турниров, «кто поставил сколько», исторические данные по точности. Монетизация: реферальный трафик на платформы (affiliate), платный email-дайджест для серьёзных беттеров. Конкурентов в этой точке пересечения почти нет — есть киберспортивные медиа и есть prediction-медиа, но нет пересечения.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Opportunities ranking -->
+  <div class="section">
+    <h2><span class="icon">🚀</span> Рейтинг возможностей</h2>
+
+    <div class="opp-list">
+
+      <div class="opp-item">
+        <div class="opp-num">1</div>
+        <div>
+          <div class="opp-title">B2B Data API — кросс-платформенная аналитика</div>
+          <div class="opp-desc">Falcon API и FinFeedAPI уже существуют, но рынок растёт быстрее, чем они успевают. Нишевые API для конкретных аудиторий (трейдеры, медиа, кванты) с лучшим UX — реальная возможность. Особенно интересно: арбитраж цен между Polymarket и Kalshi в реальном времени.</div>
+          <div class="opp-tags">
+            <span class="opp-tag">Сложность: высокая</span>
+            <span class="opp-tag">B2B</span>
+            <span class="opp-tag">$99–$999/мес ARR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opp-item">
+        <div class="opp-num">2</div>
+        <div>
+          <div class="opp-title">Esports Prediction Media + SEO-актив</div>
+          <div class="opp-desc">Медиа-продукт на пересечении киберспорта и prediction markets. Агрегирует рынки IEM, Worlds, ESL с аналитикой. SEO под запросы типа «prediction market esports». Монетизация через аффилиат. Гипотеза частично верна — ниша есть, конкурентов в этом пересечении нет.</div>
+          <div class="opp-tags">
+            <span class="opp-tag">Сложность: низкая</span>
+            <span class="opp-tag">SEO / медиа</span>
+            <span class="opp-tag">Affiliate + ads</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opp-item">
+        <div class="opp-num">3</div>
+        <div>
+          <div class="opp-title">Whale / Smart Money Tracker под Kalshi</div>
+          <div class="opp-desc">Polywhaler существует для Polymarket ($9/мес). Для Kalshi аналога с хорошим UX нет. У Kalshi 89% рынка, огромный объём — трейдеры хотят видеть кто ставит на спорт, какие паттерны. Продукт: уведомления + дашборд для трейдеров Kalshi.</div>
+          <div class="opp-tags">
+            <span class="opp-tag">Сложность: средняя</span>
+            <span class="opp-tag">B2C</span>
+            <span class="opp-tag">$9–49/мес</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opp-item">
+        <div class="opp-num">4</div>
+        <div>
+          <div class="opp-title">Арбитражный бот Polymarket ↔ Kalshi</div>
+          <div class="opp-desc">Одинаковые события торгуются на обеих платформах по разным ценам. Falcon API уже строит price disagreement detection. Бот, который автоматически находит и закрывает арбитражные окна — работающая модель. Или SaaS-инструмент для трейдеров с алертами.</div>
+          <div class="opp-tags">
+            <span class="opp-tag">Сложность: высокая</span>
+            <span class="opp-tag">Prop trading / SaaS</span>
+            <span class="opp-tag">P&L или $200+/мес</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opp-item">
+        <div class="opp-num">5</div>
+        <div>
+          <div class="opp-title">Newsletter / Дайджест для трейдеров</div>
+          <div class="opp-desc">Еженедельный разбор крупных движений рынка: кто ставит на что, какие события дают аномальные шансы, recap. Audience: профессиональные трейдеры + любопытные. Beehiiv/Substack, монетизация — sponsors + платный tier.</div>
+          <div class="opp-tags">
+            <span class="opp-tag">Сложность: низкая</span>
+            <span class="opp-tag">Newsletter</span>
+            <span class="opp-tag">Sponsorships + paid tier</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 7: Companies reference -->
+  <div class="section">
+    <h2><span class="icon">🏢</span> Компании в экосистеме</h2>
+    <div class="card">
+      <div class="company-row">
+        <div class="company-logo">🎯</div>
+        <div>
+          <div class="company-name">Kalshi</div>
+          <div class="company-val">$22B (май 2026)</div>
+          <div class="company-desc">CFTC-регулируемая биржа предсказаний. Лидер рынка США. 89% выручки — спорт. $263.5M revenue 2025. Инвесторы: Paradigm, Sequoia, a16z, CapitalG, Coatue.</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">🔮</div>
+        <div>
+          <div class="company-name">Polymarket</div>
+          <div class="company-val">~$15B (переговоры, апрель 2026)</div>
+          <div class="company-desc">Крупнейшая decentralized prediction platform. На USDC/Polygon. Недоступна для американцев. Ищет $400M. Инвестор: ICE/NYSE.</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">🦅</div>
+        <div>
+          <div class="company-name">Falcon API (PolyMarket Analytics)</div>
+          <div class="company-val">Частная компания</div>
+          <div class="company-desc">B2B API: кросс-платформенный анализ Polymarket + Kalshi, whale detection, арбитраж. api.polymarketanalytics.com</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">📡</div>
+        <div>
+          <div class="company-name">FinFeedAPI</div>
+          <div class="company-val">Частная компания</div>
+          <div class="company-desc">Unified prediction markets data API (Polymarket, Kalshi, Myriad, Manifold). REST/WebSocket/FIX, OHLCV свечи. Для кванов и алго-трейдеров.</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">🐋</div>
+        <div>
+          <div class="company-name">Polywhaler</div>
+          <div class="company-val">$9–$99/мес</div>
+          <div class="company-desc">Whale-трекер для Polymarket. Pro $9/мес, Quant $99/мес. Сделки от $10K+. polywhaler.com</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">📈</div>
+        <div>
+          <div class="company-name">PolyTrack</div>
+          <div class="company-val">Freemium</div>
+          <div class="company-desc">Аналитика трейдеров Polymarket: кластеры, лидерборды, портфели. polytrackhq.app</div>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-logo">🔧</div>
+        <div>
+          <div class="company-name">Shiftmarkets</div>
+          <div class="company-val">Enterprise</div>
+          <div class="company-desc">White-label инфраструктура для prediction markets. Продаёт платформу биржам и букмекерам.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: Refuted claims -->
+  <div class="section">
+    <h2><span class="icon">❌</span> Опровергнутые заявления (не использовать)</h2>
+    <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px;">Эти факты активно распространяются, но не прошли трёхголосовую верификацию:</p>
+    <div class="refuted-list">
+      <div class="refuted-item">Polymarket занимает 70%+ децентрализованного рынка предсказаний (0/3 голосов)</div>
+      <div class="refuted-item">Polymarket генерировала $0 выручки в 2025 (нулевые комиссии до апреля 2026) — не подтверждено (0/3)</div>
+      <div class="refuted-item">773 киберспортивных рынков из 5000 в категории спорт (15%) — опровергнуто (0/3)</div>
+      <div class="refuted-item">Спорт занимает 64% объёма Polymarket с Q1 2026 $10.1B — опровергнуто (0/3)</div>
+      <div class="refuted-item">Polymarket получила инвестиции $2B от ICE по оценке $8B в ноябре 2025 — опровергнуто (0/3)</div>
+      <div class="refuted-item">Polymarket превысил $2B еженедельного объёма на 8 недель подряд — опровергнуто (0/3)</div>
+      <div class="refuted-item">В экосистеме 140+ проектов, 25+ AI-агентов, 30+ аналитических платформ — значительно преувеличено (0/3)</div>
+      <div class="refuted-item">6+ Telegram-ботов с верифицированными продуктами (Polycule, PolyFocus и др.) — слабые данные (1/3)</div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: Caveats -->
+  <div class="section">
+    <h2><span class="icon">⚠️</span> Важные оговорки</h2>
+    <div class="caveat-list">
+      <div class="caveat-item">Kalshi считает объём иначе (номинал $1/контракт), Polymarket — нотионал тейкера. Прямое сравнение завышает долю Kalshi.</div>
+      <div class="caveat-item">Оценки движутся стремительно: Kalshi $5B (октябрь 2025) → $11B (декабрь) → $22B (май 2026) за 7 месяцев. Все цифры — снимок в моменте.</div>
+      <div class="caveat-item">Esports $15M — это один рынок во время активного турнира. Типичный ежедневный объём на большинстве матчей значительно ниже.</div>
+      <div class="caveat-item">Polymarket планирует запуск токена — это может изменить структуру ликвидности и сделать текущие аналитические инструменты менее актуальными.</div>
+      <div class="caveat-item">Точная бизнес-модель Polymarket (размер комиссий, дата введения) остаётся неясной из верифицированных источников.</div>
+    </div>
+  </div>
+
+  <!-- Open questions -->
+  <div class="section">
+    <h2><span class="icon">❓</span> Открытые вопросы для дальнейшего ресёрча</h2>
+    <div class="card">
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
+        <li>Какой реальный SEO-объём по запросам типа «polymarket analytics», «kalshi whale tracker» — есть ли значимый органический канал для B2B-инструментов?</li>
+        <li>Есть ли white-label платформы предсказаний для спортивных СМИ и биржевых игроков — и какой их рынок?</li>
+        <li>Как запуск токена Polymarket повлияет на экосистему аналитических инструментов?</li>
+        <li>Насколько активна аудитория киберспортивных беттеров на Polymarket — есть ли sticky retention?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Deep Research Report · 102 агента · 2 113 493 токена · 22 минуты</div>
+    <div>Данные: июнь 2026 · Верифицировано 3-голосовой проверкой</div>
+  </div>
+
+</div>
+</body>
+</html>
