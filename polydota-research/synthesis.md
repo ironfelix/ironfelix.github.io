@@ -214,7 +214,7 @@
 
 | Возможности | Угрозы |
 |---|---|
-| DK/FD игнорируют esports пока | Polymarket добавляет Dota 2 |
+| DK/FD игнорируют esports пока | Polymarket уже имеет Dota 2 рынки |
 | Индия — skill gaming exemption | Kalshi: 176 esports markets |
 | Polymarket API overlay | CFTC enforcement |
 | BLAST партнёрство | DK/FD неизбежно зайдут |
