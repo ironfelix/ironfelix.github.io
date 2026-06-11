@@ -15,10 +15,13 @@
   tr:nth-child(even) { background: #161b22; }
   code { background: #1e1e1e; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
   .meta { color: #8b949e; font-size: 14px; margin-bottom: 20px; }
-  .emoji-header { font-size: 24px; margin-right: 8px; }
-  .section { background: #161b22; border-radius: 8px; padding: 15px; margin: 15px 0; }
+  .section { background: #161b22; border-radius: 8px; padding: 20px; margin: 15px 0; }
+  .section h2:first-child { margin-top: 0; }
   ul { padding-left: 20px; }
   li { margin: 5px 0; }
+  hr { border: none; border-top: 1px solid #30363d; margin: 25px 0; }
+  .section table { background: #0d1117; border-radius: 6px; overflow: hidden; }
+  strong { color: #f0f6fc; }
 </style>
 </head>
 <body>
@@ -27,272 +30,682 @@
 <p class="meta">🎯 Фокус: Polydota | 🌐 Домен: company</p>
 
 <div class="section">
-1|# Synthesis: Prediction Markets × Киберспорт (Dota 2)
-2|
-3|<b>Дата:<b> 11 июня 2026
-4|<b>Тип:<b> Полный deep research (3-цикловый)
-5|<b>Методология:<b> SCOUTs (3) → CRITIC → Deep Divers (3) → SYNTHESIZER
-6|
-7|<hr>
-8|
-9|<h2>1. Рынок — цифры
-10|
-11|#<h2>1.1 Prediction markets — вся индустрия
-12|
-13|| Метрика | 2024 | 2025 | 2026 (run-rate) |
-14||<hr>|<hr>|<hr>|<hr>|
-15|| Весь рынок (годовой объём) | $15.8B | $44–64B | ~$325B+ |
-16|| Polymarket | ~$5B | $21.5–33.4B | ~$120B |
-17|| Kalshi | ~$2B | $17.1–22.9B | ~$125B |
-18|| Polymarket + Kalshi доля | ~95% | 97.5% | 97%+ |
-19|| Ежемесячный объём (обоих) | <$1B | $13B (дек) | $24B (апр) |
-20|
-21|<b>Источник:<b> Forbes, Sacra, TRM Labs, FalconX/Covers
-22|
-23|#<h2>1.2 Ключевые игроки — valuation и revenue
-24|
-25|| Компания | Revenue 2025 | ARR (май 2026) | Valuation | Revenue Model |
-26||<hr>|<hr>|<hr>|<hr>|<hr>|
-27|| <b>Polymarket<b> | $0 | $338M gross / $209M net | $15B | Taker fee 0.75–1.8% (с мар 2026) |
-28|| <b>Kalshi<b> | $263.5M | >$1.5B | $22B | Taker fee ~1.2% |
-29|| <b>Manifold<b> | <$1M | <$5M | <$20M | Play-money |
-30|| <b>Metaculus<b> | <$1M | <$1M | N/A | Grants |
-31|
-32|<b>Ключевой pivot:<b> Polymarket ввёл fees 30 марта 2026 — daily revenue >$1M сразу.
-33|
-34|#<h2>1.3 Esports betting market
-35|
-36|| Метрика | Значение |
-37||<hr>|<hr>|
-38|| Легальная выручка 2024 | $2.5 млрд |
-39|| Легальная выручка 2025 | $2.8 млрд |
-40|| Прогноз 2033 | $13.7 млрд (CAGR 11–14%) |
-41|| Бетторов (2024) | 74.3 млн → 80+ млн (2025) |
-42|| Gen Z доля | 44% |
-43|
-44|#<h2>1.4 Dota 2 на рынке ставок
-45|
-46|| Параметр | Значение |
-47||<hr>|<hr>|
-48|| Доля handle среди дисциплин | 8.7% (H1 2025) |
-49|| Тренд доли | 14% (2023) → 10% (2024) → 8.7% (H1 2025) |
-50|| Абсолютный рост объёма | +31% YoY (2025) |
-51|| DATA.BET Dota 2 Q3 2025 | turnover +290%, profit +416% |
-52|| Доля Восточной Европы | 22.8% |
-53|| Активные Polymarket Dota 2 рынки | 5–8 (июнь 2026) |
-54|| Polymarket Dota 2 volume | ~$106K (live markets total) |
-55|
-56|#<h2>1.5 Dota 2 экосистема — здоровье
-57|
-58|| Метрика | Значение |
-59||<hr>|<hr>|
-60|| Avg concurrent (H1 2026) | ~400K |
-61|| Peak 2025 (TI) | 961K — лучший за 3 года |
-62|| Core возраст | 25–34 (40–50%) |
-63|| Новые игроки (18–24) | ~15% |
-64|| ARPU core | $30–60/год |
-65|| Регионы: СНГ | 25–30% (сильнейший) |
-66|| Китай | ~15% (падение) |
-67|
-68|<b>Вердикт:<b> Dota 2 — стабильная ниша, не dying game. Core-аудитория лояльна и платёжеспособна.
-69|
-70|<hr>
-71|
-72|<h2>2. Конкурентный ландшафт
-73|
-74|#<h2>2.1 Прямые конкуренты Polydota
-75|
-76|| Конкурент | Угроза | Почему |
-77||<hr>|<hr>|<hr>|
-78|| <b>Polymarket<b> | ★★★★★ | «Amazon PM» — BLAST partnership, Dota 2 рынки, $15B valuation |
-79|| <b>Kalshi<b> | ★★★☆☆ | CFTC-regulated, 176 esports markets, $36M/week объём |
-80|| <b>DraftKings Predicts<b> | ★★★★☆ | 6M+ DAU, бренд, 30+ штатов, запущен нояб 2025 |
-81|| <b>FanDuel Predicts<b> | ★★★★☆ | Flutter EBITDA >$2.8B, 16 штатов |
-82|| <b>Robinhood Event Contracts<b> | ★★★☆☆ | $300M+ revenue RR, esports не приоритет |
-83|| <b>DATA.BET<b> | ★★☆☆☆ | B2B, standalone PM vertical (апр 2026) |
-84|
-85|#<h2>2.2 Esports B2B инфраструктура
-86|
-87|| Компания | Продукт | Pricing |
-88||<hr>|<hr>|<hr>|
-89|| <b>Oddin.gg<b> | Full esports stack (odds + risk) | B2B непубличный |
-90|| <b>PandaScore<b> | Data & Odds API | €500/мес per game |
-91|| <b>GRID Esports<b> | Official data rights (Riot) | Enterprise |
-92|| <b>DATA.BET<b> | Sportsbook + PM vertical | B2B |
-93|
-94|#<h2>2.3 Esports-specific PM платформы
-95|
-96|<b>Специализированных нет.<b> Polydota — первый вертикальный prediction market для Dota 2.
-97|
-98|<hr>
-99|
-100|<h2>3. Техническая реализация
-101|
-102|#<h2>3.1 Polymarket API для overlay
-103|
-104|| Функция | Доступно |
-105||<hr>|<hr>|
-106|| Чтение рынков (REST) | ✅ Публично |
-107|| Торговля (CLOB REST + WS) | ✅ API-ключ + EIP-712 |
-108|| Создание рынков | ❌ Только on-chain (смарт-контракты) |
-109|| Реферальная программа | ✅ 25% от комиссии → рефереру |
-110|| UMA Oracle для esports | ✅ Bond ~500 USDC, 1–2 часа resolution |
-111|
-112|<b>Rate limits:<b> Публичные ~10 req/s, приватные ~1 req/s
-113|
-114|#<h2>3.2 UMA Oracle — критическое ограничение
-115|- Liveness period: 1–2 часа для esports
-116|- <b>Не подходит для live resolution<b> (нужен централизованный oracle)
-117|- Bond: ~500 USDC (возвратный)
-118|- Источники: ESL, HLTV, Liquipedia
-119|
-120|#<h2>3.3 Referral экономика
-121|- 25% от протокольной комиссии → рефереру
-122|- Протокольная комиссия: 2% от выигрыша
-123|- <b>Фактически: 0.5% от оборота рефералов<b>
-124|
-125|<hr>
-126|
-127|<h2>4. Регуляторный ландшафт
-128|
-129|#<h2>4.1 Стратегия регистрации
-130|
-131|| Фаза | Юрисдикция | Стоимость | Срок | Особенности |
-132||<hr>|<hr>|<hr>|<hr>|<hr>|
-133|| <b>MVP<b> | <b>Curacao<b> | $25–40K/год | 2–6 нед | Crypto-native, esports разрешены |
-134|| <b>Growth<b> | Isle of Man | £50–100K/год | 3–6 мес | Crypto разрешён, 0% corp tax |
-135|| <b>Scale<b> | Malta (MGA) | €50K+/год | 4–8 мес | EU признание, esports регулируются |
-136|
-137|#<h2>4.2 Asia — Dota 2 core market
-138|- <b>Индия<b> — 🟢 skill gaming exemption, огромная Dota 2 аудитория
-139|- <b>Филиппины<b> — 🟢 PAGCOR, crypto разрешён
-140|- <b>Китай<b> — 🚫 полный запрет
-141|- <b>ЮВА<b> — 🟡 серый рынок, огромный объём
-142|
-143|#<h2>4.3 Риски
-144|- CFTC enforcement (Polymarket штраф $1.2M в 2024)
-145|- Illinois C&D (янв 2026)
-146|- US geo-fence обязателен
-147|
-148|<hr>
-149|
-150|<h2>5. Бизнес-модели и оценки
-151|
-152|#<h2>5.1 TAM/SAM/SOM для Polydota
-153|
-154|| Метрика | Оценка | Источник |
-155||<hr>|<hr>|<hr>|
-156|| <b>TAM<b> — prediction markets всего | $325B+ (2026) | Рыночная экстраполяция |
-157|| <b>TAM<b> — esports betting | $2.8B (2025) | SiGMA, SkyQuest |
-158|| <b>SAM<b> — Dota 2 betting | $244M (8.7% × $2.8B) | Oddin.gg доля |
-159|| <b>SOM<b> — Polydota Year 1 | $2–5M | Оценка (0.8–2% SAM) |
-160|| <b>SOM<b> — Polydota Year 3 | $10–25M | При 2–5% рынка Dota 2 PM |
-161|
-162|#<h2>5.2 Revenue Model для Polydota
-163|
-164|| Модель | Потенциал | Приоритет |
-165||<hr>|<hr>|<hr>|
-166|| <b>Taker fee<b> (0.5–1%) | При $10M объёма = $50–100K | 🥇 Основная |
-167|| <b>Polymarket referral<b> (0.5% от оборота) | При $10M = $50K | 🥇 Немедленная |
-168|| <b>B2B Data API<b> | $5–20K/мес enterprise | 🥈 Фаза 2 |
-169|| <b>Telegram Premium<b> | $9.99/мес × 1000 = $10K/мес | 🥈 Быстрый старт |
-170|| <b>Rev share с букмекерами<b> | CPA 50–100€ per FTD | 🥉 Фаза 3 |
-171|
-172|#<h2>5.3 Примерный P&L Year 1
-173|
-174|| Статья | Месяц | Год |
-175||<hr>|<hr>|<hr>|
-176|| <b>Доход<b> | | |
-177|| Polymarket referral (0.5% × $5M) | $2,083 | $25K |
-178|| Taker fee (0.5% × $5M) | $2,083 | $25K |
-179|| Telegram Premium (500 × $9.99) | $4,995 | $60K |
-180|| <b>Total Revenue<b> | <b>$9,161<b> | <b>$110K<b> |
-181|| <b>Расходы<b> | | |
-182|| Разработка (freelance) | $5K | $60K |
-183|| Лицензия Curacao | $2,083 | $25K |
-184|| Хостинг/инфра | $500 | $6K |
-185|| Marketing | $2K | $24K |
-186|| Юр. сопровождение | $1K | $12K |
-187|| <b>Total Cost<b> | <b>$10,583<b> | <b>$127K<b> |
-188|| <b>Net<b> | <b>-$1,422<b> | <b>-$17K<b> |
-189|
-190|<b>Окупаемость:<b> ~18–24 месяцев при росте объёмов.
-191|
-192|<hr>
-193|
-194|<h2>6. Ключевой риск: DK/FanDuel
-195|
-196|<b>Уже запущены<b> (ноябрь-декабрь 2025).
-197|
-198|Последствия:
-199|1. Отток casual users с Polymarket/Kalshi на знакомые бренды
-200|2. Давление на fee rates
-201|3. Регуляторное ускорение
-202|4. <b>Окно Polydota: 12–18 месяцев<b> до полноценных Dota 2 markets
-203|
-204|<hr>
-205|
-206|<h2>7. SWOT Polydota
-207|
-208|| Сильные стороны | Слабые стороны |
-209||<hr>|<hr>|
-210|| First-mover Dota 2 PM | Нет бренда/доверия |
-211|| Экспертиза в экосистеме | Cold-start liquidity |
-212|| Уже есть Telegram-бот + ML | Нет регуляторного щита |
-213|| Dota 2 core лояльна | Маленький TAM ($244M) |
-214|
-215|| Возможности | Угрозы |
-216||<hr>|<hr>|
-217|| DK/FD игнорируют esports пока | Polymarket добавляет Dota 2 |
-218|| Индия — skill gaming exemption | Kalshi: 176 esports markets |
-219|| Polymarket API overlay | CFTC enforcement |
-220|| BLAST партнёрство | DK/FD неизбежно зайдут |
-221|| DATA.BET B2B | Dota 2 доля падает (8.7%) |
-222|
-223|<hr>
-224|
-225|<h2>8. Рекомендации
-226|
-227|#<h2>Product
-228|1. <b>Telegram Premium Bot<b> (2 недели) — ML прогнозы $9.99/мес
-229|2. <b>Polymarket referral layer<b> — направлять трафик → 0.5% оборота
-230|3. <b>Не конкурировать head-on<b> — Polymarket проигрыш по ликвидности
-231|4. <b>Ultra-specialised Dota 2:<b> TI bracket, live match, player transfers
-232|
-233|#<h2>Revenue
-234|1. <b>Немедленно:<b> Polymarket referral (0%)
-235|2. <b>2 недели:<b> Telegram Premium ($10K/мес при 1000)
-236|3. <b>3 месяца:<b> Taker fee overlay на Polymarket
-237|4. <b>6 месяцев:<b> B2B Data API
-238|
-239|#<h2>Legal
-240|1. <b>Curacao<b> — старт ($25K)
-241|2. <b>Geo-fence USA<b> — обязательно
-242|3. <b>Индия<b> — отдельная стратегия (skill gaming)
-243|
-244|#<h2>Risk
-245|1. DK/FanDuel — <b>12–18 month window<b>
-246|2. Dota 2 — shrinking share — мониторинг
-247|3. Polymarket может закрыть/ограничить API
-248|
-249|<hr>
-250|
-251|<h2>9. Fact-Check
-252|
-253|| Утверждение | Проверка | Вердикт |
-254||<hr>|<hr>|<hr>|
-255|| Polymarket $33.4B в 2025 | Forbes vs Sacra разные цифры | ✅ ~$21.5–33.4B |
-256|| Polymarket daily fees >$1M | Yahoo Finance, апр 2026 | ✅ Подтверждено |
-257|| Esports betting $2.8B (2025) | SiGMA, SkyQuest | ✅ |
-258|| Dota 2 handle 8.7% | Oddin.gg H1 2025 | ✅ |
-259|| Polymarket API CLOB | docs.polymarket.com | ✅ |
-260|| Dota 2 MAU ~400K | Steam Charts | ✅ |
-261|| Kalshi $22B valuation | Май 2026, Series F | ✅ |
-262|
-263|<hr>
-264|
-265|<i>Исследование проведено 11 июня 2026. Данные актуальны на дату публикации.<i>
-266|
+<h1>Synthesis: Prediction Markets × Киберспорт (Dota 2)</h1>
+<p><strong>Дата:</strong> 11 июня 2026<br />
+<strong>Тип:</strong> Полный deep research (3-цикловый)<br />
+<strong>Методология:</strong> SCOUTs (3) → CRITIC → Deep Divers (3) → SYNTHESIZER</p>
+<hr />
+<h2>1. Рынок — цифры</h2>
+<h3>1.1 Prediction markets — вся индустрия</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>2024</th>
+<th>2025</th>
+<th>2026 (run-rate)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Весь рынок (годовой объём)</td>
+<td>$15.8B</td>
+<td>$44–64B</td>
+<td>~$325B+</td>
+</tr>
+<tr>
+<td>Polymarket</td>
+<td>~$5B</td>
+<td>$21.5–33.4B</td>
+<td>~$120B</td>
+</tr>
+<tr>
+<td>Kalshi</td>
+<td>~$2B</td>
+<td>$17.1–22.9B</td>
+<td>~$125B</td>
+</tr>
+<tr>
+<td>Polymarket + Kalshi доля</td>
+<td>~95%</td>
+<td>97.5%</td>
+<td>97%+</td>
+</tr>
+<tr>
+<td>Ежемесячный объём (обоих)</td>
+<td>&lt;$1B</td>
+<td>$13B (дек)</td>
+<td>$24B (апр)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Источник:</strong> Forbes, Sacra, TRM Labs, FalconX/Covers</p>
+<h3>1.2 Ключевые игроки — valuation и revenue</h3>
+<table>
+<thead>
+<tr>
+<th>Компания</th>
+<th>Revenue 2025</th>
+<th>ARR (май 2026)</th>
+<th>Valuation</th>
+<th>Revenue Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Polymarket</strong></td>
+<td>$0</td>
+<td>$338M gross / $209M net</td>
+<td>$15B</td>
+<td>Taker fee 0.75–1.8% (с мар 2026)</td>
+</tr>
+<tr>
+<td><strong>Kalshi</strong></td>
+<td>$263.5M</td>
+<td>&gt;$1.5B</td>
+<td>$22B</td>
+<td>Taker fee ~1.2%</td>
+</tr>
+<tr>
+<td><strong>Manifold</strong></td>
+<td>&lt;$1M</td>
+<td>&lt;$5M</td>
+<td>&lt;$20M</td>
+<td>Play-money</td>
+</tr>
+<tr>
+<td><strong>Metaculus</strong></td>
+<td>&lt;$1M</td>
+<td>&lt;$1M</td>
+<td>N/A</td>
+<td>Grants</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ключевой pivot:</strong> Polymarket ввёл fees 30 марта 2026 — daily revenue &gt;$1M сразу.</p>
+<h3>1.3 Esports betting market</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Легальная выручка 2024</td>
+<td>$2.5 млрд</td>
+</tr>
+<tr>
+<td>Легальная выручка 2025</td>
+<td>$2.8 млрд</td>
+</tr>
+<tr>
+<td>Прогноз 2033</td>
+<td>$13.7 млрд (CAGR 11–14%)</td>
+</tr>
+<tr>
+<td>Бетторов (2024)</td>
+<td>74.3 млн → 80+ млн (2025)</td>
+</tr>
+<tr>
+<td>Gen Z доля</td>
+<td>44%</td>
+</tr>
+</tbody>
+</table>
+<h3>1.4 Dota 2 на рынке ставок</h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Доля handle среди дисциплин</td>
+<td>8.7% (H1 2025)</td>
+</tr>
+<tr>
+<td>Тренд доли</td>
+<td>14% (2023) → 10% (2024) → 8.7% (H1 2025)</td>
+</tr>
+<tr>
+<td>Абсолютный рост объёма</td>
+<td>+31% YoY (2025)</td>
+</tr>
+<tr>
+<td>DATA.BET Dota 2 Q3 2025</td>
+<td>turnover +290%, profit +416%</td>
+</tr>
+<tr>
+<td>Доля Восточной Европы</td>
+<td>22.8%</td>
+</tr>
+<tr>
+<td>Активные Polymarket Dota 2 рынки</td>
+<td>5–8 (июнь 2026)</td>
+</tr>
+<tr>
+<td>Polymarket Dota 2 volume</td>
+<td>~$106K (live markets total)</td>
+</tr>
+</tbody>
+</table>
+<h3>1.5 Dota 2 экосистема — здоровье</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avg concurrent (H1 2026)</td>
+<td>~400K</td>
+</tr>
+<tr>
+<td>Peak 2025 (TI)</td>
+<td>961K — лучший за 3 года</td>
+</tr>
+<tr>
+<td>Core возраст</td>
+<td>25–34 (40–50%)</td>
+</tr>
+<tr>
+<td>Новые игроки (18–24)</td>
+<td>~15%</td>
+</tr>
+<tr>
+<td>ARPU core</td>
+<td>$30–60/год</td>
+</tr>
+<tr>
+<td>Регионы: СНГ</td>
+<td>25–30% (сильнейший)</td>
+</tr>
+<tr>
+<td>Китай</td>
+<td>~15% (падение)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вердикт:</strong> Dota 2 — стабильная ниша, не dying game. Core-аудитория лояльна и платёжеспособна.</p>
+<hr />
+<h2>2. Конкурентный ландшафт</h2>
+<h3>2.1 Прямые конкуренты Polydota</h3>
+<table>
+<thead>
+<tr>
+<th>Конкурент</th>
+<th>Угроза</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Polymarket</strong></td>
+<td>★★★★★</td>
+<td>«Amazon PM» — BLAST partnership, Dota 2 рынки, $15B valuation</td>
+</tr>
+<tr>
+<td><strong>Kalshi</strong></td>
+<td>★★★☆☆</td>
+<td>CFTC-regulated, 176 esports markets, $36M/week объём</td>
+</tr>
+<tr>
+<td><strong>DraftKings Predicts</strong></td>
+<td>★★★★☆</td>
+<td>6M+ DAU, бренд, 30+ штатов, запущен нояб 2025</td>
+</tr>
+<tr>
+<td><strong>FanDuel Predicts</strong></td>
+<td>★★★★☆</td>
+<td>Flutter EBITDA &gt;$2.8B, 16 штатов</td>
+</tr>
+<tr>
+<td><strong>Robinhood Event Contracts</strong></td>
+<td>★★★☆☆</td>
+<td>$300M+ revenue RR, esports не приоритет</td>
+</tr>
+<tr>
+<td><strong>DATA.BET</strong></td>
+<td>★★☆☆☆</td>
+<td>B2B, standalone PM vertical (апр 2026)</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 Esports B2B инфраструктура</h3>
+<table>
+<thead>
+<tr>
+<th>Компания</th>
+<th>Продукт</th>
+<th>Pricing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oddin.gg</strong></td>
+<td>Full esports stack (odds + risk)</td>
+<td>B2B непубличный</td>
+</tr>
+<tr>
+<td><strong>PandaScore</strong></td>
+<td>Data &amp; Odds API</td>
+<td>€500/мес per game</td>
+</tr>
+<tr>
+<td><strong>GRID Esports</strong></td>
+<td>Official data rights (Riot)</td>
+<td>Enterprise</td>
+</tr>
+<tr>
+<td><strong>DATA.BET</strong></td>
+<td>Sportsbook + PM vertical</td>
+<td>B2B</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 Esports-specific PM платформы</h3>
+<p><strong>Специализированных нет.</strong> Polydota — первый вертикальный prediction market для Dota 2.</p>
+<hr />
+<h2>3. Техническая реализация</h2>
+<h3>3.1 Polymarket API для overlay</h3>
+<table>
+<thead>
+<tr>
+<th>Функция</th>
+<th>Доступно</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Чтение рынков (REST)</td>
+<td>✅ Публично</td>
+</tr>
+<tr>
+<td>Торговля (CLOB REST + WS)</td>
+<td>✅ API-ключ + EIP-712</td>
+</tr>
+<tr>
+<td>Создание рынков</td>
+<td>❌ Только on-chain (смарт-контракты)</td>
+</tr>
+<tr>
+<td>Реферальная программа</td>
+<td>✅ 25% от комиссии → рефереру</td>
+</tr>
+<tr>
+<td>UMA Oracle для esports</td>
+<td>✅ Bond ~500 USDC, 1–2 часа resolution</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rate limits:</strong> Публичные ~10 req/s, приватные ~1 req/s</p>
+<h3>3.2 UMA Oracle — критическое ограничение</h3>
+<ul>
+<li>Liveness period: 1–2 часа для esports</li>
+<li><strong>Не подходит для live resolution</strong> (нужен централизованный oracle)</li>
+<li>Bond: ~500 USDC (возвратный)</li>
+<li>Источники: ESL, HLTV, Liquipedia</li>
+</ul>
+<h3>3.3 Referral экономика</h3>
+<ul>
+<li>25% от протокольной комиссии → рефереру</li>
+<li>Протокольная комиссия: 2% от выигрыша</li>
+<li><strong>Фактически: 0.5% от оборота рефералов</strong></li>
+</ul>
+<hr />
+<h2>4. Регуляторный ландшафт</h2>
+<h3>4.1 Стратегия регистрации</h3>
+<table>
+<thead>
+<tr>
+<th>Фаза</th>
+<th>Юрисдикция</th>
+<th>Стоимость</th>
+<th>Срок</th>
+<th>Особенности</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVP</strong></td>
+<td><strong>Curacao</strong></td>
+<td>$25–40K/год</td>
+<td>2–6 нед</td>
+<td>Crypto-native, esports разрешены</td>
+</tr>
+<tr>
+<td><strong>Growth</strong></td>
+<td>Isle of Man</td>
+<td>£50–100K/год</td>
+<td>3–6 мес</td>
+<td>Crypto разрешён, 0% corp tax</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Malta (MGA)</td>
+<td>€50K+/год</td>
+<td>4–8 мес</td>
+<td>EU признание, esports регулируются</td>
+</tr>
+</tbody>
+</table>
+<h3>4.2 Asia — Dota 2 core market</h3>
+<ul>
+<li><strong>Индия</strong> — 🟢 skill gaming exemption, огромная Dota 2 аудитория</li>
+<li><strong>Филиппины</strong> — 🟢 PAGCOR, crypto разрешён</li>
+<li><strong>Китай</strong> — 🚫 полный запрет</li>
+<li><strong>ЮВА</strong> — 🟡 серый рынок, огромный объём</li>
+</ul>
+<h3>4.3 Риски</h3>
+<ul>
+<li>CFTC enforcement (Polymarket штраф $1.2M в 2024)</li>
+<li>Illinois C&amp;D (янв 2026)</li>
+<li>US geo-fence обязателен</li>
+</ul>
+<hr />
+<h2>5. Бизнес-модели и оценки</h2>
+<h3>5.1 TAM/SAM/SOM для Polydota</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Оценка</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TAM</strong> — prediction markets всего</td>
+<td>$325B+ (2026)</td>
+<td>Рыночная экстраполяция</td>
+</tr>
+<tr>
+<td><strong>TAM</strong> — esports betting</td>
+<td>$2.8B (2025)</td>
+<td>SiGMA, SkyQuest</td>
+</tr>
+<tr>
+<td><strong>SAM</strong> — Dota 2 betting</td>
+<td>$244M (8.7% × $2.8B)</td>
+<td>Oddin.gg доля</td>
+</tr>
+<tr>
+<td><strong>SOM</strong> — Polydota Year 1</td>
+<td>$2–5M</td>
+<td>Оценка (0.8–2% SAM)</td>
+</tr>
+<tr>
+<td><strong>SOM</strong> — Polydota Year 3</td>
+<td>$10–25M</td>
+<td>При 2–5% рынка Dota 2 PM</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 Revenue Model для Polydota</h3>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Потенциал</th>
+<th>Приоритет</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Taker fee</strong> (0.5–1%)</td>
+<td>При $10M объёма = $50–100K</td>
+<td>🥇 Основная</td>
+</tr>
+<tr>
+<td><strong>Polymarket referral</strong> (0.5% от оборота)</td>
+<td>При $10M = $50K</td>
+<td>🥇 Немедленная</td>
+</tr>
+<tr>
+<td><strong>B2B Data API</strong></td>
+<td>$5–20K/мес enterprise</td>
+<td>🥈 Фаза 2</td>
+</tr>
+<tr>
+<td><strong>Telegram Premium</strong></td>
+<td>$9.99/мес × 1000 = $10K/мес</td>
+<td>🥈 Быстрый старт</td>
+</tr>
+<tr>
+<td><strong>Rev share с букмекерами</strong></td>
+<td>CPA 50–100€ per FTD</td>
+<td>🥉 Фаза 3</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 Примерный P&amp;L Year 1</h3>
+<table>
+<thead>
+<tr>
+<th>Статья</th>
+<th>Месяц</th>
+<th>Год</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Доход</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Polymarket referral (0.5% × $5M)</td>
+<td>$2,083</td>
+<td>$25K</td>
+</tr>
+<tr>
+<td>Taker fee (0.5% × $5M)</td>
+<td>$2,083</td>
+<td>$25K</td>
+</tr>
+<tr>
+<td>Telegram Premium (500 × $9.99)</td>
+<td>$4,995</td>
+<td>$60K</td>
+</tr>
+<tr>
+<td><strong>Total Revenue</strong></td>
+<td><strong>$9,161</strong></td>
+<td><strong>$110K</strong></td>
+</tr>
+<tr>
+<td><strong>Расходы</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Разработка (freelance)</td>
+<td>$5K</td>
+<td>$60K</td>
+</tr>
+<tr>
+<td>Лицензия Curacao</td>
+<td>$2,083</td>
+<td>$25K</td>
+</tr>
+<tr>
+<td>Хостинг/инфра</td>
+<td>$500</td>
+<td>$6K</td>
+</tr>
+<tr>
+<td>Marketing</td>
+<td>$2K</td>
+<td>$24K</td>
+</tr>
+<tr>
+<td>Юр. сопровождение</td>
+<td>$1K</td>
+<td>$12K</td>
+</tr>
+<tr>
+<td><strong>Total Cost</strong></td>
+<td><strong>$10,583</strong></td>
+<td><strong>$127K</strong></td>
+</tr>
+<tr>
+<td><strong>Net</strong></td>
+<td><strong>-$1,422</strong></td>
+<td><strong>-$17K</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Окупаемость:</strong> ~18–24 месяцев при росте объёмов.</p>
+<hr />
+<h2>6. Ключевой риск: DK/FanDuel</h2>
+<p><strong>Уже запущены</strong> (ноябрь-декабрь 2025).</p>
+<p>Последствия:<br />
+1. Отток casual users с Polymarket/Kalshi на знакомые бренды<br />
+2. Давление на fee rates<br />
+3. Регуляторное ускорение<br />
+4. <strong>Окно Polydota: 12–18 месяцев</strong> до полноценных Dota 2 markets</p>
+<hr />
+<h2>7. SWOT Polydota</h2>
+<table>
+<thead>
+<tr>
+<th>Сильные стороны</th>
+<th>Слабые стороны</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First-mover Dota 2 PM</td>
+<td>Нет бренда/доверия</td>
+</tr>
+<tr>
+<td>Экспертиза в экосистеме</td>
+<td>Cold-start liquidity</td>
+</tr>
+<tr>
+<td>Уже есть Telegram-бот + ML</td>
+<td>Нет регуляторного щита</td>
+</tr>
+<tr>
+<td>Dota 2 core лояльна</td>
+<td>Маленький TAM ($244M)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Возможности</th>
+<th>Угрозы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DK/FD игнорируют esports пока</td>
+<td>Polymarket добавляет Dota 2</td>
+</tr>
+<tr>
+<td>Индия — skill gaming exemption</td>
+<td>Kalshi: 176 esports markets</td>
+</tr>
+<tr>
+<td>Polymarket API overlay</td>
+<td>CFTC enforcement</td>
+</tr>
+<tr>
+<td>BLAST партнёрство</td>
+<td>DK/FD неизбежно зайдут</td>
+</tr>
+<tr>
+<td>DATA.BET B2B</td>
+<td>Dota 2 доля падает (8.7%)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. Рекомендации</h2>
+<h3>Product</h3>
+<ol>
+<li><strong>Telegram Premium Bot</strong> (2 недели) — ML прогнозы $9.99/мес</li>
+<li><strong>Polymarket referral layer</strong> — направлять трафик → 0.5% оборота</li>
+<li><strong>Не конкурировать head-on</strong> — Polymarket проигрыш по ликвидности</li>
+<li><strong>Ultra-specialised Dota 2:</strong> TI bracket, live match, player transfers</li>
+</ol>
+<h3>Revenue</h3>
+<ol>
+<li><strong>Немедленно:</strong> Polymarket referral (0%)</li>
+<li><strong>2 недели:</strong> Telegram Premium ($10K/мес при 1000)</li>
+<li><strong>3 месяца:</strong> Taker fee overlay на Polymarket</li>
+<li><strong>6 месяцев:</strong> B2B Data API</li>
+</ol>
+<h3>Legal</h3>
+<ol>
+<li><strong>Curacao</strong> — старт ($25K)</li>
+<li><strong>Geo-fence USA</strong> — обязательно</li>
+<li><strong>Индия</strong> — отдельная стратегия (skill gaming)</li>
+</ol>
+<h3>Risk</h3>
+<ol>
+<li>DK/FanDuel — <strong>12–18 month window</strong></li>
+<li>Dota 2 — shrinking share — мониторинг</li>
+<li>Polymarket может закрыть/ограничить API</li>
+</ol>
+<hr />
+<h2>9. Fact-Check</h2>
+<table>
+<thead>
+<tr>
+<th>Утверждение</th>
+<th>Проверка</th>
+<th>Вердикт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polymarket $33.4B в 2025</td>
+<td>Forbes vs Sacra разные цифры</td>
+<td>✅ ~$21.5–33.4B</td>
+</tr>
+<tr>
+<td>Polymarket daily fees &gt;$1M</td>
+<td>Yahoo Finance, апр 2026</td>
+<td>✅ Подтверждено</td>
+</tr>
+<tr>
+<td>Esports betting $2.8B (2025)</td>
+<td>SiGMA, SkyQuest</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Dota 2 handle 8.7%</td>
+<td>Oddin.gg H1 2025</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Polymarket API CLOB</td>
+<td>docs.polymarket.com</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Dota 2 MAU ~400K</td>
+<td>Steam Charts</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Kalshi $22B valuation</td>
+<td>Май 2026, Series F</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Исследование проведено 11 июня 2026. Данные актуальны на дату публикации.</em></p>
 </div>
 
 <hr>
